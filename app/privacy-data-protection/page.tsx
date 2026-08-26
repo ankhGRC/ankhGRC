@@ -136,8 +136,9 @@ export default function PrivacyDataProtectionPage() {
                 </a>
 
                 <a
-                  href="#framework"
-                  className="inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400"
+                  href="#why-privacy"
+                  className=" inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400"
+                  
                 >
                   Learn More <span>↓</span>
                 </a>
@@ -162,7 +163,7 @@ export default function PrivacyDataProtectionPage() {
       </section>
 
       {/* Why */}
-      <section className="border-b border-white/10 bg-[#f1eee7] text-[#171b19]">
+      <section id="why-privacy" className="border-b border-white/10 bg-[#f1eee7] text-[#171b19]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
