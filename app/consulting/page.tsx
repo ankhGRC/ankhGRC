@@ -1,6 +1,6 @@
 "use client";
 import { Navigation } from "@/components/landing/navigation";
-import { useState } from "react";
+import { useState, type WheelEvent } from "react";
 
 const riskCapabilities = [
   "Enterprise Risk Management (ERM)",
@@ -20,83 +20,150 @@ const riskCapabilities = [
   "Sales channel risk management and compliance",
   "Customer risk management",
 ];
+
 export default function ConsultingPage() {
-  const [selectedCapability, setSelectedCapability] = useState(
-    "Enterprise Risk Management (ERM)"
-  );
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const selectedCapability = riskCapabilities[selectedIndex];
+
+  const selectCapability = (index: number) => {
+    setSelectedIndex(index);
+  };
+
+  const moveCapability = (direction: 1 | -1) => {
+    setSelectedIndex((current) => {
+      const next = current + direction;
+
+      if (next < 0) return riskCapabilities.length - 1;
+      if (next >= riskCapabilities.length) return 0;
+
+      return next;
+    });
+  };
+
+  const handleCapabilityWheel = (
+    event: WheelEvent<HTMLDivElement>
+  ) => {
+    if (Math.abs(event.deltaY) < 10) return;
+
+    event.preventDefault();
+    moveCapability(event.deltaY > 0 ? 1 : -1);
+  };
+
+  const getRelativePosition = (index: number) => {
+    let position = index - selectedIndex;
+    const total = riskCapabilities.length;
+
+    if (position > total / 2) position -= total;
+    if (position < -total / 2) position += total;
+
+    return position;
+  };
 
   return (
     <main className="min-h-screen w-full bg-white text-[#071a35]">
       {/* =========================================================
-          1. NAVBAR - NOT STICKY
+          1. NAVBAR
       ========================================================= */}
       <Navigation />
 
       {/* =========================================================
-          2. BREADCRUMB
-          DIRECTLY BELOW NAVBAR
+          2. HERO - DARK
       ========================================================= */}
-      <div className="w-full pt-23 border-b border-black/15 bg-white">
-        <div className="mx-auto flex min-h-[58px] w-full items-center px-10 lg:px-16">
+      <section className="relative h-233 overflow-hidden bg-[#111211] text-white">
+        <div className="mx-auto grid min-h-[650px] w-full max-w-[1500px] items-center gap-16 px-10 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-24">
+          {/* LEFT */}
+          <div className="max-w-[700px]">
+            <p className="mb-7 p-10 text-[18px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
+              ANKH GRC / CONSULTING
+            </p>
 
-          <div className="flex flex-wrap items-center gap-4 text-[18px] font-semibold text-[#071a35]">
+            <h1 className="max-w-[760px] text-[58px] font-medium leading-[0.98] tracking-[-0.045em] sm:text-[72px] lg:text-[86px]">
+              Governance,
+              <br />
+              Risk &amp;
+              <br />
+              Compliance
+            </h1>
 
-            <span>ANKH GRC</span>
+            <p className="mt-10 max-w-[680px] text-[28px] leading-[1.7] text-white/65 sm:text-[21px]">
+              Helping organisations strengthen governance, manage risk and improve
+              business performance through practical GRC solutions.
+            </p>
 
-            <span className="text-[26px] font-normal text-black/50">
-              ›
-            </span>
-
-            <span>Consulting</span>
-
-            <span className="text-[26px] font-normal text-black/50">
-              ›
-            </span>
-
-            <span>Risk consulting</span>
-
-            <span className="text-[26px] font-normal text-black/50">
-              ›
-            </span>
-
-            <span>
-              Governance, Risk and Compliance
-            </span>
-
+            <div className="mt-10 flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.3em] text-white/50">
+              <span className="h-px w-16 bg-[#e65300]" />
+              <span>Secure. Compliant. Future Ready.</span>
+            </div>
           </div>
 
+          {/* RIGHT - GRC VISUAL, NO STOCK IMAGE */}
+          <div className="relative mx-auto w-full max-w-[590px]">
+            <div className="absolute -inset-10 rounded-full bg-[#e65300]/10 blur-3xl" />
+
+            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#181a19] p-7 shadow-2xl sm:p-9">
+              <div className="flex items-center justify-between">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
+                  ANKH GRC
+                </p>
+                <span className="h-3 w-3 rounded-full bg-[#e65300] shadow-[0_0_22px_rgba(230,83,0,0.7)]" />
+              </div>
+
+              <p className="mt-14 text-[11px] uppercase tracking-[0.32em] text-white/35">
+                Integrated framework
+              </p>
+
+              <div className="mt-6 grid grid-cols-3 gap-3">
+                {[
+                  ["G", "Governance"],
+                  ["R", "Risk"],
+                  ["C", "Compliance"],
+                ].map(([letter, label]) => (
+                  <div
+                    key={letter}
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-transform duration-300 hover:-translate-y-1"
+                  >
+                    <div className="text-[42px] font-medium leading-none text-white">
+                      {letter}
+                    </div>
+                    <div className="mt-5 text-[12px] text-white/45">{label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 border-t border-white/10 pt-6">
+                <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.28em] text-white/35">
+                  <span>Connected</span>
+                  <span className="text-[#e65300]">G · R · C</span>
+                </div>
+                <div className="mt-4 h-1 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-full w-[78%] rounded-full bg-[#e65300]" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-
-      {/* =========================================================
-          3. HERO / TITLE
-      ========================================================= */}
-      <section className="relative h-[660px] w-full bg-[#e65300]">
-
-        <div className="absolute bottom-0 left-0 w-[65%] h-[200px] bg-[#dfe4e8] px-20 py-12">
-
-          <h1 className="text-[44px] font-normal leading-[1.15] tracking-[-0.02em] text-[#071a35]">
-            Governance, Risk and Compliance
-          </h1>
-
-        </div>
-
       </section>
 
-
       {/* =========================================================
-          4. INTRO CONTENT
-          TEXT LEFT + IMAGE RIGHT
+          3. INTRO - WHITE
+          EXISTING COPY KEPT UNCHANGED
       ========================================================= */}
-      <section className="w-full bg-[#f7f7f7] px-10 py-16 lg:px-16">
+      <section className="w-full bg-[#f7f7f5] px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto grid w-full max-w-[1500px] grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+          <div>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
+              WHY GRC MATTERS
+            </p>
+            <h2 className="mt-7 max-w-[520px] text-[48px] font-medium leading-[0.98] tracking-[-0.04em] text-[#111211] sm:text-[62px]">
+              Stronger governance.
+              <br />
+              Smarter risk.
+            </h2>
+          </div>
 
-        <div className="mx-auto grid w-full max-w-[1500px] grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr]">
-
-          {/* LEFT - TEXT */}
-          <div className="max-w-[700px]">
-
-            <p className="text-[22px] leading-[1.8] text-[#071a35]">
+          <div className="max-w-[900px] text-[19px] leading-[1.75] text-[#536170] sm:text-[21px]">
+            <p>
               Today’s rapidly changing geo-political, business, and regulatory
               environment requires rethinking about risk in new ways.
               Management is constantly struggling with increasingly demanding
@@ -104,7 +171,7 @@ export default function ConsultingPage() {
               trust, drive efficiency and to remain competitive.
             </p>
 
-            <p className="mt-8 text-[22px] leading-[1.8] text-[#071a35]">
+            <p className="mt-8">
               Implementing the suitable Governance, Risk and Compliance (GRC)
               framework will enable organisations to identify the right approaches
               which contribute to improved risk management, enhanced process
@@ -113,28 +180,11 @@ export default function ConsultingPage() {
               capabilities can help you seize opportunities, stay a step ahead
               of uncertainty, and meet stakeholder expectations.
             </p>
-
           </div>
-
-
-          {/* RIGHT - IMAGE */}
-          <div className="flex items-start justify-end">
-
-            <img
-              src="/grc-city.jpg"
-              alt="Governance, Risk and Compliance"
-              className="h-auto w-full max-w-[760px] object-cover"
-            />
-
-          </div>
-
         </div>
 
-
-        {/* FULL WIDTH TEXT BELOW */}
-        <div className="mx-auto mt-20 w-full max-w-[1500px]">
-
-          <p className="text-[22px] leading-[1.8] text-[#071a35]">
+        <div className="mx-auto mt-16 w-full max-w-[1500px] border-t border-black/10 pt-10">
+          <p className="max-w-[1280px] text-[19px] leading-[1.75] text-[#536170] sm:text-[21px]">
             Our work comprises helping companies design, review, revamp and
             benchmark their GRC practices and business process controls
             performance. By aligning GRC activities to business performance
@@ -143,56 +193,126 @@ export default function ConsultingPage() {
             skills and industry experience to provide you with the practical
             implementation insights.
           </p>
-
         </div>
-
       </section>
 
-
       {/* =========================================================
-          5. PwC's Risk Capabilities
-      ========================================================= */}
-      <section className="w-full bg-white px-10 py-20 lg:px-16">
+          4. RISK CAPABILITIES
+          Vertical capability cards + full-width selected content
+          ========================================================= */}
+      <section className="w-full overflow-hidden bg-[#111211] text-white">
+        <div className="mx-auto w-full max-w-[1500px] px-6 py-20 lg:px-10 lg:py-24">
 
-        <div className="mx-auto w-full max-w-[1500px]">
+          {/* SECTION HEADING */}
+          <div className="mb-12 flex items-end justify-between gap-8">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
+                OUR CAPABILITIES
+              </p>
 
-          <h2 className="mb-20 text-[48px] font-normal leading-[1.15] tracking-[-0.02em] text-[#071a35]">
-            PwC's Risk Capabilities
-          </h2>
+              <h2 className="mt-5 text-[46px] font-medium leading-[0.98] tracking-[-0.045em] sm:text-[60px]">
+                ANKH GRC&apos;s Risk Capabilities
+              </h2>
+            </div>
 
+          </div>
 
-          {/* =====================================================
-              6. CAPABILITY LIST
-              RIGHT SIDE CONTENT WILL BE ADDED LATER
-          ===================================================== */}
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[530px_1fr]">
+          {/* TWO-COLUMN CONTENT */}
+          <div className="grid items-start gap-14 lg:grid-cols-[0.72fr_1.28fr] xl:gap-20">
 
-            {/* LEFT LIST */}
-            <div className="w-full">
+            {/* =====================================================
+                LEFT — VERTICAL SCROLLABLE CARDS
+                ===================================================== */}
+            <div className="relative">
 
-              {riskCapabilities.map((item) => (
-  <button
-    key={item}
-    type="button"
-    onClick={() => setSelectedCapability(item)}
-    className={`mb-3 flex min-h-[72px] w-full items-center px-5 py-5 text-left text-[22px] leading-[1.4] transition-colors ${
-      selectedCapability === item
-        ? "bg-[#e65300] text-white"
-        : "bg-[#f0f0f0] text-[#071a35] hover:bg-[#e8e8e8]"
-    }`}
-  >
-    <span>{item}</span>
-  </button>
-))}
+              <div className="pr-3">
+                <div className="space-y-3">
+                  {riskCapabilities.map((item, index) => {
+                    const isActive = index === selectedIndex;
+
+                    return (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => selectCapability(index)}
+                        className={`group relative flex min-h-[86px] w-full items-center gap-5 rounded-[18px] border px-6 py-5 text-left transition-all duration-300 ${
+                          isActive
+                            ? "border-[#e65300] bg-[#1a1c1b] shadow-[0_12px_35px_rgba(0,0,0,0.25)]"
+                            : "border-white/10 bg-white/[0.025] hover:border-white/25 hover:bg-white/[0.055]"
+                        }`}
+                      >
+                        {/* orange active indicator */}
+                        <span
+                          className={`absolute left-0 top-1/2 h-10 w-[3px] -translate-y-1/2 rounded-r-full transition-all duration-300 ${
+                            isActive ? "bg-[#e65300]" : "bg-transparent"
+                          }`}
+                        />
+
+                        <span
+                          className={`shrink-0 text-[10px] font-semibold tracking-[0.25em] ${
+                            isActive ? "text-[#e65300]" : "text-white/30"
+                          }`}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span
+                          className={`text-[20px] leading-5 transition-colors duration-300 ${
+                            isActive
+                              ? "font-medium text-white"
+                              : "text-white/55 group-hover:text-white/85"
+                          }`}
+                        >
+                          {item}
+                        </span>
+
+                        <span
+                          className={`ml-auto shrink-0 text-lg transition-all duration-300 ${
+                            isActive
+                              ? "translate-x-0 text-[#e65300] opacity-100"
+                              : "-translate-x-1 text-white/20 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+                          }`}
+                        >
+                          →
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
             </div>
 
+            {/* =====================================================
+                RIGHT — NO BOX / NO HEIGHT LIMIT
+                Full half-column for the selected description
+                ===================================================== */}
+            <div
+              key={selectedCapability}
+              className="min-w-0 overflow-visible"
+            >
+              {/* Selected capability heading */}
+              <div className="border-b border-white/10 pb-7">
+                <div className="flex items-start justify-between gap-6">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
+                      SELECTED CAPABILITY
+                    </p>
 
-{/* =====================================================
-    RIGHT SIDE CONTENT
-===================================================== */}
-<div className="min-h-[700px] pl-4 lg:pl-5">
+                    <p className="mt-3 text-[11px] tracking-[0.18em] text-white/30">
+                      {String(selectedIndex + 1).padStart(2, "0")} /{" "}
+                      {String(riskCapabilities.length).padStart(2, "0")}
+                    </p>
+                  </div>
 
+                  <span className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#e65300] shadow-[0_0_18px_rgba(230,83,0,0.65)]" />
+                </div>
+              </div>
+
+              {/* Original capability content.
+                  It is intentionally NOT inside a card and has no fixed height. */}
+              <div className="pt-8">
+                          <div className="max-w-[1250px] text-white [&_h3]:text-white [&_p]:text-white/70 [&_li]:text-white/70 [&_strong]:text-white">
   {selectedCapability === "Enterprise Risk Management (ERM)" && (
     <>
       <h3 className="text-[38px] font-bold leading-[1.2] tracking-[-0.02em] text-[#071a35]">
@@ -1017,12 +1137,32 @@ export default function ConsultingPage() {
   </>
 )}
 
-</div>  
 
           </div>
+              </div>
 
+              {/* Progress */}
+              <div className="mt-12">
+                <div className="mb-3 flex items-center justify-between text-[9px] font-semibold uppercase tracking-[0.28em] text-white/25">
+                  <span>Risk capabilities</span>
+                  <span>
+                    {String(selectedIndex + 1).padStart(2, "0")} /{" "}
+                    {String(riskCapabilities.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="h-px w-full bg-white/10">
+                  <div
+                    className="h-full bg-[#e65300] transition-all duration-500"
+                    style={{
+                      width: `${((selectedIndex + 1) / riskCapabilities.length) * 100}%`,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
       </section>
 
     </main>

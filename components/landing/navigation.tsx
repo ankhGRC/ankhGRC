@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import Link from "next/link";
+
 
 const navLinks = [
   { name: "Home", href: "#" },
@@ -12,16 +14,8 @@ const navLinks = [
 
 const serviceItems = [
   {
-    name: "Compliance",
-    href: "/compliance-consulting",
-  },
-  {
-  name: "Consulting",
-  href: "/consulting",
-  },
-  {
     name: "Information Security Standard",
-    href: "#information-security",
+    href: "/information-security",
   },
   {
     name: "Industry-Specific Regulation",
@@ -188,7 +182,7 @@ export function Navigation() {
                     aria-expanded={isServicesOpen}
                     aria-haspopup="true"
                   >
-                    <span>Services</span>
+                    <span>Compliance</span>
 
                     <ChevronDown
                       className={`h-[17px] w-[17px] transition-transform duration-300 ${
@@ -291,7 +285,7 @@ export function Navigation() {
                                     : "text-white/60 hover:text-white"
                                 }`}
                               >
-                                <span>Services</span>
+                                <span>Compliance</span>
 
                                 <ArrowRight
                                   className={`h-5 w-5 transition-colors duration-200 ${
@@ -303,14 +297,14 @@ export function Navigation() {
                               </div>
                             </div>
 
-                            {/* PRODUCTS */}
                             <div className="border-b border-white/15">
-                              <div className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:text-white">
-                                <span>Products</span>
-
-                                <ArrowRight className="h-5 w-5" />
-                              </div>
-                            </div>
+                                  <Link
+                                    href="/consulting"
+                                    className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all hover:bg-[#343936] hover:text-white"
+                                  >
+                                    <span>Consulting</span>
+                                  </Link>
+                                </div>
 
                             {/* PROJECTS */}
                             <div className="border-b border-white/15">
@@ -337,7 +331,7 @@ export function Navigation() {
                                 </p>
 
                                 <h3 className="mt-2 text-[30px] font-semibold tracking-[-0.03em] text-white">
-                                  Services
+                                  Compliance
                                 </h3>
                               </div>
 

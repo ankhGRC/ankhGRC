@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Navigation } from "@/components/landing/navigation";
 
 const challenges = [
   {
@@ -247,34 +248,11 @@ export default function CrossBorderPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#111412] text-[#f4f1eb]">
 
-      {/* ================= NAV ================= */}
-      <header className="bg-white">
-        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between border-b border-black/10 px-6 lg:px-10">
-
-          <Link
-            href="/"
-            className="relative flex h-8 w-[150px] items-center overflow-visible"
-          >
-            <img
-              src="/ankhgrc-logo.png"
-              alt="ANKH GRC"
-              className="absolute left-0 top-1/2 w-[150px] -translate-y-1/2 object-contain"
-            />
-          </Link>
-
-          <Link
-            href="/"
-            className="text-sm font-medium text-black/65 transition-colors hover:text-[#ff6a00]"
-          >
-            Back to Home
-          </Link>
-
-        </div>
-      </header>
+   <Navigation />
 
 
       {/* ================= HERO ================= */}
-      <section className="relative min-h-[720px] overflow-hidden border-b border-white/10">
+      <section className="relative p-[28px] min-h-[720px] overflow-hidden border-b border-white/10">
 
         <div className="pointer-events-none absolute -right-[20%] top-[10%] h-[700px] w-[700px] rounded-full bg-[#ff6a00]/[0.07] blur-[130px]" />
 

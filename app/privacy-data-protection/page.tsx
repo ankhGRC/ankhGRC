@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Navigation } from "@/components/landing/navigation";
 
 const challenges = [
   {
@@ -106,19 +107,8 @@ export default function PrivacyDataProtectionPage() {
 
         <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-10 lg:pb-32 lg:pt-12">
           <div className="flex items-center justify-between bg-white border-b border-black/10 px-6 py-4 lg:px-10">
-<a href="/" className="relative flex h-8 w-[150px] items-center overflow-visible">
-  <img
-    src="/ankhgrc-logo.png"
-    alt="ANKH GRC"
-    className="absolute left-0 top-1/2 h-auto w-[130px] -translate-y-1/2 scale-[1.8] origin-left object-contain"
-  />
-</a>
-            <Link
-              href="/"
-              className="text-sm text-black/70 transition hover:text-orange-500"
-            >
-              Back to Home
-            </Link>
+<Navigation />
+        
           </div>
 
           <div className="grid gap-14 pt-20 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:pt-28">
