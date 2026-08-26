@@ -355,20 +355,7 @@ export function Navigation() {
 
                               </div>
 
-                              {/* CONSULTING LINK */}
-                              <div className="mt-8 border-t border-white/10 pt-6">
-                                <a
-                                  href="/compliance-consulting"
-                                  onClick={closeMenus}
-                                  className="group inline-flex items-center gap-3 text-[16px] font-medium text-white transition-colors duration-200 hover:text-[#E85D04]"
-                                >
-                                  <span>
-                                    Explore our GRC consulting
-                                  </span>
-
-                                  <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                                </a>
-                              </div>
+                              
                             </div>
                           )}
 
