@@ -33,7 +33,7 @@ const serviceItems = [
   },
   {
     name: "Privacy / Data Protection Law",
-    href: "#privacy",
+    href: "/privacy-data-protection",
   },
   {
     name: "AI Governance",
