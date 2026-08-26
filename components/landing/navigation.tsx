@@ -41,7 +41,7 @@ const serviceItems = [
   },
   {
     name: "Cross-Border / Supranational Framework",
-    href: "#cross-border",
+    href: "/cross-border",
   },
 ];
 
