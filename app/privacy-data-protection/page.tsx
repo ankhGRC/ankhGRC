@@ -519,7 +519,7 @@ export default function PrivacyDataProtectionPage() {
             </a>
           </div>
 
-          <p>© 2024 Ankh GRC. All rights reserved. | Privacy. Trust. Governance.</p>
+          <p>© 2026 Ankh GRC. All rights reserved. | Privacy. Trust. Governance.</p>
         </div>
       </footer>
     </main>
