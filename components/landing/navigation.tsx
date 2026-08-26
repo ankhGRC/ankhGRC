@@ -182,7 +182,7 @@ export function Navigation() {
                     aria-expanded={isServicesOpen}
                     aria-haspopup="true"
                   >
-                    <span>Compliance</span>
+                    <span>Services</span>
 
                     <ChevronDown
                       className={`h-[17px] w-[17px] transition-transform duration-300 ${
