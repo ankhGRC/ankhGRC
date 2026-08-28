@@ -17,21 +17,21 @@ const serviceItems = [
     name: "Information Security Standard",
     href: "/information-security",
   },
-  {
-    name: "Industry-Specific Regulation",
-    href: "#industry-regulation",
+   {
+    name: "Industry-Specific Regulations",
+    href: "/industry-specific-regulations",
   },
-  {
-    name: "Cybersecurity Regulation",
-    href: "#cybersecurity-regulation",
-  },
+ {
+  name: "Cybersecurity Regulation",
+  href: "/cybersecurity-regulation",
+},
   {
     name: "Privacy / Data Protection Law",
     href: "/privacy-data-protection",
   },
   {
     name: "AI Governance",
-    href: "#ai-governance",
+    href: "/ai-governance",
   },
   {
     name: "Cross-Border / Supranational Framework",
