@@ -289,7 +289,7 @@ export default function CybersecurityRegulationPage() {
       {/* =========================================================
           HERO — DARK
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#111412] h-[970px]">
+      <section className="relative overflow-hidden bg-[#111412] h-[970px]  pt-20">
         <div className="absolute right-[-180px] top-[-160px] h-[600px] w-[600px] rounded-full bg-[#ff6a00]/[0.06] blur-[100px]" />
 
         <div className="relative mx-auto max-w-[1240px] px-6 pb-24 pt-24 lg:px-8 lg:pb-32 lg:pt-28">
@@ -663,58 +663,64 @@ export default function CybersecurityRegulationPage() {
         </div>
       </section>
 
-      {/* =========================================================
-          FOOTER — DARK
-      ========================================================= */}
-      <footer className="bg-[#111412] text-white">
-        <div className="mx-auto max-w-[1240px] px-6 py-12 lg:px-8">
-          <div className="flex flex-col gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end md:justify-between">
-            <div>
-              <img
-                src="/ankhgrc-logo (2).png"
-                alt="Ankh GRC"
-                className="h-[55px] w-auto rounded-sm bg-white object-contain p-1"
-              />
+    {/* =========================================================
+    10. FOOTER
+========================================================= */}
+<footer className="bg-[#111412] px-6 py-10 text-white lg:px-10 lg:py-12">
+  <div className="mx-auto max-w-7xl">
 
-              <p className="mt-5 text-xs tracking-[0.12em] text-[#777d79]">
-                Secure. Compliant. Future Ready.
-              </p>
-            </div>
+    {/* TOP ROW */}
+    <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
 
-            <div className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-[#898f8b]">
-              <a href="/" className="hover:text-[#ff6a00]">
-                Home
-              </a>
+      {/* BRAND — NO IMAGE LOGO */}
+      <div>
+        <p className="text-sm font-semibold tracking-[0.2em]">
+          <span className="text-white">ANKH</span>{" "}
+          <span className="text-orange-500">GRC</span>
+        </p>
+      </div>
 
-              <a href="/about" className="hover:text-[#ff6a00]">
-                About
-              </a>
+      {/* FOOTER NAV */}
+      <nav className="flex flex-wrap items-center gap-8">
+        <a
+          href="#frameworks"
+          className="text-[11px] uppercase tracking-[0.22em] text-white/45 transition hover:text-orange-500"
+        >
+          Frameworks
+        </a>
 
-              <a href="/resources" className="hover:text-[#ff6a00]">
-                Resources
-              </a>
+        <a
+          href="#implementation"
+          className="text-[11px] uppercase tracking-[0.22em] text-white/45 transition hover:text-orange-500"
+        >
+          Approach
+        </a>
 
-              <a href="#frameworks" className="hover:text-[#ff6a00]">
-                Frameworks
-              </a>
+        <a
+          href="#contact"
+          className="text-[11px] uppercase tracking-[0.22em] text-white/45 transition hover:text-orange-500"
+        >
+          Contact
+        </a>
+      </nav>
+    </div>
 
-              <a href="#domains" className="hover:text-[#ff6a00]">
-                Domains
-              </a>
+    {/* DIVIDER */}
+    <div className="my-8 h-px w-full bg-white/10" />
 
-              <a href="#contact" className="hover:text-[#ff6a00]">
-                Contact
-              </a>
-            </div>
-          </div>
+    {/* BOTTOM ROW */}
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-xs text-white/30">
+        © 2026 Ankh GRC. All rights reserved.
+      </p>
 
-          <div className="flex flex-col justify-between gap-4 pt-6 text-xs text-[#656b67] md:flex-row">
-            <p>© 2024 Ankh GRC. All rights reserved.</p>
+      <p className="text-xs text-white/30">
+        Secure. Compliant. Future Ready.
+      </p>
+    </div>
 
-            <p>Defend. Detect. Respond. Comply. Dominate.</p>
-          </div>
-        </div>
-      </footer>
+  </div>
+</footer>
     </main>
   );
 }

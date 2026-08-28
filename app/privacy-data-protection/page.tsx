@@ -203,6 +203,9 @@ export default function PrivacyDataProtectionPage() {
         </div>
       </section>
 
+{/* =========================================================
+    PRIVACY DOMAINS - DARK / GRID
+========================================================= */}
 <section className="relative overflow-hidden bg-[#111412] py-20 lg:py-24">
   {/* Section heading */}
   <div className="mx-auto max-w-7xl px-6 lg:px-10">
@@ -215,36 +218,25 @@ export default function PrivacyDataProtectionPage() {
       <br />
       Trust by default.
     </h2>
-  </div>
 
-  {/* Horizontal scrollable cards */}
-  <div className="relative mt-14">
-    <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-16 bg-gradient-to-r from-[#111412] to-transparent lg:w-28" />
-    <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-16 bg-gradient-to-l from-[#111412] to-transparent lg:w-28" />
-
-    <div
-      className="
-        flex gap-5 overflow-x-auto
-        px-[7vw] pb-8 pt-6
-        snap-x snap-mandatory
-        [scrollbar-width:none]
-        [&::-webkit-scrollbar]:hidden
-      "
-    >
-      {domains.map(([number, title, text], index) => (
+    {/* =====================================================
+        CARDS GRID
+    ===================================================== */}
+    <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {domains.map(([number, title, text]) => (
         <article
           key={number}
           className="
-            group relative
-            h-[470px] w-[350px] shrink-0 snap-center
-            overflow-hidden rounded-[28px]
+            group
+            relative
+            min-h-[430px]
+            overflow-hidden
+            rounded-[28px]
             border border-[#f4f1eb]/10
             bg-[#151916]
             transition-all duration-500 ease-out
             hover:-translate-y-2
             hover:border-[#ff6a00]/50
-            sm:h-[480px] sm:w-[380px]
-            lg:w-[400px]
           "
         >
           {/* Soft orange atmosphere */}
@@ -291,7 +283,9 @@ export default function PrivacyDataProtectionPage() {
             {number}
           </div>
 
-          <div className="relative z-10 flex h-full flex-col p-7 sm:p-8">
+          {/* Card content */}
+          <div className="relative z-10 flex min-h-[430px] flex-col p-7 sm:p-8">
+
             {/* Top row */}
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
@@ -313,8 +307,9 @@ export default function PrivacyDataProtectionPage() {
               </span>
             </div>
 
-            {/* Content */}
+            {/* Main content */}
             <div className="mt-auto">
+
               <div className="mb-5 h-px w-10 bg-[#ff6a00] transition-all duration-500 group-hover:w-16" />
 
               <h3
@@ -332,9 +327,8 @@ export default function PrivacyDataProtectionPage() {
               <p
                 className="
                   mt-4 max-w-[335px]
-                  text-[14px] leading-6
+                  text-[15px] leading-7
                   text-[#f4f1eb]/55
-                  sm:text-[15px] sm:leading-7
                 "
               >
                 {text}
@@ -353,31 +347,13 @@ export default function PrivacyDataProtectionPage() {
                 <span className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
               </div>
             </div>
+
           </div>
         </article>
       ))}
     </div>
-
-    {/* Scroll indicator */}
-    <div className="mt-1 flex items-center justify-center gap-3">
-      <div className="h-[2px] w-8 rounded-full bg-[#ff6a00]" />
-
-      <div className="flex gap-1.5">
-        {domains.map((_, index) => (
-          <span
-            key={index}
-            className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20"
-          />
-        ))}
-      </div>
-
-      <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-[#f4f1eb]/30">
-        Scroll to explore
-      </span>
-    </div>
   </div>
 </section>
-
       {/* Global Coverage */}
       <section id="coverage" className="border-b border-white/10 bg-[#242825]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">

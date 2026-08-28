@@ -252,12 +252,11 @@ export default function AIGovernancePage() {
       <Navigation />
 
       {/* HERO */}
-      <section className="relative overflow-hidden bg-[#111412]">
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-[#ff6a00]/[0.06] blur-[120px] " />
+      <section className=" h-[980px] relative overflow-hidden bg-[#111412] pt-20">
+        <div className="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-[#ff6a00]/[0.06] blur-[120px]" />
 
-        <div className="mx-auto grid min-h-[680px] max-w-7xl items-center gap-16 px-6 py-24 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 lg:py-28 h-[980px]">
-          <div>
-            <p className="mb-7 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
+<div className="mx-auto grid min-h-[800px] w-full max-w-[1720px] items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          <div>
+            <p className="mb-7 pt-6 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
               Govern AI. Build Trust. Enable Innovation.
             </p>
 
@@ -330,12 +329,12 @@ export default function AIGovernancePage() {
         </div>
       </section>
 
-      {/* WHY — WHITE */}
+      {/* WHY */}
       <section
         id="why-ai-governance"
         className="bg-[#f3f0e9] text-[#111412]"
       >
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
@@ -387,44 +386,33 @@ export default function AIGovernancePage() {
         </div>
       </section>
 
-      {/* CORE DOMAINS — DARK HORIZONTAL */}
-      <section id="framework" className="overflow-hidden bg-[#111412]">
-        <div className="mx-auto max-w-7xl px-6 pt-24 lg:px-10 lg:pt-32">
+      {/* CORE DOMAINS — CONTAINED GRID */}
+      <section id="framework" className="bg-[#111412]">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
             02 / AI GOVERNANCE FRAMEWORK
           </p>
 
-          <div className="mt-5 flex items-end justify-between gap-8">
-            <div>
-              <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
-                The 12 Core
-                <br />
-                Domains Framework
-              </h2>
+          <div className="mt-5">
+            <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+              The 12 Core
+              <br />
+              Domains Framework
+            </h2>
 
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/45">
-                A comprehensive framework covering governance, risk
-                management, compliance, security, ethics, and assurance across
-                the complete AI lifecycle.
-              </p>
-            </div>
-
-            <span className="hidden pb-2 text-[10px] uppercase tracking-[0.25em] text-white/25 lg:block">
-              SCROLL TO EXPLORE →
-            </span>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/45">
+              A comprehensive framework covering governance, risk management,
+              compliance, security, ethics, and assurance across the complete
+              AI lifecycle.
+            </p>
           </div>
-        </div>
 
-        <div className="relative mt-14">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[#111412] to-transparent lg:w-32" />
-
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[#111412] to-transparent lg:w-32" />
-
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[8vw] pb-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {/* IMPORTANT: NO HORIZONTAL SCROLL */}
+          <div className="mx-auto mt-14 grid max-w-[1400px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {domains.map((item) => (
               <article
                 key={item.number}
-                className="group relative flex h-[470px] w-[365px] shrink-0 snap-center flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[#171a18] p-8 transition duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/60"
+                className="group relative flex min-h-[400px] flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[#171a18] p-8 transition duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/60"
               >
                 <div className="pointer-events-none absolute -right-4 -top-8 text-[170px] font-semibold leading-none text-white/[0.025]">
                   {item.number}
@@ -443,30 +431,30 @@ export default function AIGovernancePage() {
                 <div className="relative z-10 mt-auto">
                   <div className="mb-5 h-px w-10 bg-[#ff6a00] transition-all group-hover:w-20" />
 
-                  <h3 className="text-[24px] font-medium leading-tight tracking-[-0.025em]">
+                  <h3 className="text-[28px] font-medium leading-tight tracking-[-0.025em]">
                     {item.title}
                   </h3>
 
-                  <p className="mt-5 text-[15px] leading-7 text-white/45">
+                  <p className="mt-5 text-[20px] leading-7 text-white/45">
                     {item.text}
+                  </p>
+
+                  <p className="mt-7 text-[10px] uppercase tracking-[0.35em] text-white/20">
+                    ANKH GRC
                   </p>
                 </div>
               </article>
             ))}
           </div>
-
-          <p className="pb-3 text-center text-[9px] font-semibold uppercase tracking-[0.3em] text-white/20 lg:hidden">
-            SWIPE TO EXPLORE
-          </p>
         </div>
       </section>
 
-      {/* GLOBAL COVERAGE — WHITE */}
+      {/* GLOBAL COVERAGE */}
       <section
         id="coverage"
         className="bg-[#f3f0e9] text-[#111412]"
       >
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
@@ -519,76 +507,71 @@ export default function AIGovernancePage() {
         </div>
       </section>
 
-      {/* SERVICES — DARK HORIZONTAL */}
-      <section id="services" className="overflow-hidden bg-[#111412]">
-        <div className="mx-auto max-w-7xl px-6 pt-24 lg:px-10 lg:pt-32">
+      {/* SERVICES — CONTAINED GRID */}
+      <section id="services" className="bg-[#111412]">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
             04 / ANKH GRC SERVICES
           </p>
 
-          <div className="mt-5 flex items-end justify-between gap-8">
-            <div>
-              <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
-                Ankh GRC AI
-                <br />
-                Governance Services
-              </h2>
+          <div className="mt-5">
+            <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+              Ankh GRC AI
+              <br />
+              Governance Services
+            </h2>
 
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/45">
-                Helping organizations operationalize responsible, secure, and
-                compliant AI.
-              </p>
-            </div>
-
-            <span className="hidden pb-2 text-[10px] uppercase tracking-[0.25em] text-white/25 lg:block">
-              SCROLL TO EXPLORE →
-            </span>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/45">
+              Helping organizations operationalize responsible, secure, and
+              compliant AI.
+            </p>
           </div>
-        </div>
 
-        <div className="relative mt-14">
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-[#111412] to-transparent lg:w-32" />
-
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-[#111412] to-transparent lg:w-32" />
-
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[8vw] pb-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {/* IMPORTANT: NO HORIZONTAL SCROLL */}
+          <div className="mx-auto mt-14 grid max-w-[1400px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((item) => (
               <article
                 key={item.number}
-                className="group relative flex h-[400px] w-[350px] shrink-0 snap-center flex-col rounded-[30px] border border-white/10 bg-[#171a18] p-8 transition duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/60"
+                className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[#171a18] p-8 transition duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/60"
               >
-                <div className="flex items-center justify-between">
+                <div className="pointer-events-none absolute -right-4 -top-8 text-[150px] font-semibold leading-none text-white/[0.025]">
+                  {item.number}
+                </div>
+
+                <div className="relative z-10 flex items-center justify-between">
                   <span className="text-xs font-semibold tracking-[0.25em] text-[#ff6a00]">
                     {item.number}
                   </span>
 
-                  <span className="text-xl text-white/20 transition group-hover:text-[#ff6a00]">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/40 transition group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-black">
                     +
                   </span>
                 </div>
 
-                <div className="mt-auto">
-                  <h3 className="text-[25px] font-medium leading-tight tracking-[-0.03em]">
+                <div className="relative z-10 mt-auto">
+                  <div className="mb-5 h-px w-10 bg-[#ff6a00] transition-all group-hover:w-20" />
+
+                  <h3 className="text-[28px] font-medium leading-tight tracking-[-0.03em]">
                     {item.title}
                   </h3>
 
-                  <p className="mt-5 text-[15px] leading-7 text-white/45">
+                  <p className="mt-5 text-[20px] leading-7 text-white/45">
                     {item.text}
+                  </p>
+
+                  <p className="mt-7 text-[10px] uppercase tracking-[0.35em] text-white/20">
+                    ANKH GRC
                   </p>
                 </div>
               </article>
             ))}
           </div>
-
-          <p className="pb-3 text-center text-[9px] font-semibold uppercase tracking-[0.3em] text-white/20 lg:hidden">
-            SWIPE TO EXPLORE
-          </p>
         </div>
       </section>
 
-      {/* BUSINESS OUTCOMES — WHITE */}
+      {/* BUSINESS OUTCOMES */}
       <section className="bg-[#f3f0e9] text-[#111412]">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
@@ -632,9 +615,9 @@ export default function AIGovernancePage() {
         </div>
       </section>
 
-      {/* WHY ANKH — WHITE */}
+      {/* WHY ANKH */}
       <section className="bg-white text-[#111412]">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 text-center lg:px-10 lg:py-28">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
             06 / WHY ANKH GRC
           </p>
@@ -664,7 +647,7 @@ export default function AIGovernancePage() {
         id="contact"
         className="bg-[#ff6500] text-black"
       >
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-[1720px] px-6 py-24 text-center lg:px-10 lg:py-32">
           <p className="text-xs font-bold uppercase tracking-[0.35em]">
             07 / NEXT STEP
           </p>
@@ -694,9 +677,9 @@ export default function AIGovernancePage() {
         </div>
       </section>
 
-      {/* FOOTER — DARK */}
+      {/* FOOTER */}
       <footer className="bg-[#111412] text-white">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10">
+        <div className="mx-auto max-w-[1720px] px-6 py-12 lg:px-10">
           <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end">
             <div>
               <p className="text-sm font-semibold tracking-[0.16em]">

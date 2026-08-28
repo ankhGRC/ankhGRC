@@ -390,17 +390,16 @@ export default function IndustrySpecificRegulationsPage() {
       {/* =========================================================
           2. HERO - DARK
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#111412] text-[#f4f1eb] h-[980px]">
+      <section className="relative overflow-hidden bg-[#111412] text-[#f4f1eb] h-[980px]  pt-20">
         <div className="pointer-events-none absolute -right-40 top-0 h-[700px] w-[600px] rounded-full bg-[#e65300]/10 blur-[120px]" />
 
-        <div className="mx-auto grid min-h-[680px] w-full max-w-7xl items-center gap-16 px-6 py-24 lg:grid-cols-[1.2fr_0.8fr] lg:px-10 lg:py-28">
-          {/* LEFT */}
-          <div>
+<div className="mx-auto  grid min-h-[680px] w-full max-w-[1650px] items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          {/* LEFT */}
+          <div >
             <p className="mb-7 pt-10 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
               COMPLY. COMPETE. GROW.
             </p>
 
-            <h1 className="max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
+            <h1 className="max-w-[1800px] text-5xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
               Industry-Specific
               <br />
               Regulations
@@ -481,7 +480,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="why-industry-regulations"
         className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
       >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1650px] px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
@@ -529,132 +528,105 @@ export default function IndustrySpecificRegulationsPage() {
         </div>
       </section>
 
-      {/* =========================================================
-          4. INDUSTRIES - DARK / HORIZONTAL SCROLL
-      ========================================================= */}
-      <section
-        id="industries"
-        className="relative overflow-hidden bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-            02 / INDUSTRY COVERAGE
-          </p>
+     {/* =========================================================
+    4. INDUSTRIES - DARK / GRID
+========================================================= */}
+<section
+  id="industries"
+  className="relative overflow-hidden bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
+>
+  <div className="mx-auto max-w-[1650px] px-6 lg:px-10">
+    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
+      02 / INDUSTRY COVERAGE
+    </p>
 
-          <div className="flex items-end justify-between gap-8">
-            <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-              Industries &
-              <br />
-              Key Regulations
-            </h2>
+    <div className="flex items-end justify-between gap-8">
+      <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+        Industries &
+        <br />
+        Key Regulations
+      </h2>
+    </div>
 
-            <span className="hidden pb-2 text-[10px] uppercase tracking-[0.25em] text-white/30 lg:block">
-              SCROLL TO EXPLORE →
+    {/* GRID - horizontal scrolling removed */}
+    <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {industries.map((industry) => (
+        <article
+          key={industry.title}
+          className="
+            group
+            relative
+            flex
+            min-h-[460px]
+            w-full
+            flex-col
+            overflow-hidden
+            rounded-[30px]
+            border
+            border-white/10
+            bg-[#151916]
+            p-7
+            transition
+            duration-500
+            hover:-translate-y-2
+            hover:border-orange-500/60
+          "
+        >
+          {/* Large number */}
+          <div className="pointer-events-none absolute -right-2 -top-8 text-[160px] font-semibold leading-none text-white/[0.025]">
+            {industry.number}
+          </div>
+
+          {/* Top */}
+          <div className="relative z-10 flex items-center justify-between">
+            <span className="text-xs font-semibold tracking-[0.25em] text-orange-500">
+              {industry.number}
+            </span>
+
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-sm text-white/60 transition group-hover:border-orange-500 group-hover:bg-orange-500 group-hover:text-black">
+              →
             </span>
           </div>
-        </div>
 
-        <div className="relative mt-16">
-          {/* left fade */}
-          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-20 bg-gradient-to-r from-[#111412] to-transparent lg:w-36" />
+          {/* Content */}
+          <div className="relative z-10 mt-auto">
+            <div className="mb-5 text-3xl text-orange-500">
+              {industry.icon}
+            </div>
 
-          {/* right fade */}
-          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-20 bg-gradient-to-l from-[#111412] to-transparent lg:w-36" />
+            <h3 className="max-w-[300px] text-2xl font-medium leading-tight tracking-[-0.025em]">
+              {industry.title}
+            </h3>
 
-          <div
-            className="
-              flex
-              snap-x
-              snap-mandatory
-              gap-5
-              overflow-x-auto
-              px-[8vw]
-              pb-8
-              [scrollbar-width:none]
-              [&::-webkit-scrollbar]:hidden
-            "
-          >
-            {industries.map((industry) => (
-              <article
-                key={industry.title}
-                className="
-                  group
-                  relative
-                  flex
-                  h-[500px]
-                  w-[360px]
-                  shrink-0
-                  snap-center
-                  flex-col
-                  overflow-hidden
-                  rounded-[30px]
-                  border
-                  border-white/10
-                  bg-[#151916]
-                  p-7
-                  transition
-                  duration-500
-                  hover:-translate-y-2
-                  hover:border-orange-500/60
-                "
-              >
-                {/* Large number */}
-                <div className="pointer-events-none absolute -right-2 -top-8 text-[180px] font-semibold leading-none text-white/[0.025]">
-                  {industry.number}
-                </div>
+            <p className="mt-4 text-base leading-6 text-white/45">
+              {industry.description}
+            </p>
 
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-[0.25em] text-orange-500">
-                    {industry.number}
-                  </span>
+            <div className="mt-6 border-t border-white/10 pt-5">
+              <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.25em] text-white/30">
+                KEY REGULATIONS
+              </p>
 
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-sm text-white/60 transition group-hover:border-orange-500 group-hover:bg-orange-500 group-hover:text-black">
-                    →
-                  </span>
-                </div>
-
-                <div className="relative z-10 mt-auto">
-                  <div className="mb-5 text-3xl text-orange-500">
-                    {industry.icon}
-                  </div>
-
-                  <h3 className="max-w-[300px] text-2xl font-medium leading-tight tracking-[-0.025em]">
-                    {industry.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-6 text-white/45">
-                    {industry.description}
-                  </p>
-
-                  <div className="mt-6 border-t border-white/10 pt-5">
-                    <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.25em] text-white/30">
-                      KEY REGULATIONS
-                    </p>
-
-                    <div className="max-h-[105px] overflow-y-auto pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                      <ul className="space-y-2">
-                        {industry.regulations.map((regulation) => (
-                          <li
-                            key={regulation}
-                            className="flex gap-2 text-xs leading-5 text-white/55"
-                          >
-                            <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-orange-500" />
-                            <span>{regulation}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
+              <div className="max-h-[105px] overflow-y-auto pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <ul className="space-y-2">
+                  {industry.regulations.map((regulation) => (
+                    <li
+                      key={regulation}
+                      className="flex gap-2 text-sm leading-5 text-white/55"
+                    >
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-orange-500" />
+                      <span>{regulation}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-
-          <div className="mt-1 text-center text-[9px] font-semibold uppercase tracking-[0.3em] text-white/25 lg:hidden">
-            SWIPE TO EXPLORE
-          </div>
-        </div>
-      </section>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* =========================================================
           5. GLOBAL REGULATORY LANDSCAPE - WHITE
@@ -663,7 +635,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="regulations"
         className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
       >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1650px] px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
@@ -751,7 +723,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="compliance"
         className="bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="mx-auto max-w-[1650px] px-6 lg:px-10">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
             04 / COMPLIANCE REQUIREMENTS
           </p>
@@ -810,7 +782,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="implementation"
         className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
       >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-[1650px] px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
@@ -861,7 +833,7 @@ export default function IndustrySpecificRegulationsPage() {
           8. BUSINESS BENEFITS - DARK
       ========================================================= */}
       <section className="bg-[#111412] py-24 text-[#f4f1eb] lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="mx-auto max-w-[1650px] px-6 lg:px-10">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
             06 / BUSINESS VALUE
           </p>
@@ -913,8 +885,8 @@ export default function IndustrySpecificRegulationsPage() {
         id="contact"
         className="bg-[#ff6a00] px-6 py-24 text-[#111412] lg:px-10 lg:py-32 "
       >
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
+        <div className="mx-auto max-w-[1650px] text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] ">
             07 / NEXT STEP
           </p>
 
@@ -946,7 +918,7 @@ export default function IndustrySpecificRegulationsPage() {
           10. FOOTER
       ========================================================= */}
       <footer className="border-t border-white/10 bg-[#111412] px-6 py-10 text-white lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
+        <div className="mx-auto flex max-w-[1650px] flex-col justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-semibold tracking-[0.15em]">
               <span className="text-orange-500">ANKH</span> GRC

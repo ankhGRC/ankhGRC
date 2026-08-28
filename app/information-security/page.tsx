@@ -197,49 +197,164 @@ export default function InformationSecurityStandardPage() {
           </p>
         </div>
 
-        <div className="relative mt-20">
-          <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-24 bg-gradient-to-r from-[#111412] to-transparent lg:w-40" />
-          <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-24 bg-gradient-to-l from-[#111412] to-transparent lg:w-40" />
-
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-[10vw] pb-12 pt-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {domains.map(([number, title, text], index) => (
+                {/* Cards — contained grid, no horizontal scrolling */}
+        <div className="mx-auto mt-20 max-w-7xl px-6 sm:px-8 lg:mt-28 lg:px-10">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {domains.map(([number, title, text]) => (
               <article
                 key={title}
-                className="group relative h-[450px] w-[330px] shrink-0 snap-center overflow-hidden rounded-[34px] border border-[#f4f1eb]/10 bg-[#151916] transition-all duration-700 ease-out odd:-rotate-[2deg] even:rotate-[2deg] hover:-translate-y-3 hover:rotate-0 hover:border-[#ff6a00]/40 sm:h-[620px] sm:w-[390px] lg:h-[680px] lg:w-[430px]"
+      className="
+  group
+  relative
+  h-[430px]
+  w-full
+  overflow-hidden
+  rounded-[34px]
+  border
+  border-[#f4f1eb]/10
+  bg-[#151916]
+  transition-all
+  duration-700
+  ease-out
+  hover:-translate-y-3
+  hover:border-[#ff6a00]/40
+  lg:h-[470px]
+"
               >
-                <div className="pointer-events-none absolute -bottom-32 -left-20 h-[420px] w-[420px] rounded-full bg-[#ff6a00]/[0.07] blur-[80px] transition-all duration-700 group-hover:bg-[#ff6a00]/[0.13]" />
+                {/* Orange glow — SAME */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -bottom-32
+                    -left-20
+                    h-[420px]
+                    w-[420px]
+                    rounded-full
+                    bg-[#ff6a00]/[0.07]
+                    blur-[80px]
+                    transition-all
+                    duration-700
+                    group-hover:bg-[#ff6a00]/[0.13]
+                  "
+                />
 
-                <div className="pointer-events-none absolute -bottom-[250px] -left-[90px] h-[470px] w-[620px] rounded-[50%] border border-[#ff6a00]/20 transition-transform duration-1000 group-hover:scale-110" />
+                {/* Curved line — SAME */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -bottom-[250px]
+                    -left-[90px]
+                    h-[470px]
+                    w-[620px]
+                    rounded-[50%]
+                    border
+                    border-[#ff6a00]/20
+                    transition-transform
+                    duration-1000
+                    group-hover:scale-110
+                  "
+                />
 
-                <div className="pointer-events-none absolute -right-10 -top-5 select-none text-[180px] font-semibold leading-none tracking-[-0.1em] text-[#f4f1eb]/[0.025] transition-all duration-700 group-hover:text-[#ff6a00]/[0.06] sm:text-[220px]">
+                {/* Huge number — SAME */}
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -right-10
+                    -top-5
+                    select-none
+                    text-[180px]
+                    font-semibold
+                    leading-none
+                    tracking-[-0.1em]
+                    text-[#f4f1eb]/[0.025]
+                    transition-all
+                    duration-700
+                    group-hover:text-[#ff6a00]/[0.06]
+                    sm:text-[220px]
+                  "
+                >
                   {number}
                 </div>
 
+                {/* Card content — SAME */}
                 <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10">
+
+                  {/* Number + Arrow */}
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
                       {number}
                     </span>
 
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#f4f1eb]/10 text-sm text-[#f4f1eb]/50 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-[#111412]">
+                    <span
+                      className="
+                        flex
+                        h-11
+                        w-11
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-[#f4f1eb]/10
+                        text-sm
+                        text-[#f4f1eb]/50
+                        transition-all
+                        duration-500
+                        group-hover:border-[#ff6a00]
+                        group-hover:bg-[#ff6a00]
+                        group-hover:text-[#111412]
+                      "
+                    >
                       ↗
                     </span>
                   </div>
 
+                  {/* Title + Description */}
                   <div>
                     <div className="mb-8 h-px w-10 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
 
-                    <h3 className="max-w-[340px] text-2xl font-medium leading-tight tracking-[-0.025em] text-[#f4f1eb] sm:text-3xl">
+                    <h3
+                      className="
+                        max-w-[340px]
+                        text-2xl
+                        font-medium
+                        leading-tight
+                        tracking-[-0.025em]
+                        text-[#f4f1eb]
+                        sm:text-3xl
+                      "
+                    >
                       {title}
                     </h3>
 
-                    <p className="mt-6 max-w-[340px] text-sm leading-7 text-[#f4f1eb]/50 sm:text-base sm:leading-8">
+                    <p
+                      className="
+                        mt-6
+                        max-w-[340px]
+                        text-sm
+                        leading-7
+                        text-[#f4f1eb]/50
+                        sm:text-base
+                        sm:leading-8
+                      "
+                    >
                       {text}
                     </p>
                   </div>
 
+                  {/* Bottom — SAME */}
                   <div className="flex items-end justify-between">
-                    <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#f4f1eb]/25">
+                    <span
+                      className="
+                        text-[10px]
+                        font-medium
+                        uppercase
+                        tracking-[0.3em]
+                        text-[#f4f1eb]/25
+                      "
+                    >
                       ANKH GRC
                     </span>
 
@@ -249,21 +364,10 @@ export default function InformationSecurityStandardPage() {
                       <span className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
                     </div>
                   </div>
+
                 </div>
               </article>
             ))}
-          </div>
-
-          <div className="mt-2 flex items-center justify-center gap-4">
-            <div className="h-[2px] w-8 rounded-full bg-[#ff6a00]" />
-            <div className="flex gap-2">
-              {domains.map((_, index) => (
-                <span key={index} className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
-              ))}
-            </div>
-            <span className="ml-2 text-[10px] uppercase tracking-[0.25em] text-[#f4f1eb]/30">
-              Scroll to explore
-            </span>
           </div>
         </div>
       </section>

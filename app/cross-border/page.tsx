@@ -264,12 +264,13 @@ export default function CrossBorderPage() {
 
             <div className="mb-8 flex items-center gap-4">
               <span className="h-px w-14 bg-[#ff6a00]" />
-              <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
+              <span className="text-xs pt-8 font-semibold uppercase  text-orange-500">
+
                 Cross-Border Governance
               </span>
             </div>
 
-            <p className="mb-7 text-lg font-medium tracking-[0.08em] text-white/55 lg:text-xl">
+            <p className="mb-7 pt-10 text-lg font-medium tracking-[0.08em] text-white/55 lg:text-xl">
               Navigate Global. Comply Local. Compete Global.
             </p>
 
