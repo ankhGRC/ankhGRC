@@ -679,7 +679,7 @@ export default function AIGovernancePage() {
 
       {/* FOOTER */}
       <footer className="bg-[#111412] text-white">
-        <div className="mx-auto max-w-[1720px] px-6 py-12 lg:px-10">
+        <div className="mx-auto max-w-[1680px] px-6 py-12 lg:px-10">
           <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end">
             <div>
               <p className="text-sm font-semibold tracking-[0.16em]">
