@@ -337,22 +337,7 @@ export default function CrossBorderPage() {
     </div>
 
 
-    {/* ================= HORIZONTAL SCROLL ================= */}
-
-    <div
-      className="
-        -mx-6
-        overflow-x-auto
-        px-6
-        pb-8
-        [scrollbar-width:none]
-        [&::-webkit-scrollbar]:hidden
-        lg:-mx-10
-        lg:px-10
-      "
-    >
-
-      <div className="flex w-max snap-x snap-mandatory gap-5">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
         {challenges.map((item, index) => (
 
@@ -362,10 +347,8 @@ export default function CrossBorderPage() {
               group
               relative
               flex
-              h-[430px]
-              w-[330px]
-              shrink-0
-              snap-center
+              min-h-[430px]
+              w-full
               flex-col
               justify-between
               overflow-hidden
@@ -380,8 +363,6 @@ export default function CrossBorderPage() {
               hover:-translate-y-2
               hover:border-[#ff6a00]/50
               hover:shadow-[0_20px_55px_rgba(17,20,18,0.10)]
-              sm:h-[450px]
-              sm:w-[370px]
             `}
           >
 
@@ -544,24 +525,6 @@ export default function CrossBorderPage() {
 
       </div>
 
-    </div>
-
-
-    {/* Scroll indicator */}
-
-    <div className="mt-4 flex items-center gap-4">
-
-      <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/30">
-        Scroll horizontally
-      </span>
-
-      <div className="h-px w-16 bg-black/15" />
-
-      <span className="text-lg text-[#ff6a00]">
-        →
-      </span>
-
-    </div>
 
   </div>
 
@@ -593,16 +556,12 @@ export default function CrossBorderPage() {
           </div>
 
 
-          {/* horizontal framework rail */}
-
-          <div className="-mx-6 overflow-x-auto px-6 pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:-mx-10 lg:px-10">
-
-            <div className="flex w-max gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
               {frameworks.map((framework, index) => (
                 <article
                   key={framework.title}
-                  className="group relative h-[390px] w-[320px] shrink-0 overflow-hidden rounded-[28px] border border-white/10 bg-[#111412] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/45 sm:w-[350px]"
+                  className="group relative h-[390px] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111412] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/45"
                 >
 
                   <span className="text-4xl text-[#ff6a00]/70">
@@ -640,7 +599,6 @@ export default function CrossBorderPage() {
                 </article>
               ))}
 
-            </div>
           </div>
 
         </div>

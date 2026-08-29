@@ -186,7 +186,7 @@ export default function PrivacyDataProtectionPage() {
                 {challenges.map((item, index) => (
                   <article
                     key={item.title}
-                    className="border-b border-r border-black/10 px-6 py-8 first:pl-0 lg:[&:nth-child(3n)]:border-r-0"
+                    className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
                   >
                     <span className="text-xs font-semibold tracking-[0.2em] text-orange-600">
                       0{index + 1}

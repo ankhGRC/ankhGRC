@@ -7,7 +7,7 @@ import Link from "next/link";
 
 
 const navLinks = [
-  { name: "Home", href: "#" },
+  { name: "Home", href: "/" },
   { name: "About", href: "#about" },
   { name: "Resources", href: "#resources" },
 ];
@@ -138,14 +138,15 @@ export function Navigation() {
               className="relative flex shrink-0 items-center"
               aria-label="ANKH GRC Home"
             >
-              <Image
-                src="/ankhgrc-logo.png"
-                alt="ANKH GRC"
-                width={330}
-                height={110}
-                priority
-                className="h-[200px] w-auto object-contain"
-              />
+ <Link href="/" className="inline-block">
+  <Image
+    src="/ankhgrc-logo (2).png"
+    alt="Ankh GRC"
+    width={160}
+    height={60}
+    priority
+  />
+</Link>
             </a>
 
             {/* DESKTOP NAV */}
