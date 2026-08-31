@@ -393,7 +393,7 @@ export default function IndustrySpecificRegulationsPage() {
       <section className="relative overflow-hidden bg-[#111412] text-[#f4f1eb] h-[980px]  pt-20">
         <div className="pointer-events-none absolute -right-40 top-0 h-[700px] w-[600px] rounded-full bg-[#e65300]/10 blur-[120px]" />
 
-<div className="mx-auto  grid min-h-[680px] w-full max-w-[1650px] items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          {/* LEFT */}
+<div className="mx-auto  grid min-h-[680px] w-full max-w-7xl items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          {/* LEFT */}
           <div >
             <p className="mb-7 pt-10 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
               COMPLY. COMPETE. GROW.
@@ -480,7 +480,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="why-industry-regulations"
         className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
       >
-        <div className="mx-auto max-w-[1650px] px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
@@ -535,7 +535,7 @@ export default function IndustrySpecificRegulationsPage() {
   id="industries"
   className="relative overflow-hidden bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
 >
-  <div className="mx-auto max-w-[1650px] px-6 lg:px-10">
+  <div className="mx-auto max-w-7xl px-6 lg:px-10">
     <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
       02 / INDUSTRY COVERAGE
     </p>
@@ -635,7 +635,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="regulations"
         className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
       >
-        <div className="mx-auto max-w-[1650px] px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
@@ -723,7 +723,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="compliance"
         className="bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
       >
-        <div className="mx-auto max-w-[1650px] px-6 lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
             04 / COMPLIANCE REQUIREMENTS
           </p>
@@ -782,7 +782,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="implementation"
         className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
       >
-        <div className="mx-auto max-w-[1650px] px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
@@ -833,7 +833,7 @@ export default function IndustrySpecificRegulationsPage() {
           8. BUSINESS BENEFITS - DARK
       ========================================================= */}
       <section className="bg-[#111412] py-24 text-[#f4f1eb] lg:py-32">
-        <div className="mx-auto max-w-[1650px] px-6 lg:px-10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
             06 / BUSINESS VALUE
           </p>
@@ -885,7 +885,7 @@ export default function IndustrySpecificRegulationsPage() {
         id="contact"
         className="bg-[#ff6a00] px-6 py-24 text-[#111412] lg:px-10 lg:py-32 "
       >
-        <div className="mx-auto max-w-[1650px] text-center">
+        <div className="mx-auto max-w-7xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] ">
             07 / NEXT STEP
           </p>
@@ -918,7 +918,7 @@ export default function IndustrySpecificRegulationsPage() {
           10. FOOTER
       ========================================================= */}
       <footer className="border-t border-white/10 bg-[#111412] px-6 py-10 text-white lg:px-10">
-        <div className="mx-auto flex max-w-[1650px] flex-col justify-between gap-6 sm:flex-row sm:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-sm font-semibold tracking-[0.15em]">
               <span className="text-orange-500">ANKH</span> GRC

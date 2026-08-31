@@ -255,7 +255,7 @@ export default function AIGovernancePage() {
       <section className=" h-[980px] relative overflow-hidden bg-[#111412] pt-20">
         <div className="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-[#ff6a00]/[0.06] blur-[120px]" />
 
-<div className="mx-auto grid min-h-[800px] w-full max-w-[1720px] items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          <div>
+<div className="mx-auto grid min-h-[800px] w-full max-w-7xl items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          <div>
             <p className="mb-7 pt-6 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
               Govern AI. Build Trust. Enable Innovation.
             </p>
@@ -334,7 +334,7 @@ export default function AIGovernancePage() {
         id="why-ai-governance"
         className="bg-[#f3f0e9] text-[#111412]"
       >
-        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
@@ -388,7 +388,7 @@ export default function AIGovernancePage() {
 
       {/* CORE DOMAINS — CONTAINED GRID */}
       <section id="framework" className="bg-[#111412]">
-        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
             02 / AI GOVERNANCE FRAMEWORK
           </p>
@@ -454,7 +454,7 @@ export default function AIGovernancePage() {
         id="coverage"
         className="bg-[#f3f0e9] text-[#111412]"
       >
-        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
@@ -509,7 +509,7 @@ export default function AIGovernancePage() {
 
       {/* SERVICES — CONTAINED GRID */}
       <section id="services" className="bg-[#111412]">
-        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
             04 / ANKH GRC SERVICES
           </p>
@@ -571,7 +571,7 @@ export default function AIGovernancePage() {
 
       {/* BUSINESS OUTCOMES */}
       <section className="bg-[#f3f0e9] text-[#111412]">
-        <div className="mx-auto max-w-[1720px] px-6 py-24 lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
@@ -617,7 +617,7 @@ export default function AIGovernancePage() {
 
       {/* WHY ANKH */}
       <section className="bg-white text-[#111412]">
-        <div className="mx-auto max-w-[1720px] px-6 py-24 text-center lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 py-24 text-center lg:px-10 lg:py-28">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
             06 / WHY ANKH GRC
           </p>
@@ -647,7 +647,7 @@ export default function AIGovernancePage() {
         id="contact"
         className="bg-[#ff6500] text-black"
       >
-        <div className="mx-auto max-w-[1720px] px-6 py-24 text-center lg:px-10 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 py-24 text-center lg:px-10 lg:py-32">
           <p className="text-xs font-bold uppercase tracking-[0.35em]">
             07 / NEXT STEP
           </p>

@@ -71,7 +71,7 @@ export default function ConsultingPage() {
           2. HERO - DARK
       ========================================================= */}
       <section className="relative h-233 overflow-hidden bg-[#111211] text-white">
-        <div className="mx-auto grid min-h-[650px] w-full max-w-[1500px] items-center gap-16 px-10 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-24">
+        <div className="mx-auto grid min-h-[650px] w-full max-w-7xl items-center gap-16 px-10 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-24">
           {/* LEFT */}
           <div className="max-w-[700px]">
             <p className="mb-7 p-10 text-[18px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
@@ -150,7 +150,7 @@ export default function ConsultingPage() {
           EXISTING COPY KEPT UNCHANGED
       ========================================================= */}
       <section className="w-full bg-[#f7f7f5] px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto grid w-full max-w-[1500px] grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
           <div>
             <p className="text-[12px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
               WHY GRC MATTERS
@@ -183,7 +183,7 @@ export default function ConsultingPage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 w-full max-w-[1500px] border-t border-black/10 pt-10">
+        <div className="mx-auto mt-16 w-full max-w-7xl border-t border-black/10 pt-10">
           <p className="max-w-[1280px] text-[19px] leading-[1.75] text-[#536170] sm:text-[21px]">
             Our work comprises helping companies design, review, revamp and
             benchmark their GRC practices and business process controls
@@ -201,7 +201,7 @@ export default function ConsultingPage() {
           Vertical capability cards + full-width selected content
           ========================================================= */}
       <section className="w-full overflow-hidden bg-[#111211] text-white">
-        <div className="mx-auto w-full max-w-[1500px] px-6 py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
 
           {/* SECTION HEADING */}
           <div className="mb-12 flex items-end justify-between gap-8">

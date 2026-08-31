@@ -5,11 +5,9 @@ import Image from "next/image";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "#about" },
-  { name: "Resources", href: "#resources" },
 ];
 
 const serviceItems = [
@@ -17,14 +15,14 @@ const serviceItems = [
     name: "Information Security Standard",
     href: "/information-security",
   },
-   {
+  {
     name: "Industry-Specific Regulations",
     href: "/industry-specific-regulations",
   },
- {
-  name: "Cybersecurity Regulation",
-  href: "/cybersecurity-regulation",
-},
+  {
+    name: "Cybersecurity Regulation",
+    href: "/cybersecurity-regulation",
+  },
   {
     name: "Privacy / Data Protection Law",
     href: "/privacy-data-protection",
@@ -39,13 +37,28 @@ const serviceItems = [
   },
 ];
 
+const resourceItems = [
+  {
+    name: "Insights",
+    href: "/insights",
+  },
+  {
+    name: "Partnerships",
+    href: "/partnerships",
+  },
+];
+
 export function Navigation() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isServicesDetailOpen, setIsServicesDetailOpen] = useState(false);
   const [isServicesPinned, setIsServicesPinned] = useState(false);
+
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuRef = useRef<HTMLDivElement>(null);
+  const resourcesRef = useRef<HTMLDivElement>(null);
 
   // Close desktop dropdown when clicking outside
   useEffect(() => {
@@ -57,6 +70,13 @@ export function Navigation() {
         setIsServicesOpen(false);
         setIsServicesDetailOpen(false);
         setIsServicesPinned(false);
+      }
+
+      if (
+        resourcesRef.current &&
+        !resourcesRef.current.contains(event.target as Node)
+      ) {
+        setIsResourcesOpen(false);
       }
     };
 
@@ -74,6 +94,7 @@ export function Navigation() {
         setIsServicesOpen(false);
         setIsServicesDetailOpen(false);
         setIsServicesPinned(false);
+        setIsResourcesOpen(false);
         setIsMobileMenuOpen(false);
       }
     };
@@ -89,11 +110,14 @@ export function Navigation() {
     setIsServicesOpen(false);
     setIsServicesDetailOpen(false);
     setIsServicesPinned(false);
+    setIsResourcesOpen(false);
     setIsMobileMenuOpen(false);
   };
 
   // TOP NAV SERVICES CLICK
   const handleTopServicesClick = () => {
+    setIsResourcesOpen(false);
+
     setIsServicesOpen((prev) => {
       const next = !prev;
 
@@ -109,6 +133,15 @@ export function Navigation() {
 
       return next;
     });
+  };
+
+  // TOP NAV RESOURCES CLICK
+  const handleTopResourcesClick = () => {
+    setIsServicesOpen(false);
+    setIsServicesDetailOpen(false);
+    setIsServicesPinned(false);
+
+    setIsResourcesOpen((prev) => !prev);
   };
 
   // MIDDLE SERVICES HOVER
@@ -138,22 +171,22 @@ export function Navigation() {
               className="relative flex shrink-0 items-center"
               aria-label="ANKH GRC Home"
             >
- <Link href="/" className="inline-block">
-  <Image
-    src="/ankhgrc-logo (2).png"
-    alt="Ankh GRC"
-    width={160}
-    height={60}
-    priority
-  />
-</Link>
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/ankhgrc-logo (2).png"
+                  alt="Ankh GRC"
+                  width={160}
+                  height={60}
+                  priority
+                />
+              </Link>
             </a>
 
             {/* DESKTOP NAV */}
             <div className="hidden flex-1 items-center justify-center md:flex">
               <div className="flex items-center gap-10 lg:gap-14">
 
-                {/* HOME / ABOUT / RESOURCES */}
+                {/* HOME / ABOUT */}
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
@@ -166,6 +199,124 @@ export function Navigation() {
                     <span className="absolute bottom-1 left-0 h-[2px] w-0 bg-[#E85D04] transition-all duration-300 group-hover:w-full" />
                   </a>
                 ))}
+
+                {/* ================= TOP RESOURCES ================= */}
+                <div
+                  ref={resourcesRef}
+                  className="relative"
+                >
+                  <button
+                    type="button"
+                    onClick={handleTopResourcesClick}
+                    className={`group relative flex items-center gap-2 px-1 py-3 text-[20px] font-medium tracking-[-0.01em] transition-colors duration-300 ${
+                      isResourcesOpen
+                        ? "text-[#E85D04]"
+                        : "text-neutral-800 hover:text-[#E85D04]"
+                    }`}
+                    aria-expanded={isResourcesOpen}
+                    aria-haspopup="true"
+                  >
+                    <span>Resources</span>
+
+                    <ChevronDown
+                      className={`h-[17px] w-[17px] transition-transform duration-300 ${
+                        isResourcesOpen ? "rotate-180" : ""
+                      }`}
+                    />
+
+                    <span
+                      className={`absolute bottom-1 left-0 h-[2px] bg-[#E85D04] transition-all duration-300 ${
+                        isResourcesOpen
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </button>
+
+                  {/* ================= RESOURCES MEGA MENU ================= */}
+                  <div
+                    className={`fixed left-0 right-0 top-[100px] z-[200] w-full bg-[#1C211F] text-white transition-all duration-300 ${
+                      isResourcesOpen
+                        ? "visible translate-y-0 opacity-100"
+                        : "invisible -translate-y-3 pointer-events-none opacity-0"
+                    }`}
+                  >
+                    <div className="w-full">
+
+                      <div className="mx-auto flex min-h-[470px] w-full max-w-[1500px] px-8 py-10 lg:px-12">
+
+                        {/* ================= LEFT PART ================= */}
+                        <div className="w-[390px] shrink-0 pr-14">
+
+                          <h2 className="text-[30px] font-medium leading-[1.2] tracking-[-0.02em] text-white">
+                            Knowledge for
+                            <br />
+                            Better Decisions
+                          </h2>
+
+                          <p className="mt-7 max-w-[330px] text-[20px] font-normal leading-[1.8] text-white/55">
+                            Explore practical insights, ideas, and perspectives
+                            that help organizations navigate governance, risk,
+                            compliance, and emerging regulatory challenges.
+                          </p>
+
+                          <a
+                            href="/insights"
+                            onClick={closeMenus}
+                            className="group mt-12 inline-flex items-center gap-4 text-[20px] font-medium text-white transition-colors duration-300 hover:text-[#E85D04]"
+                          >
+                            <span>
+                              Explore our resources
+                            </span>
+
+                            <ArrowRight
+                              className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2"
+                            />
+                          </a>
+
+                        </div>
+
+                        {/* ================= MIDDLE AREA ================= */}
+                        <div className="flex flex-1">
+
+                          {/* ================= MIDDLE PART ================= */}
+                          <div className="w-[360px] shrink-0">
+
+                            {/* INSIGHTS */}
+                            <div className="border-b border-white/15">
+                              <Link
+                                href="/insights"
+                                onClick={closeMenus}
+                                className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
+                              >
+                                <span>Insights</span>
+
+                                
+                              </Link>
+                            </div>
+
+                            {/* PARTNERSHIPS */}
+                            <div className="border-b border-white/15">
+                              <Link
+                                href="/partnerships"
+                                onClick={closeMenus}
+                                className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
+                              >
+                                <span>Partnerships</span>
+
+                                
+                              </Link>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
 
                 {/* ================= TOP SERVICES ================= */}
                 <div
@@ -240,6 +391,7 @@ export function Navigation() {
                               className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2"
                             />
                           </a>
+
                         </div>
 
                         {/* ================= MIDDLE + RIGHT AREA ================= */}
@@ -299,13 +451,13 @@ export function Navigation() {
                             </div>
 
                             <div className="border-b border-white/15">
-                                  <Link
-                                    href="/consulting"
-                                    className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all hover:bg-[#343936] hover:text-white"
-                                  >
-                                    <span>Consulting</span>
-                                  </Link>
-                                </div>
+                              <Link
+                                href="/consulting"
+                                className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all hover:bg-[#343936] hover:text-white"
+                              >
+                                <span>Consulting</span>
+                              </Link>
+                            </div>
 
                             {/* PROJECTS */}
                             <div className="border-b border-white/15">
@@ -315,6 +467,7 @@ export function Navigation() {
                                 <ArrowRight className="h-5 w-5" />
                               </div>
                             </div>
+
                           </div>
 
                           {/* ================= RIGHT SERVICES CONTENT ================= */}
@@ -356,7 +509,6 @@ export function Navigation() {
 
                               </div>
 
-                              
                             </div>
                           )}
 
@@ -365,6 +517,7 @@ export function Navigation() {
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
@@ -401,6 +554,7 @@ export function Navigation() {
 
           <div className="flex flex-1 flex-col gap-3">
 
+            {/* HOME / ABOUT */}
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -411,6 +565,52 @@ export function Navigation() {
                 {link.name}
               </a>
             ))}
+
+            {/* MOBILE RESOURCES */}
+            <div className="border-b border-black/10">
+
+              <button
+                type="button"
+                onClick={() =>
+                  setIsResourcesOpen((prev) => !prev)
+                }
+                className="flex w-full items-center justify-between py-5 text-left text-4xl font-medium tracking-tight text-neutral-900"
+              >
+                <span>Resources</span>
+
+                <ChevronDown
+                  className={`h-8 w-8 transition-transform duration-300 ${
+                    isResourcesOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              <div
+                className={`overflow-hidden transition-all duration-500 ${
+                  isResourcesOpen
+                    ? "max-h-[300px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="pb-5 pl-2">
+
+                  {resourceItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={closeMenus}
+                      className="flex items-center justify-between border-b border-black/5 py-4 text-lg text-neutral-700 transition-colors hover:text-[#E85D04]"
+                    >
+                      {item.name}
+
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ))}
+
+                </div>
+              </div>
+
+            </div>
 
             {/* MOBILE SERVICES */}
             <div className="border-b border-black/10">
@@ -455,7 +655,9 @@ export function Navigation() {
 
                 </div>
               </div>
+
             </div>
+
           </div>
 
           <div className="border-t border-black/10 pt-6">
