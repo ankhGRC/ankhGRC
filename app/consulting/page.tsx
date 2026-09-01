@@ -1,6 +1,7 @@
 "use client";
 import { Navigation } from "@/components/landing/navigation";
 import { useState, type WheelEvent } from "react";
+import { Footer } from "@/components/landing/footer";
 
 const riskCapabilities = [
   "Enterprise Risk Management (ERM)",
@@ -1161,8 +1162,12 @@ export default function ConsultingPage() {
                 </div>
               </div>
             </div>
+
+            
           </div>
-        </div>
+          {/*Footer*/}
+            <Footer/>
+        </div>  
       </section>
 
     </main>

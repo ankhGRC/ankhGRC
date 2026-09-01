@@ -2,6 +2,7 @@
 
 import React from "react";
 import Navigation from "@/components/landing/navigation";
+import { Footer } from "@/components/landing/footer";
 
 const frameworks = [
   {
@@ -666,61 +667,7 @@ export default function CybersecurityRegulationPage() {
     {/* =========================================================
     10. FOOTER
 ========================================================= */}
-<footer className="bg-[#111412] px-6 py-10 text-white lg:px-10 lg:py-12">
-  <div className="mx-auto max-w-7xl">
-
-    {/* TOP ROW */}
-    <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-
-      {/* BRAND — NO IMAGE LOGO */}
-      <div>
-        <p className="text-sm font-semibold tracking-[0.2em]">
-          <span className="text-white">ANKH</span>{" "}
-          <span className="text-orange-500">GRC</span>
-        </p>
-      </div>
-
-      {/* FOOTER NAV */}
-      <nav className="flex flex-wrap items-center gap-8">
-        <a
-          href="#frameworks"
-          className="text-[11px] uppercase tracking-[0.22em] text-white/45 transition hover:text-orange-500"
-        >
-          Frameworks
-        </a>
-
-        <a
-          href="#implementation"
-          className="text-[11px] uppercase tracking-[0.22em] text-white/45 transition hover:text-orange-500"
-        >
-          Approach
-        </a>
-
-        <a
-          href="#contact"
-          className="text-[11px] uppercase tracking-[0.22em] text-white/45 transition hover:text-orange-500"
-        >
-          Contact
-        </a>
-      </nav>
-    </div>
-
-    {/* DIVIDER */}
-    <div className="my-8 h-px w-full bg-white/10" />
-
-    {/* BOTTOM ROW */}
-    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-xs text-white/30">
-        © 2026 Ankh GRC. All rights reserved.
-      </p>
-
-      <p className="text-xs text-white/30">
-        Secure. Compliant. Future Ready.
-      </p>
-    </div>
-
-  </div>
-</footer>
+<Footer/>
     </main>
   );
 }

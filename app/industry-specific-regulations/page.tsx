@@ -1,6 +1,7 @@
 "use client";
 
 import { Navigation } from "@/components/landing/navigation";
+import { Footer } from "@/components/landing/footer";
 
 const reasons = [
   {
@@ -917,23 +918,8 @@ export default function IndustrySpecificRegulationsPage() {
       {/* =========================================================
           10. FOOTER
       ========================================================= */}
-      <footer className="border-t border-white/10 bg-[#111412] px-6 py-10 text-white lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div>
-            <p className="text-sm font-semibold tracking-[0.15em]">
-              <span className="text-orange-500">ANKH</span> GRC
-            </p>
-
-            <p className="mt-2 text-xs text-white/30">
-              Comply. Compete. Grow.
-            </p>
-          </div>
-
-          <div className="text-xs text-white/25">
-            © 2026 Ankh GRC. All rights reserved.
-          </div>
-        </div>
-      </footer>
+     
+      <Footer/>
     </main>
   );
 }

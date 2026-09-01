@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Navigation } from "@/components/landing/navigation";
+import { Footer } from "@/components/landing/footer";
 
 const challenges = [
   {
@@ -986,41 +987,8 @@ export default function CrossBorderPage() {
 
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-[#0c0f0d] py-14">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-          <div className="flex flex-col gap-8 border-b border-white/10 pb-10 sm:flex-row sm:items-center sm:justify-between">
-
-            <Link
-              href="/"
-              className="text-sm font-semibold uppercase tracking-[0.25em] text-white"
-            >
-              ANKH <span className="text-[#ff6a00]">GRC</span>
-            </Link>
-
-            <div className="flex flex-wrap gap-6 text-xs uppercase tracking-[0.2em] text-white/35">
-              <a href="#frameworks" className="transition hover:text-[#ff6a00]">
-                Frameworks
-              </a>
-              <a href="#approach" className="transition hover:text-[#ff6a00]">
-                Approach
-              </a>
-              <a href="#contact" className="transition hover:text-[#ff6a00]">
-                Contact
-              </a>
-            </div>
-
-          </div>
-
-          <div className="pt-7 text-xs text-white/25">
-            © 2026 Ankh GRC. All rights reserved.
-          </div>
-
-        </div>
-
-      </footer>
-
+     
+<Footer/>
     </main>
   );
 }

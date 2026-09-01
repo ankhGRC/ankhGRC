@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Navigation } from "@/components/landing/navigation";
+import { Footer } from "@/components/landing/footer";
 const challenges = [
   {
     title: "Cyber Threat Evolution",
@@ -509,26 +510,8 @@ export default function InformationSecurityStandardPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#111412]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-8 text-sm text-white/40 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-          <div className="flex flex-wrap gap-6">
-            <a href="#framework" className="transition hover:text-orange-500">
-              Framework
-            </a>
-            <a href="#standards" className="transition hover:text-orange-500">
-              Standards
-            </a>
-            <a href="#outcomes" className="transition hover:text-orange-500">
-              Outcomes
-            </a>
-            <a href="#contact" className="transition hover:text-orange-500">
-              Contact
-            </a>
-          </div>
-
-          <p>© 2026 Ankh GRC. All rights reserved. | Privacy. Trust. Governance.</p>
-        </div>
-      </footer>
+      
+      <Footer/>
     </main>
   );
 }
