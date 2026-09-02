@@ -46,6 +46,10 @@ const resourceItems = [
     name: "Partnerships",
     href: "/partnerships",
   },
+  {
+  name: "Trust Center",
+  href: "/trust-center",
+},
 ];
 
 export function Navigation() {
@@ -307,7 +311,16 @@ export function Navigation() {
                                 
                               </Link>
                             </div>
-
+{/* TRUST CENTER */}
+<div className="border-b border-white/15">
+  <Link
+    href="/trust-center"
+    onClick={closeMenus}
+    className="flex h-[64px] items-center px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
+  >
+    <span>Trust Center</span>
+  </Link>
+</div>
                           </div>
 
                         </div>
