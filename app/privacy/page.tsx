@@ -188,7 +188,7 @@ export default function PrivacyPage() {
         <div className="pointer-events-none absolute -right-48 -top-48 h-[650px] w-[650px] rounded-full border border-[#ff6500]/10" />
 
         <div className="mx-auto max-w-7xl px-6 pt-32 pb-24 sm:px-10 lg:px-16 lg:pt-32 lg:pb-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff6500]">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff6500] pt-20">
             TRUST • TRANSPARENCY • ACCOUNTABILITY
           </p>
 
@@ -208,13 +208,7 @@ export default function PrivacyPage() {
 
             {/* Decorative privacy graphic */}
             <div className="relative hidden h-56 w-56 lg:block">
-              <div className="absolute inset-0 rounded-full border border-[#ff6500]/20" />
-              <div className="absolute inset-8 rounded-full border border-[#ff6500]/15" />
-              <div className="absolute inset-16 rounded-full border border-[#ff6500]/20" />
-
-              <div className="absolute left-[42%] top-[42%] h-5 w-5 rounded-full bg-[#ff6500]" />
-              <div className="absolute right-12 top-16 h-2.5 w-2.5 rounded-full bg-[#ff6500]/60" />
-              <div className="absolute bottom-14 left-14 h-3 w-3 rounded-full bg-[#ff6500]/40" />
+            
             </div>
           </div>
 
@@ -272,13 +266,7 @@ export default function PrivacyPage() {
                 className="group min-h-[225px] border border-black/10 bg-white p-7 text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#ff6500] hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
               >
                 <div className="flex items-start justify-between">
-                  <span className="font-mono text-xs tracking-[0.2em] text-[#ff6500]">
-                    {section.number}
-                  </span>
-
-                  <span className="text-2xl text-black/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#ff6500]">
-                    ↗
-                  </span>
+                 
                 </div>
 
                 <div className="mt-12">

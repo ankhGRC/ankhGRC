@@ -189,9 +189,7 @@ export default function PrivacyDataProtectionPage() {
                     key={item.title}
                     className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
                   >
-                    <span className="text-xs font-semibold tracking-[0.2em] text-orange-600">
-                      0{index + 1}
-                    </span>
+                 
                     <h3 className="mt-5 text-xl font-semibold">{item.title}</h3>
                     <p className="mt-3 text-sm leading-6 text-black/55">
                       {item.text}
@@ -267,46 +265,12 @@ export default function PrivacyDataProtectionPage() {
             "
           />
 
-          {/* Large background number */}
-          <div
-            className="
-              pointer-events-none absolute
-              -right-4 -top-6
-              select-none
-              text-[170px] font-semibold leading-none
-              tracking-[-0.1em]
-              text-[#f4f1eb]/[0.025]
-              transition-colors duration-500
-              group-hover:text-[#ff6a00]/[0.045]
-              sm:text-[190px]
-            "
-          >
-            {number}
-          </div>
+      
 
           {/* Card content */}
           <div className="relative z-10 flex min-h-[430px] flex-col p-7 sm:p-8">
 
-            {/* Top row */}
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-                {number}
-              </span>
-
-              <span
-                className="
-                  flex h-10 w-10 items-center justify-center
-                  rounded-full border border-[#f4f1eb]/10
-                  text-sm text-[#f4f1eb]/45
-                  transition-all duration-500
-                  group-hover:border-[#ff6a00]
-                  group-hover:bg-[#ff6a00]
-                  group-hover:text-[#111412]
-                "
-              >
-                ↗
-              </span>
-            </div>
+           
 
             {/* Main content */}
             <div className="mt-auto">
@@ -421,9 +385,7 @@ export default function PrivacyDataProtectionPage() {
                     className="border-b border-black/10 py-8 md:pr-10"
                   >
                     <div className="flex gap-5">
-                      <span className="font-mono text-sm text-orange-600">
-                        0{index + 1}
-                      </span>
+                    
                       <div>
                         <h3 className="text-xl font-semibold">{item.title}</h3>
                         <p className="mt-3 text-sm leading-6 text-black/55">

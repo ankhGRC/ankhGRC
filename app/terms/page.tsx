@@ -184,9 +184,10 @@ export default function TermsPage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute -right-48 -top-48 h-[650px] w-[650px] rounded-full border border-[#ff6500]/10" />
+        <div className="pointer-events-none absolute -right-48 -top-48 h-[650px] w-[650px] rounded-full border border-[#ff6500]/10 " />
 
-<div className="mx-auto max-w-7xl px-6 pt-28 pb-24 sm:px-10 lg:px-16 lg:pt-32 lg:pb-28">          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff6500]">
+<div className="mx-auto max-w-7xl px-6 pt-30 pb-24 sm:px-10 lg:px-16 lg:pt-32 lg:pb-28">       
+     <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff6500] ">
             LEGAL • TRANSPARENCY • TRUST
           </p>
 
@@ -205,12 +206,9 @@ export default function TermsPage() {
             </div>
 
             <div className="hidden lg:block">
-              <div className="relative ml-auto h-52 w-52 rounded-full border border-[#ff6500]/25">
-                <div className="absolute inset-7 rounded-full border border-[#ff6500]/15" />
+              <div>
 
-                <div className="absolute left-12 top-12 h-3 w-3 rounded-full bg-[#ff6500]" />
-                <div className="absolute right-14 top-20 h-2 w-2 rounded-full bg-[#ff6500]/60" />
-                <div className="absolute bottom-14 left-20 h-2.5 w-2.5 rounded-full bg-[#ff6500]/40" />
+                
               </div>
             </div>
           </div>
@@ -249,13 +247,9 @@ export default function TermsPage() {
                 className="group min-h-[230px] border border-black/10 bg-white p-7 text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#ff6500] hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
               >
                 <div className="flex items-start justify-between">
-                  <span className="font-mono text-xs tracking-[0.2em] text-[#ff6500]">
-                    {section.number}
-                  </span>
+             
 
-                  <span className="text-2xl text-black/20 transition group-hover:text-[#ff6500]">
-                    ↗
-                  </span>
+                  
                 </div>
 
                 <div className="mt-14">

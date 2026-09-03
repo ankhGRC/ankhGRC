@@ -510,11 +510,7 @@ export default function IndustrySpecificRegulationsPage() {
                     key={item.title}
                     className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
                   >
-                    <span className="text-xs font-semibold tracking-[0.2em] text-orange-600">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <h3 className="mt-5 text-xl font-semibold">
+<h3 className="mt-5 text-xl font-semibold">
                       {item.title}
                     </h3>
 
@@ -573,20 +569,8 @@ export default function IndustrySpecificRegulationsPage() {
             hover:border-orange-500/60
           "
         >
-          {/* Large number */}
-          <div className="pointer-events-none absolute -right-2 -top-8 text-[160px] font-semibold leading-none text-white/[0.025]">
-            {industry.number}
-          </div>
-
-          {/* Top */}
+{/* Top */}
           <div className="relative z-10 flex items-center justify-between">
-            <span className="text-xs font-semibold tracking-[0.25em] text-orange-500">
-              {industry.number}
-            </span>
-
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-sm text-white/60 transition group-hover:border-orange-500 group-hover:bg-orange-500 group-hover:text-black">
-              →
-            </span>
           </div>
 
           {/* Content */}
@@ -747,9 +731,7 @@ export default function IndustrySpecificRegulationsPage() {
                 key={item.title}
                 className="border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8"
               >
-                <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                  
 
                 <h3 className="mt-7 text-xl font-medium tracking-[-0.02em]">
                   {item.title}
@@ -811,11 +793,7 @@ export default function IndustrySpecificRegulationsPage() {
                     key={step.number}
                     className="border-b border-r border-black/10 p-7  lg:p-8"
                   >
-                    <span className="text-xs font-semibold tracking-[0.2em] text-orange-600">
-                      {step.number}
-                    </span>
-
-                    <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em]">
+<h3 className="mt-5 text-xl font-semibold tracking-[-0.02em]">
                       {step.title}
                     </h3>
 
@@ -859,11 +837,7 @@ export default function IndustrySpecificRegulationsPage() {
                 className="border-b border-r border-white/10 p-8 transition hover:bg-white/[0.025]"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                    {benefit.number}
-                  </span>
-
-                  <span className="text-lg text-orange-500">+</span>
+<span className="text-lg text-orange-500">+</span>
                 </div>
 
                 <h3 className="mt-12 text-xl font-medium">

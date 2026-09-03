@@ -48,94 +48,173 @@ export default function InsightsPage() {
       </div>
     </div>
 
-    {/* RIGHT CARD */}
-    <div className="relative">
-      <div className="relative min-h-[500px] overflow-hidden rounded-[28px] border border-white/10 bg-[#171b19] p-7">
-        
-        {/* Orange glow */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#e65300]/15 blur-3xl" />
+    <div className="relative overflow-hidden rounded-[28px] border border-white/15 bg-[#151916] p-7">
 
-        {/* Small heading */}
-        <div className="relative">
-          <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-white/40">
-            ANKH GRC
-          </p>
+  {/* Subtle ambient glow */}
+  <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-orange-500/[0.05] blur-3xl animate-pulse" />
 
-          <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.3em] text-white/40">
-            KNOWLEDGE FRAMEWORK
-          </p>
-        </div>
+  {/* Header */}
+  <div className="relative z-10">
+    <p className="text-[10px] font-medium tracking-[0.35em] text-white/40">
+      ANKH GRC
+    </p>
 
-        {/* Orange dot */}
-        <div className="absolute right-7 top-7 h-2 w-2 rounded-full bg-[#ff6a00]" />
+    <p className="mt-7 text-[10px] font-medium tracking-[0.35em] text-white/45">
+      KNOWLEDGE FRAMEWORK
+    </p>
+  </div>
 
-        {/* Cards */}
-        <div className="relative mt-8 grid grid-cols-2 gap-3">
-          <div className="flex min-h-[135px] flex-col justify-between rounded-2xl border border-white/10 bg-[#1b201e] p-5">
-            <span className="text-sm text-[#ff6a00]">+</span>
+  {/* Cards */}
+  <div className="relative z-10 mt-8 grid grid-cols-2 gap-3">
 
-            <p className="text-sm leading-5 text-white/85">
-              Governance
-              <br />
-              Insights
-            </p>
-          </div>
+    {/* Governance */}
+    <div className="
+      group relative h-[135px] rounded-[16px]
+      border border-white/10 bg-[#1a1f1d] p-5
+      transition-all duration-500 ease-out
+      hover:-translate-y-1
+      hover:border-orange-500/30
+      hover:bg-[#1d2220]
+      hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+    ">
+      <span className="
+        text-[13px] text-orange-500
+        transition-all duration-300
+        group-hover:drop-shadow-[0_0_6px_rgba(255,101,0,0.8)]
+      ">
+        +
+      </span>
 
-          <div className="flex min-h-[135px] flex-col justify-between rounded-2xl border border-white/10 bg-[#1b201e] p-5">
-            <span className="text-sm text-[#ff6a00]">+</span>
-
-            <p className="text-sm leading-5 text-white/85">
-              Risk &
-              <br />
-              Resilience
-            </p>
-          </div>
-
-          <div className="flex min-h-[135px] flex-col justify-between rounded-2xl border border-white/10 bg-[#1b201e] p-5">
-            <span className="text-sm text-[#ff6a00]">+</span>
-
-            <p className="text-sm leading-5 text-white/85">
-              Regulatory
-              <br />
-              Updates
-            </p>
-          </div>
-
-          <div className="flex min-h-[135px] flex-col justify-between rounded-2xl border border-white/10 bg-[#1b201e] p-5">
-            <span className="text-sm text-[#ff6a00]">+</span>
-
-            <p className="text-sm leading-5 text-white/85">
-              Security &
-              <br />
-              Compliance
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom line */}
-        <div className="relative mt-7 border-t border-white/10 pt-5">
-          <div className="flex items-center justify-between">
-            <span className="text-[9px] uppercase tracking-[0.3em] text-white/35">
-              COVERAGE
-            </span>
-
-            <span className="text-[9px] uppercase tracking-[0.3em] text-[#ff6a00]">
-              GLOBAL
-            </span>
-          </div>
-
-          <div className="mt-3 h-px w-full bg-white/10">
-            <div className="h-px w-[82%] bg-[#ff6a00]" />
-          </div>
-        </div>
-
-        {/* Background number */}
-        <div className="pointer-events-none absolute -bottom-12 -right-4 select-none text-[170px] font-medium leading-none text-white/[0.025]">
-          01
-        </div>
-      </div>
+      <p className="
+        absolute bottom-5 left-5
+        text-[14px] leading-[1.35] text-white/90
+        transition-transform duration-500
+        group-hover:translate-x-1
+      ">
+        Governance
+        <br />
+        Insights
+      </p>
     </div>
 
+    {/* Risk */}
+    <div className="
+      group relative h-[135px] rounded-[16px]
+      border border-white/10 bg-[#1a1f1d] p-5
+      transition-all duration-500 ease-out
+      hover:-translate-y-1
+      hover:border-orange-500/30
+      hover:bg-[#1d2220]
+      hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+    ">
+      <span className="
+        text-[13px] text-orange-500
+        transition-all duration-300
+        group-hover:drop-shadow-[0_0_6px_rgba(255,101,0,0.8)]
+      ">
+        +
+      </span>
+
+      <p className="
+        absolute bottom-5 left-5
+        text-[14px] leading-[1.35] text-white/90
+        transition-transform duration-500
+        group-hover:translate-x-1
+      ">
+        Risk &amp;
+        <br />
+        Resilience
+      </p>
+    </div>
+
+    {/* Regulatory */}
+    <div className="
+      group relative h-[135px] rounded-[16px]
+      border border-white/10 bg-[#1a1f1d] p-5
+      transition-all duration-500 ease-out
+      hover:-translate-y-1
+      hover:border-orange-500/30
+      hover:bg-[#1d2220]
+      hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+    ">
+      <span className="
+        text-[13px] text-orange-500
+        transition-all duration-300
+        group-hover:drop-shadow-[0_0_6px_rgba(255,101,0,0.8)]
+      ">
+        +
+      </span>
+
+      <p className="
+        absolute bottom-5 left-5
+        text-[14px] leading-[1.35] text-white/90
+        transition-transform duration-500
+        group-hover:translate-x-1
+      ">
+        Regulatory
+        <br />
+        Updates
+      </p>
+    </div>
+
+    {/* Security */}
+    <div className="
+      group relative h-[135px] rounded-[16px]
+      border border-white/10 bg-[#1a1f1d] p-5
+      transition-all duration-500 ease-out
+      hover:-translate-y-1
+      hover:border-orange-500/30
+      hover:bg-[#1d2220]
+      hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+    ">
+      <span className="
+        text-[13px] text-orange-500
+        transition-all duration-300
+        group-hover:drop-shadow-[0_0_6px_rgba(255,101,0,0.8)]
+      ">
+        +
+      </span>
+
+      <p className="
+        absolute bottom-5 left-5
+        text-[14px] leading-[1.35] text-white/90
+        transition-transform duration-500
+        group-hover:translate-x-1
+      ">
+        Security &amp;
+        <br />
+        Compliance
+      </p>
+    </div>
+
+  </div>
+
+  {/* Bottom */}
+  <div className="relative z-10 mt-7 border-t border-white/10 pt-5">
+
+    <div className="flex items-center justify-between">
+      <span className="text-[9px] tracking-[0.3em] text-white/35">
+        COVERAGE
+      </span>
+
+      <span className="text-[9px] tracking-[0.3em] text-orange-500">
+        GLOBAL
+      </span>
+    </div>
+
+    {/* Animated orange line */}
+    <div className="relative mt-3 h-[1px] w-full overflow-hidden bg-white/10">
+      <div className="
+        h-full w-[78%]
+        bg-orange-500
+        animate-pulse
+        shadow-[0_0_6px_rgba(255,101,0,0.5)]
+      " />
+    </div>
+
+  </div>
+
+</div>
   </div>
 </section>
 
@@ -169,9 +248,6 @@ export default function InsightsPage() {
 
               <div className="mt-12 grid border-t border-black/10 sm:grid-cols-2">
                 <article className="border-b border-r border-black/10 px-6 py-8">
-                  <span className="text-xs font-semibold tracking-[0.2em] text-orange-600">
-                    01
-                  </span>
 
                   <h3 className="mt-5 text-xl font-semibold">
                     Practical Perspectives
@@ -184,9 +260,6 @@ export default function InsightsPage() {
                 </article>
 
                 <article className="border-b border-black/10 px-6 py-8">
-                  <span className="text-xs font-semibold tracking-[0.2em] text-orange-600">
-                    02
-                  </span>
 
                   <h3 className="mt-5 text-xl font-semibold">
                     Emerging Trends
@@ -225,9 +298,6 @@ export default function InsightsPage() {
 
           <div className="mt-16 grid border-l border-t border-white/10 sm:grid-cols-2 lg:grid-cols-3">
             <article className="group min-h-[360px] border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8">
-              <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                01
-              </span>
 
               <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
                 Governance
@@ -237,16 +307,9 @@ export default function InsightsPage() {
                 Perspectives on governance frameworks, accountability,
                 decision-making, and organisational oversight.
               </p>
-
-              <span className="mt-8 inline-flex text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                →
-              </span>
             </article>
 
             <article className="group min-h-[360px] border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8">
-              <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                02
-              </span>
 
               <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
                 Risk
@@ -256,16 +319,9 @@ export default function InsightsPage() {
                 Understand emerging risks and practical approaches to
                 identifying, assessing, and managing them effectively.
               </p>
-
-              <span className="mt-8 inline-flex text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                →
-              </span>
             </article>
 
             <article className="group min-h-[360px] border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8">
-              <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                03
-              </span>
 
               <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
                 Compliance
@@ -275,16 +331,9 @@ export default function InsightsPage() {
                 Insights into regulatory change, compliance requirements,
                 audit readiness, and regulatory resilience.
               </p>
-
-              <span className="mt-8 inline-flex text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                →
-              </span>
             </article>
 
             <article className="group min-h-[360px] border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8">
-              <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                04
-              </span>
 
               <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
                 Cybersecurity
@@ -294,16 +343,9 @@ export default function InsightsPage() {
                 Explore cybersecurity perspectives, resilience, threats,
                 controls, and organisational preparedness.
               </p>
-
-              <span className="mt-8 inline-flex text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                →
-              </span>
             </article>
 
             <article className="group min-h-[360px] border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8">
-              <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                05
-              </span>
 
               <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
                 Regulatory Change
@@ -313,16 +355,9 @@ export default function InsightsPage() {
                 Keep up with evolving regulatory expectations and understand
                 what they mean for your organisation.
               </p>
-
-              <span className="mt-8 inline-flex text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                →
-              </span>
             </article>
 
             <article className="group min-h-[360px] border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8">
-              <span className="text-xs font-semibold tracking-[0.2em] text-orange-500">
-                06
-              </span>
 
               <h3 className="mt-16 text-2xl font-medium tracking-[-0.025em]">
                 Industry Insights
@@ -332,10 +367,6 @@ export default function InsightsPage() {
                 Discover perspectives relevant to different industries and
                 their unique regulatory environments.
               </p>
-
-              <span className="mt-8 inline-flex text-orange-500 transition-transform duration-300 group-hover:translate-x-2">
-                →
-              </span>
             </article>
           </div>
         </div>

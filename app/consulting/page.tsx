@@ -98,51 +98,287 @@ export default function ConsultingPage() {
             </div>
           </div>
 
-          {/* RIGHT - GRC VISUAL, NO STOCK IMAGE */}
-          <div className="relative mx-auto w-full max-w-[590px]">
-            <div className="absolute -inset-10 rounded-full bg-[#e65300]/10 blur-3xl" />
+          {/* RIGHT - ANIMATED GRC GRAPH VISUAL */}
+<div className="relative mx-auto w-full max-w-[590px]">
+  <style>{`
+    @keyframes consultingGraphFlow {
+      0% {
+        stroke-dashoffset: 900;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
 
-            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#181a19] p-7 shadow-2xl sm:p-9">
-              <div className="flex items-center justify-between">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[#e65300]">
-                  ANKH GRC
-                </p>
-                <span className="h-3 w-3 rounded-full bg-[#e65300] shadow-[0_0_22px_rgba(230,83,0,0.7)]" />
-              </div>
+    @keyframes consultingPulse {
+      0%, 100% {
+        opacity: 0.35;
+        transform: scale(0.85);
+      }
+      50% {
+        opacity: 0.9;
+        transform: scale(1.15);
+      }
+    }
 
-              <p className="mt-14 text-[11px] uppercase tracking-[0.32em] text-white/35">
-                Integrated framework
-              </p>
+    @keyframes consultingGlow {
+      0%, 100% {
+        opacity: 0.15;
+      }
+      50% {
+        opacity: 0.45;
+      }
+    }
+  `}</style>
 
-              <div className="mt-6 grid grid-cols-3 gap-3">
-                {[
-                  ["G", "Governance"],
-                  ["R", "Risk"],
-                  ["C", "Compliance"],
-                ].map(([letter, label]) => (
-                  <div
-                    key={letter}
-                    className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    <div className="text-[42px] font-medium leading-none text-white">
-                      {letter}
-                    </div>
-                    <div className="mt-5 text-[12px] text-white/45">{label}</div>
-                  </div>
-                ))}
-              </div>
+  {/* Soft background glow */}
+  <div className="absolute -inset-12 rounded-full bg-[#e65300]/10 blur-3xl" />
 
-              <div className="mt-8 border-t border-white/10 pt-6">
-                <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.28em] text-white/35">
-                  <span>Connected</span>
-                  <span className="text-[#e65300]">G · R · C</span>
-                </div>
-                <div className="mt-4 h-1 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full w-[78%] rounded-full bg-[#e65300]" />
-                </div>
-              </div>
-            </div>
-          </div>
+  <div
+    className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#181a19] p-7 shadow-2xl sm:p-9"
+    style={{
+      boxShadow:
+        "0 30px 80px rgba(0,0,0,0.35), inset 0 0 50px rgba(255,101,0,0.025)",
+    }}
+  >
+    {/* Subtle grid */}
+    <div
+      className="pointer-events-none absolute inset-0 opacity-[0.16]"
+      style={{
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)
+        `,
+        backgroundSize: "42px 42px",
+      }}
+    />
+
+    {/* Top subtle line */}
+    <div className="relative flex items-center justify-between border-b border-white/[0.08] pb-5">
+      <div className="flex items-center gap-3">
+        <span className="h-2 w-2 rounded-full bg-[#e65300] shadow-[0_0_12px_rgba(230,83,0,0.9)]" />
+
+        <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-white/55">
+          Risk Monitoring
+        </span>
+      </div>
+
+      <span className="text-[10px] uppercase tracking-[0.25em] text-white/30">
+        Live
+      </span>
+    </div>
+
+    {/* Graph area */}
+    <div className="relative mt-7 h-[300px] w-full">
+      {/* Horizontal monitoring lines */}
+      <div className="absolute left-0 right-0 top-[20%] border-t border-white/[0.055]" />
+      <div className="absolute left-0 right-0 top-[40%] border-t border-white/[0.055]" />
+      <div className="absolute left-0 right-0 top-[60%] border-t border-white/[0.055]" />
+      <div className="absolute left-0 right-0 top-[80%] border-t border-white/[0.055]" />
+
+      {/* Vertical subtle guide */}
+      <div className="absolute bottom-0 left-[27%] top-0 border-l border-white/[0.035]" />
+      <div className="absolute bottom-0 left-[50%] top-0 border-l border-white/[0.035]" />
+      <div className="absolute bottom-0 left-[73%] top-0 border-l border-white/[0.035]" />
+
+      <svg
+        viewBox="0 0 560 300"
+        className="absolute inset-0 h-full w-full overflow-visible"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          {/* Orange glow */}
+          <filter id="consultingOrangeGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <filter id="consultingSoftGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="18" />
+          </filter>
+
+          {/* Graph gradient */}
+          <linearGradient
+            id="consultingGraphGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop offset="0%" stopColor="#e65300" stopOpacity="0.15" />
+            <stop offset="25%" stopColor="#ff6500" stopOpacity="0.75" />
+            <stop offset="50%" stopColor="#ff8a3d" />
+            <stop offset="75%" stopColor="#ff6500" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#e65300" stopOpacity="0.15" />
+          </linearGradient>
+        </defs>
+
+        {/* Soft orange glow behind heartbeat */}
+        <path
+          d="
+            M 10 165
+            C 45 165, 65 165, 90 165
+            C 115 165, 125 165, 145 165
+            L 170 165
+            L 190 95
+            L 207 220
+            L 225 150
+            L 245 165
+            C 285 165, 310 165, 345 165
+            C 385 165, 410 165, 445 165
+            C 480 165, 510 165, 550 165
+          "
+          fill="none"
+          stroke="#e65300"
+          strokeWidth="18"
+          strokeLinecap="round"
+          opacity="0.13"
+          filter="url(#consultingSoftGlow)"
+        />
+
+        {/* Secondary faint graph */}
+        <path
+          d="
+            M 10 170
+            C 55 155, 80 185, 120 165
+            C 155 147, 165 175, 200 162
+            C 240 148, 275 183, 315 164
+            C 350 147, 385 177, 425 161
+            C 465 146, 505 180, 550 158
+          "
+          fill="none"
+          stroke="rgba(255,255,255,0.13)"
+          strokeWidth="1.2"
+        />
+
+        {/* Main heartbeat graph */}
+        <path
+          d="
+            M 10 165
+            C 45 165, 65 165, 90 165
+            C 115 165, 125 165, 145 165
+            L 170 165
+            L 190 95
+            L 207 220
+            L 225 150
+            L 245 165
+            C 285 165, 310 165, 345 165
+            C 385 165, 410 165, 445 165
+            C 480 165, 510 165, 550 165
+          "
+          fill="none"
+          stroke="url(#consultingGraphGradient)"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray="12 10"
+          style={{
+            animation:
+              "consultingGraphFlow 3.8s linear infinite",
+          }}
+        />
+
+        {/* Sharp heartbeat highlight */}
+        <path
+          d="
+            M 145 165
+            L 170 165
+            L 190 95
+            L 207 220
+            L 225 150
+            L 245 165
+          "
+          fill="none"
+          stroke="#ff6500"
+          strokeWidth="3.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          filter="url(#consultingOrangeGlow)"
+        />
+
+        {/* Central pulse point */}
+        <circle
+          cx="207"
+          cy="220"
+          r="8"
+          fill="#e65300"
+          opacity="0.18"
+          style={{
+            transformOrigin: "207px 220px",
+            animation: "consultingPulse 1.8s ease-in-out infinite",
+          }}
+        />
+
+        <circle
+          cx="207"
+          cy="220"
+          r="3.5"
+          fill="#ff8a3d"
+          filter="url(#consultingOrangeGlow)"
+        />
+
+        {/* Moving live signal */}
+        <circle
+          r="4"
+          fill="#ff8a3d"
+          filter="url(#consultingOrangeGlow)"
+        >
+          <animateMotion
+            dur="3.8s"
+            repeatCount="indefinite"
+            path="
+              M 10 165
+              C 45 165, 65 165, 90 165
+              C 115 165, 125 165, 145 165
+              L 170 165
+              L 190 95
+              L 207 220
+              L 225 150
+              L 245 165
+              C 285 165, 310 165, 345 165
+              C 385 165, 410 165, 445 165
+              C 480 165, 510 165, 550 165
+            "
+          />
+        </circle>
+      </svg>
+
+      {/* Small monitoring markers */}
+      <div className="absolute left-[31%] top-[29%] h-1.5 w-1.5 rounded-full bg-[#e65300]/70 shadow-[0_0_10px_rgba(230,83,0,0.6)]" />
+
+      <div className="absolute left-[64%] top-[54%] h-1 w-1 rounded-full bg-white/30" />
+
+      <div
+        className="absolute right-[12%] top-[31%] h-1.5 w-1.5 rounded-full bg-[#e65300]/60"
+        style={{
+          animation: "consultingPulse 2.4s ease-in-out infinite",
+        }}
+      />
+
+      {/* Bottom baseline */}
+      <div className="absolute bottom-0 left-0 right-0 border-t border-white/[0.08]" />
+    </div>
+
+    {/* Bottom visual status */}
+    <div className="relative flex items-center justify-between border-t border-white/[0.08] pt-5">
+      <div className="flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#e65300]" />
+        <span className="text-[10px] uppercase tracking-[0.24em] text-white/35">
+          Continuous oversight
+        </span>
+      </div>
+
+      <div className="flex gap-1.5">
+        <span className="h-1 w-6 rounded-full bg-[#e65300]/70" />
+        <span className="h-1 w-2 rounded-full bg-white/10" />
+        <span className="h-1 w-2 rounded-full bg-white/10" />
+      </div>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 

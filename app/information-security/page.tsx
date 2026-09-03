@@ -164,9 +164,6 @@ export default function InformationSecurityStandardPage() {
                     key={item.title}
                     className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
                   >
-                    <span className="text-[30px] font-semibold tracking-[0.2em] text-orange-600">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                     <h3 className="mt-5 text-xl font-semibold">{item.title}</h3>
                     <p className="mt-3 text-[19px] leading-6 text-black/55">
                       {item.text}
@@ -258,59 +255,8 @@ export default function InformationSecurityStandardPage() {
                   "
                 />
 
-                {/* Huge number — SAME */}
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -right-10
-                    -top-5
-                    select-none
-                    text-[180px]
-                    font-semibold
-                    leading-none
-                    tracking-[-0.1em]
-                    text-[#f4f1eb]/[0.025]
-                    transition-all
-                    duration-700
-                    group-hover:text-[#ff6a00]/[0.06]
-                    sm:text-[220px]
-                  "
-                >
-                  {number}
-                </div>
-
                 {/* Card content — SAME */}
                 <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10">
-
-                  {/* Number + Arrow */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-                      {number}
-                    </span>
-
-                    <span
-                      className="
-                        flex
-                        h-11
-                        w-11
-                        items-center
-                        justify-center
-                        rounded-full
-                        border
-                        border-[#f4f1eb]/10
-                        text-sm
-                        text-[#f4f1eb]/50
-                        transition-all
-                        duration-500
-                        group-hover:border-[#ff6a00]
-                        group-hover:bg-[#ff6a00]
-                        group-hover:text-[#111412]
-                      "
-                    >
-                      ↗
-                    </span>
-                  </div>
 
                   {/* Title + Description */}
                   <div>
@@ -397,7 +343,6 @@ export default function InformationSecurityStandardPage() {
               <article key={title} className="bg-[#242825] p-8 lg:min-h-[250px]">
                 <div className="flex items-center justify-between border-b border-white/10 pb-5">
                   <h3 className="text-xl font-medium">{title}</h3>
-                  <span className="text-orange-500">↗</span>
                 </div>
 
                 <p className="mt-6 text-sm text-white/70">{subtitle}</p>
@@ -426,7 +371,6 @@ export default function InformationSecurityStandardPage() {
           <div className="mt-14 grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-5">
             {pillars.map(([number, title, text]) => (
               <article key={title} className="bg-[#171b19] p-7">
-                <span className="text-xs font-mono text-orange-500">{number}</span>
                 <h3 className="mt-8 text-xl font-medium">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-white/45">{text}</p>
               </article>
@@ -462,9 +406,6 @@ export default function InformationSecurityStandardPage() {
                     className="border-b border-black/10 py-8 md:pr-10"
                   >
                     <div className="flex gap-5">
-                      <span className="font-mono text-sm text-orange-600">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
                       <div>
                         <h3 className="text-xl font-semibold">{title}</h3>
                         <p className="mt-3 text-sm leading-6 text-black/55">

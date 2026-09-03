@@ -391,9 +391,7 @@ export default function CybersecurityRegulationPage() {
                     key={item.number}
                     className="min-h-[240px] border-b border-r border-[#111412]/10 p-7 lg:p-8"
                   >
-                    <span className="text-[11px] font-semibold tracking-[0.25em] text-[#ff5f00]">
-                      {item.number}
-                    </span>
+                  
 
                     <h3 className="mt-8 text-[20px] font-semibold leading-tight tracking-[-0.02em]">
                       {item.title}
@@ -438,14 +436,9 @@ export default function CybersecurityRegulationPage() {
                 key={item.number}
                 className="group relative min-h-[370px] overflow-hidden rounded-[26px] border border-white/10 bg-[#171a18] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#ff6a00]/70"
               >
-                <div className="absolute right-[-35px] top-[-45px] text-[150px] font-semibold leading-none text-white/[0.025]">
-                  {item.number}
-                </div>
-
+           
                 <div className="relative z-10 flex h-full flex-col">
-                  <span className="text-[11px] font-semibold tracking-[0.3em] text-[#ff6a00]">
-                    {item.number}
-                  </span>
+                 
 
                   <p className="mt-8 text-[10px] uppercase tracking-[0.3em] text-[#69716d]">
                     {item.region}
@@ -504,9 +497,7 @@ export default function CybersecurityRegulationPage() {
                     key={item.number}
                     className="min-h-[280px] border-b border-r border-[#111412]/10 p-7 lg:p-8"
                   >
-                    <span className="text-[11px] font-semibold tracking-[0.25em] text-[#ff5f00]">
-                      {item.number}
-                    </span>
+              
 
                     <h3 className="mt-7 text-[21px] font-semibold tracking-[-0.025em]">
                       {item.title}
@@ -560,9 +551,7 @@ export default function CybersecurityRegulationPage() {
                     key={item.number}
                     className="min-h-[260px] border-b border-r border-white/10 p-7 lg:p-8"
                   >
-                    <span className="text-[11px] font-semibold tracking-[0.25em] text-[#ff6a00]">
-                      {item.number}
-                    </span>
+                    
 
                     <h3 className="mt-7 text-[21px] font-semibold leading-tight tracking-[-0.02em]">
                       {item.title}
@@ -609,9 +598,7 @@ export default function CybersecurityRegulationPage() {
                     key={item.number}
                     className="min-h-[250px] border-b border-r border-[#111412]/10 p-7 lg:p-8"
                   >
-                    <span className="text-[11px] font-semibold tracking-[0.25em] text-[#ff5f00]">
-                      {item.number}
-                    </span>
+                    
 
                     <h3 className="mt-7 text-[22px] font-semibold tracking-[-0.025em]">
                       {item.title}

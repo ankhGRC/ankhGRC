@@ -246,9 +246,17 @@ const outcomes = [
   },
 ];
 
+const heroAnimationStyles = `
+@keyframes scan {
+  0%, 100% { transform: translateX(-110%); }
+  50% { transform: translateX(500%); }
+}
+`;
+
 export default function AIGovernancePage() {
   return (
     <main className="min-h-screen bg-[#111412] text-[#f4f2ec]">
+      <style dangerouslySetInnerHTML={{ __html: heroAnimationStyles }} />
       <Navigation />
 
       {/* HERO */}
@@ -296,33 +304,66 @@ export default function AIGovernancePage() {
           </div>
 
           <div className="hidden lg:block">
-            <div className="rounded-[32px] border border-white/10 bg-[#161916] p-8">
-              <p className="text-[10px] uppercase tracking-[0.35em] text-white/30">
-                ANKH GRC / AI GOVERNANCE
-              </p>
+            <div className="relative mx-auto h-[520px] w-full max-w-[520px] overflow-hidden rounded-[32px] border border-white/10 bg-[#161916]">
+              {/* Subtle architectural grid */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.16]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+                  backgroundSize: "54px 54px",
+                  maskImage:
+                    "radial-gradient(circle at center, black 0%, transparent 72%)",
+                  WebkitMaskImage:
+                    "radial-gradient(circle at center, black 0%, transparent 72%)",
+                }}
+              />
 
-              <div className="mt-10 space-y-3">
-                {[
-                  "Governance",
-                  "Risk",
-                  "Responsible AI",
-                  "Security",
-                  "Assurance",
-                ].map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center justify-between border-b border-white/10 py-4"
-                  >
-                    <span className="text-sm text-white/65">{item}</span>
-                    <span className="text-xs text-[#ff6a00]">
-                      0{index + 1}
-                    </span>
-                  </div>
-                ))}
+              {/* Slow moving accent */}
+              <div className="pointer-events-none absolute left-[12%] top-[13%] h-px w-[76%] overflow-hidden bg-white/10">
+                <div className="h-full w-20 bg-[#ff6a00] animate-[scan_4s_ease-in-out_infinite]" />
               </div>
 
-              <div className="mt-8 h-px bg-white/10">
-                <div className="h-px w-[82%] bg-[#ff6a00]" />
+              <div className="pointer-events-none absolute left-[18%] top-[52%] h-px w-[64%] bg-white/10" />
+              <div className="pointer-events-none absolute left-[28%] top-[68%] h-px w-[44%] bg-white/10" />
+
+              {/* Connected governance structure */}
+              <div className="absolute left-1/2 top-1/2 h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute inset-0 rounded-full border border-white/10 animate-[spin_18s_linear_infinite]" />
+                <div className="absolute inset-[28px] rounded-full border border-white/10 animate-[spin_14s_linear_infinite_reverse]" />
+                <div className="absolute inset-[62px] rounded-full border border-[#ff6a00]/30 animate-[pulse_3s_ease-in-out_infinite]" />
+
+                <div className="absolute left-1/2 top-0 h-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/20 to-[#ff6a00]/50" />
+                <div className="absolute left-1/2 bottom-0 h-1/2 w-px -translate-x-1/2 bg-gradient-to-t from-transparent via-white/20 to-[#ff6a00]/50" />
+                <div className="absolute left-0 top-1/2 h-px w-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-white/20 to-[#ff6a00]/50" />
+                <div className="absolute right-0 top-1/2 h-px w-1/2 -translate-y-1/2 bg-gradient-to-l from-transparent via-white/20 to-[#ff6a00]/50" />
+
+                <div className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff6a00] shadow-[0_0_28px_rgba(255,106,0,0.45)] animate-[pulse_2.4s_ease-in-out_infinite]" />
+
+                <div className="absolute left-1/2 top-[-14px] -translate-x-1/2 text-[9px] uppercase tracking-[0.28em] text-white/35">
+                  Oversight
+                </div>
+                <div className="absolute bottom-[-14px] left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.28em] text-white/35">
+                  Assurance
+                </div>
+                <div className="absolute left-[-30px] top-1/2 -translate-y-1/2 text-[9px] uppercase tracking-[0.28em] text-white/35">
+                  Risk
+                </div>
+                <div className="absolute right-[-34px] top-1/2 -translate-y-1/2 text-[9px] uppercase tracking-[0.28em] text-white/35">
+                  Control
+                </div>
+              </div>
+
+              <div className="absolute bottom-8 left-8 right-8 flex items-end justify-between">
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.35em] text-white/30">
+                    Governance Architecture
+                  </p>
+                  <div className="mt-3 h-px w-28 bg-[#ff6a00]" />
+                </div>
+                <span className="text-[10px] tracking-[0.3em] text-white/20">
+                  ANKH
+                </span>
               </div>
             </div>
           </div>
@@ -367,9 +408,7 @@ export default function AIGovernancePage() {
                     key={item.number}
                     className="min-h-[235px] border-b border-r border-black/10 p-7 lg:p-8"
                   >
-                    <span className="text-xs font-semibold tracking-[0.2em] text-[#ff5f00]">
-                      {item.number}
-                    </span>
+                    
 
                     <h3 className="mt-7 text-xl font-semibold tracking-[-0.02em]">
                       {item.title}
@@ -412,26 +451,17 @@ export default function AIGovernancePage() {
             {domains.map((item) => (
               <article
                 key={item.number}
-                className="group relative flex min-h-[400px] flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[#171a18] p-8 transition duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/60"
+                className="group relative flex min-h-[400px] flex-col overflow-hidden border border-white/10 bg-[#171a18] p-8 transition-all duration-500 hover:border-[#ff6a00]/60 hover:bg-[#1b1e1c]" style={{ borderRadius: "20px" }}
               >
-                <div className="pointer-events-none absolute -right-4 -top-8 text-[170px] font-semibold leading-none text-white/[0.025]">
-                  {item.number}
-                </div>
-
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-[0.25em] text-[#ff6a00]">
-                    {item.number}
-                  </span>
-
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-black">
-                    →
-                  </span>
+                <div className="relative z-10">
+                  <div className="h-px w-20 bg-[#ff6a00] transition-all duration-500 group-hover:w-32" />
+                  <div className="mt-3 h-px w-full bg-white/10" />
                 </div>
 
                 <div className="relative z-10 mt-auto">
-                  <div className="mb-5 h-px w-10 bg-[#ff6a00] transition-all group-hover:w-20" />
+                  <div className="mb-6 h-px w-full bg-white/10" />
 
-                  <h3 className="text-[28px] font-medium leading-tight tracking-[-0.025em]">
+                  <h3 className="max-w-[90%] text-[28px] font-medium leading-tight tracking-[-0.025em]">
                     {item.title}
                   </h3>
 
@@ -439,10 +469,15 @@ export default function AIGovernancePage() {
                     {item.text}
                   </p>
 
-                  <p className="mt-7 text-[10px] uppercase tracking-[0.35em] text-white/20">
-                    ANKH GRC
-                  </p>
+                  <div className="mt-7 flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-[#ff6a00]" />
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">
+                      AI GOVERNANCE
+                    </span>
+                  </div>
                 </div>
+
+                <div className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
               </article>
             ))}
           </div>
@@ -532,24 +567,15 @@ export default function AIGovernancePage() {
             {services.map((item) => (
               <article
                 key={item.number}
-                className="group relative flex min-h-[300px] flex-col overflow-hidden rounded-[30px] border border-white/10 bg-[#171a18] p-8 transition duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/60"
+                className="group relative flex min-h-[300px] flex-col overflow-hidden border border-white/10 bg-[#171a18] p-8 transition-all duration-500 hover:border-[#ff6a00]/60 hover:bg-[#1b1e1c]" style={{ borderRadius: "20px" }}
               >
-                <div className="pointer-events-none absolute -right-4 -top-8 text-[150px] font-semibold leading-none text-white/[0.025]">
-                  {item.number}
-                </div>
-
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="text-xs font-semibold tracking-[0.25em] text-[#ff6a00]">
-                    {item.number}
-                  </span>
-
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/40 transition group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-black">
-                    +
-                  </span>
+                <div className="relative z-10">
+                  <div className="h-px w-20 bg-[#ff6a00] transition-all duration-500 group-hover:w-32" />
+                  <div className="mt-3 h-px w-full bg-white/10" />
                 </div>
 
                 <div className="relative z-10 mt-auto">
-                  <div className="mb-5 h-px w-10 bg-[#ff6a00] transition-all group-hover:w-20" />
+                  <div className="mb-6 h-px w-full bg-white/10" />
 
                   <h3 className="text-[28px] font-medium leading-tight tracking-[-0.03em]">
                     {item.title}
@@ -559,10 +585,15 @@ export default function AIGovernancePage() {
                     {item.text}
                   </p>
 
-                  <p className="mt-7 text-[10px] uppercase tracking-[0.35em] text-white/20">
-                    ANKH GRC
-                  </p>
+                  <div className="mt-7 flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 bg-[#ff6a00]" />
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">
+                      ANKH GRC SERVICES
+                    </span>
+                  </div>
                 </div>
+
+                <div className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
               </article>
             ))}
           </div>
@@ -596,9 +627,7 @@ export default function AIGovernancePage() {
                     key={item.number}
                     className="min-h-[220px] border-b border-r border-black/10 p-7 lg:p-8"
                   >
-                    <span className="text-xs font-semibold tracking-[0.2em] text-[#ff5f00]">
-                      {item.number}
-                    </span>
+                   
 
                     <h3 className="mt-7 text-xl font-semibold">
                       {item.title}

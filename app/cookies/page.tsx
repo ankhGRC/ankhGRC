@@ -136,7 +136,7 @@ export default function CookiesPage() {
         <div className="pointer-events-none absolute -right-48 -top-48 h-[650px] w-[650px] rounded-full border border-[#ff6500]/10" />
 
         <div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 lg:px-16 lg:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff6500]">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#ff6500] pt-30">
             LEGAL • PRIVACY • CONTROL
           </p>
 
@@ -155,15 +155,7 @@ export default function CookiesPage() {
             </div>
 
             {/* COOKIE SYMBOL */}
-            <div className="hidden lg:flex justify-end">
-              <div className="relative flex h-52 w-52 items-center justify-center rounded-full border border-[#ff6500]/30">
-                <div className="h-36 w-36 rounded-full border border-[#ff6500]/50 bg-[#191d1b]" />
-
-                <span className="absolute left-14 top-14 h-4 w-4 rounded-full bg-[#ff6500]" />
-                <span className="absolute right-16 top-20 h-3 w-3 rounded-full bg-[#ff6500]/60" />
-                <span className="absolute bottom-16 left-20 h-3 w-3 rounded-full bg-[#ff6500]/40" />
-              </div>
-            </div>
+            
           </div>
 
           <div className="mt-10 border-t border-white/10 pt-5">
@@ -200,15 +192,7 @@ export default function CookiesPage() {
                 onClick={() => setSelected(index)}
                 className="group min-h-[230px] border border-black/10 bg-white p-7 text-left transition-all duration-300 hover:-translate-y-1 hover:border-[#ff6500] hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)]"
               >
-                <div className="flex items-start justify-between">
-                  <span className="font-mono text-xs tracking-[0.2em] text-[#ff6500]">
-                    {section.number}
-                  </span>
-
-                  <span className="text-2xl text-black/20 transition group-hover:text-[#ff6500]">
-                    ↗
-                  </span>
-                </div>
+            
 
                 <div className="mt-14">
                   <h3 className="text-2xl font-medium leading-tight tracking-[-0.03em]">

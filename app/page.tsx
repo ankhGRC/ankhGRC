@@ -1,160 +1,196 @@
 "use client";
 
-import { Navigation } from "@/components/landing/navigation";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Navigation } from "@/components/landing/navigation";
+import Footer from "@/components/landing/footer";
 
-export default function HomePage() {
-  const services = [
-    {
-      number: "01",
-      title: "Information Security Governance",
-      description:
-        "Build strong security governance structures, accountability models, and oversight to protect your organization.",
-    },
-    {
-      number: "02",
-      title: "Privacy & Data Protection",
-      description:
-        "Establish practical privacy programs, data protection controls, and regulatory compliance across your organization.",
-    },
-    {
-      number: "03",
-      title: "AI Governance",
-      description:
-        "Operationalize responsible AI through governance frameworks, risk management, policies, and regulatory readiness.",
-    },
-    {
-      number: "04",
-      title: "Industry-Specific Regulations",
-      description:
-        "Navigate complex regulatory requirements across healthcare, finance, technology, energy, retail, and government.",
-    },
-    {
-      number: "05",
-      title: "Cross-Border Compliance",
-      description:
-        "Manage international regulatory complexity, data localization, privacy requirements, and cross-border obligations.",
-    },
-    {
-      number: "06",
-      title: "Compliance Consulting",
-      description:
-        "Design, implement, and improve compliance programs aligned with business objectives and regulatory expectations.",
-    },
-  ];
+const services = [
+  {
+    label: "GOVERNANCE",
+    title: "Governance & Risk",
+    description:
+      "Build accountable decision-making, risk frameworks, control environments and governance structures aligned with business objectives.",
+  },
+  {
+    label: "COMPLIANCE",
+    title: "Regulatory Compliance",
+    description:
+      "Translate regulatory obligations into practical requirements, controls, ownership and evidence.",
+  },
+  {
+    label: "SECURITY",
+    title: "Cyber & Information Security",
+    description:
+      "Strengthen security governance, technology risk management, resilience and assurance.",
+  },
+  {
+    label: "PRIVACY",
+    title: "Privacy & Data Governance",
+    description:
+      "Build responsible data practices across collection, processing, transfer, retention and use.",
+  },
+  {
+    label: "AI",
+    title: "AI Governance",
+    description:
+      "Establish responsible, transparent and risk-aware governance for AI and emerging technologies.",
+  },
+  {
+    label: "REGULATORY INTELLIGENCE",
+    title: "Regulatory Change",
+    description:
+      "Monitor evolving requirements and turn regulatory change into clear, actionable business priorities.",
+  },
+];
 
-  const capabilities = [
-    "Governance & Oversight",
-    "Risk Management",
-    "Regulatory Compliance",
-    "Security & Privacy",
-    "AI Governance",
-    "Audit & Assurance",
-  ];
+const industries = [
+  ["Financial Services", "Trust • Resilience • Regulation"],
+  ["Healthcare & Life Sciences", "Privacy • Security • Data"],
+  ["Technology & SaaS", "Cloud • AI • Assurance"],
+  ["Manufacturing", "OT/IT • Supply Chain • Resilience"],
+  ["Energy & Utilities", "Critical Infrastructure • Cyber"],
+  ["Retail & Consumer", "Customer Data • Digital Risk"],
+  ["Government", "Accountability • Digital Trust"],
+  ["Global Enterprises", "Cross-Border • Regulatory Change"],
+];
 
+const whyCards = [
+  {
+    title: "Clarity",
+    description:
+      "Know which regulations, risks and obligations matter to your business — and why.",
+  },
+  {
+    title: "Control",
+    description:
+      "Convert requirements into practical controls, responsibilities, workflows and evidence.",
+  },
+  {
+    title: "Confidence",
+    description:
+      "Build governance that can withstand customer, management, audit and regulatory scrutiny.",
+  },
+  {
+    title: "Connected GRC",
+    description:
+      "Bring governance, risk, compliance, security, privacy and technology together into one operating perspective.",
+  },
+];
+
+const insights = [
+  {
+    tag: "AI Governance",
+    title: "Will AI become the customs officer of global data?",
+    description:
+      "As data crosses jurisdictions, organizations need governance that can keep pace with automated decisions and regulatory expectations.",
+  },
+  {
+    tag: "Regulatory Intelligence",
+    title: "From periodic compliance to continuous readiness.",
+    description:
+      "Why organizations need to rethink compliance as regulations and technology evolve faster than annual review cycles.",
+  },
+  {
+    tag: "Digital Trust",
+    title: "Can governance become a competitive advantage?",
+    description:
+      "Strong governance can move beyond risk reduction to become a foundation for trust, innovation and sustainable growth.",
+  },
+];
+
+export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#111412] text-[#f4f1eb]">
-  
-      <Navigation/>
+    <main className="overflow-x-hidden bg-[#f5f2eb] text-[#151916]">
+      {/* =========================================================
+          NAVIGATION
+      ========================================================= */}
+      <Navigation />
+
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative min-h-[calc(100vh-88px)] overflow-hidden border-b border-white/10">
-        {/* background glow */}
-        <div className="pointer-events-none absolute -right-40 top-10 h-[650px] w-[650px] rounded-full bg-[#e65300]/10 blur-[140px]" />
-        <div className="pointer-events-none absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-[#e65300]/5 blur-[120px]" />
+      <section className="relative min-h-[720px] overflow-hidden bg-[#151916] text-white">
+        {/* Ambient orange glow */}
+        <div className="pointer-events-none absolute -right-40 top-10 h-[520px] w-[520px] rounded-full bg-[#ff6500]/[0.06] blur-3xl" />
+        <div className="pointer-events-none absolute -left-40 bottom-0 h-[360px] w-[360px] rounded-full bg-[#ff6500]/[0.025] blur-3xl" />
 
-        <div className="relative mx-auto flex min-h-[779px] w-full max-w-[1500px] items-center px-6 py-24 sm:px-10 lg:px-16">
-<div className="mx-auto  grid min-h-[779px] w-full max-w-[1650px] items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          {/* LEFT */}
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-32 lg:pt-32">
+          {/* Hero copy */}
+          <div className="max-w-3xl">
+            <p className="mb-7 text-sm font-semibold uppercase tracking-[0.24em] text-[#ff6500]">
+              Governance • Risk • Compliance
+            </p>
 
-            {/* LEFT */}
-            <div>
-              <p className="mb-7 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6500]">
-                SECURE. COMPLIANT. FUTURE READY.
-              </p>
+            <h1 className="max-w-5xl text-[50px] font-medium leading-[0.98] tracking-[-0.045em] sm:text-[62px] md:text-[76px] lg:text-[84px]">
+              Make complexity your{" "}
+              <span className="text-[#ff6500]">
+                competitive advantage.
+              </span>
+            </h1>
 
-              <h1 className="max-w-[900px] text-5xl font-medium leading-[0.94] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
-                Governance
-                <br />
-                that moves
-                <br />
-                business forward.
-              </h1>
+            <p className="mt-9 max-w-2xl text-[17px] leading-8 text-white/60 md:text-[18px]">
+              Ankh GRC helps organizations navigate the intersection of
+              regulation, technology, cybersecurity, privacy, data and AI —
+              turning complex requirements into practical governance and
+              confident business decisions.
+            </p>
 
-              <p className="mt-9 max-w-[700px] text-base leading-8 text-[#a4aaa6] sm:text-lg">
-                Ankh GRC helps organizations build secure, compliant, and
-                resilient operations across security, privacy, AI, risk,
-                and regulatory landscapes.
-              </p>
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Link
+                href="/services"
+                className="group inline-flex min-h-[54px] items-center gap-3 rounded-[10px] bg-[#ff6500] px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-[0_12px_30px_rgba(255,101,0,0.18)]"
+              >
+                Explore Our Services
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
 
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a
-                  href="#services"
-                  className="inline-flex items-center gap-5 bg-[#ff6500] px-7 py-4 text-sm font-medium text-black transition hover:bg-[#ff7a25]"
-                >
-                  Explore Services
-                  <span className="text-lg">→</span>
-                </a>
-
-                <a
-                  href="#about"
-                  className="inline-flex items-center gap-5 border border-white/20 px-7 py-4 text-sm font-medium text-white transition hover:border-white/40"
-                >
-                  Learn More
-                  <span className="text-lg">↓</span>
-                </a>
-              </div>
+              <Link
+                href="/contact"
+                className="inline-flex min-h-[54px] items-center rounded-[10px] border border-white/20 px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/[0.04]"
+              >
+                Talk to Ankh GRC
+              </Link>
             </div>
+          </div>
 
-            {/* RIGHT VISUAL */}
-            <div className="relative mx-auto w-full max-w-[520px] ">
-              <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#151917] p-7 shadow-2xl min-h-[679px]">
+          {/* Hero visual */}
+          <div className="relative min-h-[470px] lg:min-h-[510px]">
+            <div className="absolute inset-0 rounded-[28px] border border-white/10 bg-[#181d1a]" />
 
-                <div className="absolute right-7 top-7 h-2.5 w-2.5 rounded-full bg-[#ff6500] shadow-[0_0_25px_#ff6500] " />
+            <div className="absolute inset-0 overflow-hidden rounded-[28px]">
+              <div className="absolute right-[-90px] top-[35px] h-[430px] w-[430px] rounded-full border border-white/[0.08] animate-[spin_24s_linear_infinite]" />
+              <div className="absolute right-[-20px] top-[100px] h-[300px] w-[300px] rounded-full border border-[#ff6500]/20 border-dashed animate-[spin_17s_linear_infinite_reverse]" />
+              <div className="absolute right-[40px] top-[165px] h-[170px] w-[170px] rounded-full border border-[#ff6500]/20 animate-pulse" />
 
-                <p className="text-[10px] uppercase tracking-[0.32em] text-[#69716c]">
+              <div className="absolute right-[92px] top-[220px] flex h-[70px] w-[70px] items-center justify-center rounded-full border border-[#ff6500]/70 bg-[#ff6500]/[0.08] text-[11px] font-semibold tracking-[0.18em] text-[#ff6500] shadow-[0_0_35px_rgba(255,101,0,0.12)] animate-pulse">
+                GRC
+              </div>
+
+              <div className="absolute left-8 top-8">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-white/35">
                   ANKH GRC
                 </p>
-
-                <p className="mt-5 text-[10px] uppercase tracking-[0.28em] text-[#69716c]">
-                  Governance Framework
+                <p className="mt-3 text-[9px] uppercase tracking-[0.28em] text-white/20">
+                  Governance Architecture
                 </p>
-
-                <div className="mt-8 grid grid-cols-2 gap-3">
-                  {capabilities.slice(0, 4).map((item, index) => (
-                    <div
-                      key={item}
-                      className="group min-h-[115px] rounded-2xl border border-white/10 bg-[#191d1b] p-5 transition hover:border-[#ff6500]/50"
-                    >
-                      <span className="text-lg text-[#ff6500]">+</span>
-
-                      <p className="mt-8 text-sm text-[#d5d8d5]">
-                        {item}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-5 border-t border-white/10 pt-6">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-[0.28em] text-[#68706b]">
-                      Coverage
-                    </span>
-
-                    <span className="text-[10px] uppercase tracking-[0.28em] text-[#ff6500]">
-                      Global
-                    </span>
-                  </div>
-
-                  <div className="mt-4 h-px w-full bg-white/10">
-                    <div className="h-px w-[86%] bg-[#ff6500]" />
-                  </div>
-                </div>
               </div>
 
-              {/* decorative number */}
-              <div className="pointer-events-none absolute -bottom-20 -right-12 text-[220px] font-medium leading-none text-white/[0.025]">
-                01
+              <div className="absolute bottom-8 left-8 border-l border-[#ff6500] pl-5">
+                <p className="text-[28px] font-medium tracking-[-0.02em]">
+                  Secure.
+                </p>
+                <p className="text-[13px] text-white/40">
+                  Compliant. Future Ready.
+                </p>
+              </div>
+
+              <div className="absolute bottom-8 right-8 flex items-end gap-1 opacity-60">
+                <span className="h-5 w-px bg-[#ff6500]" />
+                <span className="h-9 w-px bg-[#ff6500]" />
+                <span className="h-14 w-px bg-[#ff6500]" />
+                <span className="h-8 w-px bg-[#ff6500]" />
+                <span className="h-11 w-px bg-[#ff6500]" />
               </div>
             </div>
           </div>
@@ -162,144 +198,107 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================
-          INTRO / ABOUT
+          PERSPECTIVE
       ========================================================= */}
-      <section
-        id="about"
-        className="relative overflow-hidden bg-[#f4f1eb] text-[#111412]"
-      >
-        <div className="mx-auto w-full max-w-[1450px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <section className="bg-[#f5f2eb] py-24 md:py-32">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24 lg:px-10">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#e65300]">
+              The Ankh GRC Perspective
+            </p>
 
-          <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
+            <h2 className="mt-7 text-[42px] font-medium leading-[1.04] tracking-[-0.04em] md:text-[58px]">
+              Governance is no longer a back-office function.
+            </h2>
+          </div>
 
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#ff6500]">
-                01 / WHY ANKH GRC
-              </p>
+          <div className="rounded-r-[18px] border-l-2 border-[#ff6500] bg-[#ebe7de] px-7 py-8 md:px-10 md:py-10">
+            <p className="text-[23px] leading-[1.5] tracking-[-0.02em] md:text-[27px]">
+              As technology, regulation and AI converge, governance becomes
+              part of{" "}
+              <strong className="text-[#e65300]">
+                how a business competes, grows and earns trust.
+              </strong>
+            </p>
 
-              <h2 className="mt-7 max-w-[620px] text-4xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
-                Compliance is not just a requirement.
-                <br />
-                It is a business advantage.
-              </h2>
-            </div>
-
-            <div className="lg:pt-3">
-              <p className="max-w-[780px] text-lg leading-8 text-[#687078]">
-                Organizations operate in an environment where regulations,
-                technology, data, and business risks continuously evolve.
-                Ankh GRC brings these disciplines together into practical
-                governance frameworks that help organizations operate with
-                confidence.
-              </p>
-
-              <div className="mt-12 grid border-t border-[#111412]/15 sm:grid-cols-2 lg:grid-cols-3">
-                {[
-                  ["01", "Secure", "Protect critical systems, information, and operations."],
-                  ["02", "Compliant", "Meet regulatory expectations with practical controls."],
-                  ["03", "Future Ready", "Build governance that evolves with your business."],
-                ].map(([num, title, text]) => (
-                  <div
-                    key={num}
-                    className="border-b border-[#111412]/15 px-0 py-8 sm:px-5 lg:first:pl-0"
-                  >
-                    <span className="text-[11px] font-semibold tracking-[0.2em] text-[#ff6500]">
-                      {num}
-                    </span>
-
-                    <h3 className="mt-6 text-xl font-medium">
-                      {title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-[#747b80]">
-                      {text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+            <p className="mt-7 text-[16px] leading-7 text-black/55">
+              We help organizations move from reactive compliance to
+              intelligent, integrated and continuously evolving governance.
+            </p>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          SERVICES
+          HOW ANKH GRC IS DIFFERENT
       ========================================================= */}
-      <section
-        id="services"
-        className="relative overflow-hidden bg-[#111412] text-[#f4f1eb]"
-      >
-        <div className="pointer-events-none absolute -right-48 top-1/3 h-[600px] w-[600px] rounded-full bg-[#e65300]/5 blur-[150px]" />
+      <section className="relative overflow-hidden bg-[#111412] py-24 text-white md:py-32">
+        <div className="pointer-events-none absolute -right-48 top-0 h-[520px] w-[520px] rounded-full bg-[#ff6500]/[0.045] blur-3xl" />
 
-        <div className="relative mx-auto w-full max-w-[1450px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-10">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff6500]">
+              How Ankh Is Different
+            </p>
 
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.34em] text-[#ff6500]">
-                02 / OUR SERVICES
-              </p>
+            <h2 className="mt-7 text-[42px] font-medium leading-[1.02] tracking-[-0.045em] md:text-[62px]">
+              How Ankh is
+              <br />
+              <span className="text-[#ff6500]">different from other</span>
+              <br />
+              GRC companies.
+            </h2>
 
-              <h2 className="mt-6 max-w-[850px] text-5xl font-medium leading-[0.95] tracking-[-0.05em] sm:text-6xl lg:text-7xl">
-                Governance built
-                <br />
-                for the real world.
-              </h2>
-            </div>
+            <p className="mt-8 max-w-xl text-[17px] leading-8 text-white/55">
+              Many GRC companies begin with a framework, a checklist or a certification
+              target. Ankh GRC begins with your business—how you operate, where risk
+              sits, what your stakeholders expect and what needs to change.
+            </p>
 
-            <p className="max-w-[420px] text-sm leading-7 text-[#8f9792] lg:pb-2">
-              From strategy to implementation, we help organizations
-              establish the structures, controls, and evidence required
-              to operate securely and compliantly.
+            <p className="mt-8 text-[18px] font-semibold leading-8 tracking-[-0.01em] md:text-[21px]">
+              We don't just help you <span className="text-[#ff6500]">meet requirements.</span>
+              <br />
+              We help you <span className="text-[#ff6500]">build a stronger organization.</span>
             </p>
           </div>
 
-          {/* NORMAL GRID — NO HORIZONTAL SCROLL */}
-          <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                label: "BUSINESS-FIRST",
+                title: "Business before framework",
+                text: "We don't force your organization into a template. We understand your operating model, objectives and risk landscape first.",
+              },
+              {
+                label: "CONNECTED GRC",
+                title: "One view of risk and trust",
+                text: "Governance, risk, security, privacy, compliance and technology are connected instead of managed as isolated workstreams.",
+              },
+              {
+                label: "PRACTICAL DELIVERY",
+                title: "From advice to action",
+                text: "We translate requirements into ownership, processes, controls and evidence that teams can actually operate.",
+              },
+              {
+                label: "FUTURE-READY",
+                title: "Built for what changes next",
+                text: "We look beyond today's checklist to regulatory change, AI, emerging technology and evolving business risk.",
+              },
+            ].map((item) => (
               <article
-                key={service.number}
-                className="group relative min-h-[360px] overflow-hidden rounded-[24px] border border-white/10 bg-[#151917] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#ff6500]/60"
+                key={item.label}
+                className="group relative min-h-[245px] overflow-hidden rounded-[20px] border border-white/10 bg-[#181d1a] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#ff6500]/35 hover:bg-[#1b201d]"
               >
-                {/* huge background number */}
-                <span className="pointer-events-none absolute -right-3 -top-8 text-[170px] font-medium leading-none text-white/[0.025]">
-                  {service.number}
-                </span>
-
-                <div className="relative flex h-full flex-col">
-                  <div className="flex items-start justify-between">
-                    <span className="text-[11px] font-semibold tracking-[0.22em] text-[#ff6500]">
-                      {service.number}
-                    </span>
-
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-sm text-[#a0a6a2] transition group-hover:border-[#ff6500] group-hover:bg-[#ff6500] group-hover:text-black">
-                      ↗
-                    </span>
-                  </div>
-
-                  <div className="mt-auto">
-                    <div className="mb-7 h-px w-12 bg-[#ff6500]" />
-
-                    <h3 className="max-w-[420px] text-2xl font-medium leading-tight tracking-[-0.025em]">
-                      {service.title}
-                    </h3>
-
-                    <p className="mt-5 max-w-[440px] text-base leading-7 text-[#929a95]">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-5">
-                    <span className="text-[9px] uppercase tracking-[0.3em] text-[#5e6661]">
-                      ANKH GRC
-                    </span>
-
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#ff6500]" />
-                  </div>
-                </div>
-
-                {/* orange curve */}
-                <div className="pointer-events-none absolute -bottom-40 -left-16 h-[300px] w-[650px] rounded-[50%] border border-[#ff6500]/20" />
+                <div className="absolute left-7 right-7 top-0 h-px bg-[#ff6500]/60" />
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#ff6500]">
+                  {item.label}
+                </p>
+                <h3 className="mt-7 text-[20px] font-semibold leading-tight tracking-[-0.02em] md:text-[21px]">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-[14px] leading-6 text-white/50">
+                  {item.text}
+                </p>
               </article>
             ))}
           </div>
@@ -307,150 +306,294 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================
-          FRAMEWORK
+          SERVICES
       ========================================================= */}
-      <section className="bg-[#f4f1eb] text-[#111412]">
-        <div className="mx-auto w-full max-w-[1450px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      <section className="bg-[#111412] py-24 text-white md:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff6500]">
+              What We Do
+            </p>
 
-          <div className="grid gap-16 lg:grid-cols-[0.75fr_1.25fr]">
+            <h2 className="mt-7 text-[42px] font-medium leading-[1.04] tracking-[-0.04em] md:text-[58px]">
+              From regulatory complexity
+              <br />
+              <span className="text-white/35">to business confidence.</span>
+            </h2>
 
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#ff6500]">
-                03 / OUR APPROACH
-              </p>
+            <p className="mt-7 max-w-3xl text-[17px] leading-8 text-white/50">
+              Ankh GRC connects governance, risk, compliance, security,
+              privacy and emerging technology into one practical operating
+              perspective.
+            </p>
+          </div>
 
-              <h2 className="mt-7 text-5xl font-medium leading-[0.95] tracking-[-0.05em] sm:text-6xl">
-                A structured
-                <br />
-                path to
-                <br />
-                compliance.
-              </h2>
-            </div>
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <article
+                key={service.title}
+                className="group relative min-h-[270px] overflow-hidden rounded-[20px] border border-white/10 bg-[#181d1a] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6500]/30 hover:bg-[#1b201d] hover:shadow-[0_18px_45px_rgba(0,0,0,0.25)]"
+              >
+                <div className="absolute left-0 top-0 h-px w-12 bg-[#ff6500] transition-all duration-500 group-hover:w-24" />
 
-            <div className="border-t border-[#111412]/15">
-              {[
-                [
-                  "01",
-                  "Assess",
-                  "Understand your current governance, risk, security, privacy, and compliance posture.",
-                ],
-                [
-                  "02",
-                  "Design",
-                  "Build practical frameworks, policies, controls, and operating models aligned to your requirements.",
-                ],
-                [
-                  "03",
-                  "Implement",
-                  "Translate requirements into operational processes, evidence, accountability, and measurable controls.",
-                ],
-                [
-                  "04",
-                  "Assure",
-                  "Validate effectiveness through testing, monitoring, assessments, and continuous improvement.",
-                ],
-              ].map(([num, title, text]) => (
-                <div
-                  key={num}
-                  className="grid gap-5 border-b border-[#111412]/15 py-8 sm:grid-cols-[70px_220px_1fr] sm:items-start"
-                >
-                  <span className="text-[11px] font-semibold tracking-[0.2em] text-[#ff6500]">
-                    {num}
-                  </span>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ff6500]">
+                  {service.label}
+                </p>
 
-                  <h3 className="text-xl font-medium">
-                    {title}
+                <div className="mt-12">
+                  <h3 className="text-[23px] font-medium tracking-[-0.025em] text-white">
+                    {service.title}
                   </h3>
 
-                  <p className="max-w-[500px] text-sm leading-7 text-[#737a7d]">
-                    {text}
+                  <p className="mt-4 text-[14px] leading-7 text-white/50">
+                    {service.description}
                   </p>
                 </div>
+
+                <div className="absolute bottom-0 left-0 h-px w-0 bg-[#ff6500]/40 transition-all duration-500 group-hover:w-full" />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          INDUSTRIES
+      ========================================================= */}
+      <section className="bg-[#f5f2eb] py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#e65300]">
+            Industries
+          </p>
+
+          <h2 className="mt-7 text-[42px] font-medium leading-[1.04] tracking-[-0.04em] md:text-[58px]">
+            Because context changes everything.
+          </h2>
+
+          <p className="mt-7 max-w-3xl text-[17px] leading-8 text-black/55">
+            GRC cannot be designed in isolation. Industry regulation,
+            operating models, technology, data and risk determine what
+            effective governance looks like.
+          </p>
+
+          <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {industries.map(([title, subtitle]) => (
+              <Link
+                key={title}
+                href="/industries"
+                className="group relative min-h-[145px] overflow-hidden rounded-[16px] border border-black/10 bg-[#ebe7de] p-6 transition-all duration-400 hover:-translate-y-1 hover:border-[#e65300]/35 hover:bg-white"
+              >
+                <span className="absolute left-0 top-0 h-px w-0 bg-[#e65300] transition-all duration-500 group-hover:w-16" />
+
+                <strong className="block text-[16px] font-medium tracking-[-0.015em]">
+                  {title}
+                </strong>
+
+                <span className="mt-3 block text-[12px] leading-5 text-black/45">
+                  {subtitle}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          WHY ANKH GRC
+      ========================================================= */}
+      <section className="relative overflow-hidden bg-[#151916] py-24 text-white md:py-32">
+        <div className="pointer-events-none absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-[#ff6500]/[0.045] blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            <div className="max-w-xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff6500]">
+                Why Ankh GRC
+              </p>
+
+              <h2 className="mt-7 text-[44px] font-medium leading-[1.02] tracking-[-0.04em] md:text-[62px]">
+                Built for the world
+                <br />
+                <span className="text-white/35">that comes next.</span>
+              </h2>
+
+              <p className="mt-7 text-[17px] leading-8 text-white/55">
+                The old model was periodic, manual and reactive. The new model
+                is continuous, connected and intelligence-led.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {whyCards.map((card) => (
+                <article
+                  key={card.title}
+                  className="group relative min-h-[215px] overflow-hidden rounded-[20px] border border-white/10 bg-[#1a1f1d] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6500]/30 hover:bg-[#1c211f] hover:shadow-[0_18px_45px_rgba(0,0,0,0.25)]"
+                >
+                  <div className="absolute left-0 top-0 h-px w-12 bg-[#ff6500] transition-all duration-500 group-hover:w-24" />
+
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ff6500]">
+                      {card.title}
+                    </span>
+
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#ff6500]/60 transition-all duration-300 group-hover:scale-150 group-hover:bg-[#ff6500] group-hover:shadow-[0_0_10px_rgba(255,101,0,0.7)]" />
+                  </div>
+
+                  <p className="mt-12 text-[15px] leading-7 text-white/55 transition-colors duration-300 group-hover:text-white/65">
+                    {card.description}
+                  </p>
+                </article>
               ))}
             </div>
-
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          ORANGE CTA
+          AI GOVERNANCE
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#ff6500] text-black">
-        <div className="pointer-events-none absolute -right-32 -top-48 h-[600px] w-[600px] rounded-full border border-black/10" />
-        <div className="pointer-events-none absolute -right-20 -top-32 h-[400px] w-[400px] rounded-full border border-black/10" />
-
-        <div className="relative mx-auto w-full max-w-[1450px] px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
-          <div className="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
-
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.35em]">
-                READY WHEN YOU ARE
+      <section className="bg-[#f5f2eb] py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="grid overflow-hidden rounded-[24px] border border-black/10 bg-[#ebe7de] lg:grid-cols-2">
+            <div className="p-9 md:p-12 lg:p-14">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#e65300]">
+                AI Governance
               </p>
 
-              <h2 className="mt-7 max-w-[950px] text-5xl font-medium leading-[0.92] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
-                Build a stronger
+              <h2 className="mt-7 text-[42px] font-medium leading-[1.04] tracking-[-0.04em] md:text-[56px]">
+                AI is changing
                 <br />
-                governance foundation.
+                the risk equation.
               </h2>
+
+              <p className="mt-7 max-w-xl text-[17px] leading-8 text-black/55">
+                AI introduces new questions around accountability, data,
+                transparency, security, privacy, model risk and decision-making.
+              </p>
+
+              <p className="mt-6 max-w-xl text-[16px] leading-7 text-black/45">
+                Ankh GRC helps organizations build governance around AI so
+                innovation can move forward with appropriate controls,
+                oversight and evidence.
+              </p>
+
+              <Link
+                href="/services"
+                className="group mt-8 inline-flex items-center gap-3 rounded-[10px] bg-[#ff6500] px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00]"
+              >
+                Explore AI Governance
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
             </div>
 
-            <a
-              href="#contact"
-              className="inline-flex w-fit items-center gap-6 border border-black/40 bg-black px-7 py-4 text-sm font-medium text-white transition hover:bg-[#111412]"
-            >
-              Start a Conversation
-              <span className="text-lg">→</span>
-            </a>
-          </div>
-        </div>
-      </section>
+            <div className="relative min-h-[420px] overflow-hidden bg-[#151916]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,101,0,0.12),transparent_24%)]" />
 
-      {/* =========================================================
-          SIMPLE FOOTER
-      ========================================================= */}
-      <footer
-        id="contact"
-        className="bg-[#111412] text-[#f4f1eb]"
-      >
-        <div className="mx-auto w-full max-w-[1450px] px-6 py-16 sm:px-10 lg:px-16">
+              <div className="absolute left-1/2 top-1/2 h-[310px] w-[310px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#ff6500]/20 animate-[spin_22s_linear_infinite]" />
 
-          <div className="flex flex-col justify-between gap-10 border-b border-white/10 pb-12 md:flex-row md:items-start">
+              <div className="absolute left-1/2 top-1/2 h-[205px] w-[205px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#ff6500]/25 border-dashed animate-[spin_15s_linear_infinite_reverse]" />
 
-            <div>
-              <div className="text-xl font-semibold tracking-[-0.04em]">
-                ANKH <span className="text-[#ff6500]">GRC</span>
+              <div className="absolute left-1/2 top-1/2 flex h-[90px] w-[90px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#ff6500]/70 bg-[#ff6500]/[0.08] text-[25px] font-medium text-[#ff6500] shadow-[0_0_40px_rgba(255,101,0,0.14)] animate-pulse">
+                AI
               </div>
 
-              <p className="mt-4 text-[10px] uppercase tracking-[0.28em] text-[#69716c]">
-                Secure. Compliant. Future Ready.
-              </p>
+              <div className="absolute bottom-8 left-8 text-[9px] uppercase tracking-[0.3em] text-white/30">
+                Trust • Risk • Accountability
+              </div>
             </div>
-
-            <nav className="flex flex-wrap gap-x-8 gap-y-4 text-xs text-[#7f8782]">
-              <a href="#" className="transition hover:text-white">
-                Home
-              </a>
-              <a href="#about" className="transition hover:text-white">
-                About
-              </a>
-              <a href="#services" className="transition hover:text-white">
-                Services
-              </a>
-              <a href="#contact" className="transition hover:text-white">
-                Contact
-              </a>
-            </nav>
           </div>
-
-          <div className="flex flex-col justify-between gap-4 pt-7 text-[10px] tracking-[0.05em] text-[#59615c] sm:flex-row">
-            <p>© 2026 Ankh GRC. All rights reserved.</p>
-            <p>Defend. Detect. Respond. Comply. Dominate.</p>
-          </div>
-
         </div>
-      </footer>
+      </section>
+
+      {/* =========================================================
+          INSIGHTS
+      ========================================================= */}
+      <section className="bg-[#111412] py-24 text-white md:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff6500]">
+            Insights
+          </p>
+
+          <h2 className="mt-7 text-[42px] font-medium leading-[1.04] tracking-[-0.04em] md:text-[58px]">
+            Think ahead.
+            <br />
+            <span className="text-white/35">Govern forward.</span>
+          </h2>
+
+          <p className="mt-7 max-w-3xl text-[17px] leading-8 text-white/50">
+            The regulatory landscape is moving quickly. So are technology and
+            AI. Our insights explore what these changes mean for organizations.
+          </p>
+
+          <div className="mt-14 grid gap-4 lg:grid-cols-3">
+            {insights.map((insight) => (
+              <article
+                key={insight.title}
+                className="group relative min-h-[300px] overflow-hidden rounded-[20px] border border-white/10 bg-[#181d1a] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6500]/30 hover:bg-[#1b201d]"
+              >
+                <div className="absolute left-0 top-0 h-px w-12 bg-[#ff6500] transition-all duration-500 group-hover:w-24" />
+
+                <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#ff6500]">
+                  {insight.tag}
+                </p>
+
+                <h3 className="mt-8 text-[22px] font-medium leading-[1.3] tracking-[-0.02em]">
+                  {insight.title}
+                </h3>
+
+                <p className="mt-5 text-[14px] leading-7 text-white/50">
+                  {insight.description}
+                </p>
+
+                <Link
+                  href="/insights"
+                  className="mt-7 inline-flex text-sm font-semibold text-[#ff6500] transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  Read insight
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          CTA
+      ========================================================= */}
+      <section className="relative overflow-hidden bg-[#151916] py-24 text-white md:py-32">
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff6500]/[0.055] blur-3xl" />
+
+        <div className="relative mx-auto max-w-5xl px-6 text-center lg:px-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#ff6500]">
+            Start a Conversation
+          </p>
+
+          <h2 className="mt-7 text-[44px] font-medium leading-[1.04] tracking-[-0.04em] md:text-[64px]">
+            Ready to turn governance
+            <br />
+            <span className="text-white/35">into confidence?</span>
+          </h2>
+
+          <p className="mx-auto mt-7 max-w-2xl text-[17px] leading-8 text-white/50">
+            Whether you are responding to regulatory change, strengthening
+            controls, preparing for AI or building a future-ready GRC program,
+            let&apos;s start with the business challenge.
+          </p>
+
+          <Link
+            href="/contact"
+            className="group mt-9 inline-flex items-center gap-3 rounded-[10px] bg-[#ff6500] px-7 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-[0_12px_30px_rgba(255,101,0,0.18)]"
+          >
+            Talk to Ankh GRC
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+      </section>
+
+      {/* =========================================================
+          FOOTER
+      ========================================================= */}
+      <Footer />
     </main>
   );
 }

@@ -228,9 +228,7 @@ export default function AboutPage() {
                 key={item.number}
                 className="min-h-[190px] bg-[#f4f1eb] p-7 transition-all duration-300 hover:bg-[#ebe8e1]"
               >
-                <div className="text-xs font-bold text-[#ff5a00]">
-                  {item.number}
-                </div>
+              
 
                 <h3 className="mt-6 text-xl font-medium">
                   {item.title}
@@ -269,9 +267,7 @@ export default function AboutPage() {
                 key={step.number}
                 className="min-h-[220px] bg-[#111412] p-8"
               >
-                <div className="text-4xl font-bold text-[#ff5a00]">
-                  {step.number}
-                </div>
+             
 
                 <h3 className="mt-6 text-xl font-medium">
                   {step.title}

@@ -353,93 +353,25 @@ export default function CrossBorderPage() {
               flex-col
               justify-between
               overflow-hidden
-              rounded-[28px]
+              rounded-[18px]
               border
-              border-black/10
-              bg-white
+              border-white/[0.10]
+              bg-[#151916]
               p-7
-              shadow-[0_12px_40px_rgba(17,20,18,0.06)]
               transition-all
               duration-500
-              hover:-translate-y-2
-              hover:border-[#ff6a00]/50
-              hover:shadow-[0_20px_55px_rgba(17,20,18,0.10)]
+              hover:-translate-y-1
+              hover:border-[#ff6a00]/45
+              hover:bg-[#171a18]
             `}
-          >
+          >{/* Top */}
 
-            {/* Large background number */}
-
-            <div
-              className="
-                pointer-events-none
-                absolute
-                -right-5
-                -top-8
-                select-none
-                text-[150px]
-                font-semibold
-                leading-none
-                tracking-[-0.1em]
-                text-black/[0.035]
-                transition-all
-                duration-500
-                group-hover:text-[#ff6a00]/[0.07]
-              "
-            >
-              {item.number}
-            </div>
-
-
-            {/* Soft orange glow */}
-
-            <div
-              className="
-                pointer-events-none
-                absolute
-                -bottom-28
-                -left-20
-                h-64
-                w-72
-                rounded-full
-                bg-[#ff6a00]/[0.045]
-                blur-3xl
-                transition-all
-                duration-500
-                group-hover:bg-[#ff6a00]/[0.09]
-              "
-            />
-
-
-            {/* Top */}
-
-            <div className="relative z-10 flex items-center justify-between">
-
-              <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-                {item.number}
-              </span>
-
-              <span
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-black/10
-                  text-sm
-                  text-black/40
-                  transition-all
-                  duration-500
-                  group-hover:border-[#ff6a00]
-                  group-hover:bg-[#ff6a00]
-                  group-hover:text-white
-                "
-              >
-                ↗
-              </span>
-
+            <div className="relative z-10">
+              <div className="h-px w-16 bg-[#ff6a00] transition-all duration-500 group-hover:w-24" />
+              <div className="mt-2 space-y-2">
+                <div className="h-px w-full bg-white/[0.08]" />
+                <div className="h-px w-[78%] bg-white/[0.045]" />
+              </div>
             </div>
 
 
@@ -466,7 +398,7 @@ export default function CrossBorderPage() {
                   font-medium
                   leading-[1.1]
                   tracking-[-0.025em]
-                  text-[#111412]
+                  text-white
                   sm:text-3xl
                 "
               >
@@ -479,7 +411,7 @@ export default function CrossBorderPage() {
                   max-w-[310px]
                   text-sm
                   leading-7
-                  text-black/55
+                  text-white/50
                   sm:text-[15px]
                 "
               >
@@ -493,11 +425,11 @@ export default function CrossBorderPage() {
 
             <div className="relative z-10 flex items-center justify-between">
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-black/25">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/25">
                 ANKH GRC
               </span>
 
-              <span className="text-xs text-black/25">
+              <span className="text-xs text-white/25">
                 {String(index + 1).padStart(2, "0")} / 06
               </span>
 
@@ -562,18 +494,14 @@ export default function CrossBorderPage() {
               {frameworks.map((framework, index) => (
                 <article
                   key={framework.title}
-                  className="group relative h-[390px] w-full overflow-hidden rounded-[28px] border border-white/10 bg-[#111412] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/45"
+                  className="group relative h-[390px] w-full overflow-hidden rounded-[18px] border border-white/[0.10] bg-[#151916] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/45 hover:bg-[#171a18]"
                 >
 
-                  <span className="text-4xl text-[#ff6a00]/70">
-                    {framework.icon}
-                  </span>
+                
 
                   <div className="mt-10">
 
-                    <span className="text-xs font-semibold tracking-[0.2em] text-white/25">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+              
 
                     <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em]">
                       {framework.title}
@@ -697,12 +625,10 @@ export default function CrossBorderPage() {
     <div className="mt-20 grid gap-x-12 lg:grid-cols-2">
 
       {/* 01 */}
-      <article className="group relative border-t border-black/10 py-10 transition-all duration-500 hover:bg-[#ff6a00]/[0.025]">
+      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
         <div className="flex gap-7">
 
-          <span className="w-10 shrink-0 text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-            01
-          </span>
+        
 
           <div className="flex-1">
 
@@ -711,9 +637,7 @@ export default function CrossBorderPage() {
                 Global Regulatory Landscape Assessment
               </h3>
 
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 text-sm text-black/40 opacity-0 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-white group-hover:opacity-100">
-                ↗
-              </span>
+             
             </div>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
@@ -724,17 +648,15 @@ export default function CrossBorderPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
       </article>
 
 
       {/* 02 */}
-      <article className="group relative border-t border-black/10 py-10 transition-all duration-500 hover:bg-[#ff6a00]/[0.025]">
+      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
         <div className="flex gap-7">
 
-          <span className="w-10 shrink-0 text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-            02
-          </span>
+         
 
           <div className="flex-1">
 
@@ -743,9 +665,7 @@ export default function CrossBorderPage() {
                 Compliance Maturity &amp; Gap Analysis
               </h3>
 
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 text-sm text-black/40 opacity-0 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-white group-hover:opacity-100">
-                ↗
-              </span>
+              
             </div>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
@@ -756,17 +676,15 @@ export default function CrossBorderPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
       </article>
 
 
       {/* 03 */}
-      <article className="group relative border-t border-black/10 py-10 transition-all duration-500 hover:bg-[#ff6a00]/[0.025]">
+      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
         <div className="flex gap-7">
 
-          <span className="w-10 shrink-0 text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-            03
-          </span>
+        
 
           <div className="flex-1">
 
@@ -775,9 +693,7 @@ export default function CrossBorderPage() {
                 Harmonized Compliance Framework
               </h3>
 
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 text-sm text-black/40 opacity-0 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-white group-hover:opacity-100">
-                ↗
-              </span>
+       
             </div>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
@@ -789,17 +705,15 @@ export default function CrossBorderPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
       </article>
 
 
       {/* 04 */}
-      <article className="group relative border-t border-black/10 py-10 transition-all duration-500 hover:bg-[#ff6a00]/[0.025]">
+      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
         <div className="flex gap-7">
 
-          <span className="w-10 shrink-0 text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-            04
-          </span>
+        
 
           <div className="flex-1">
 
@@ -808,9 +722,7 @@ export default function CrossBorderPage() {
                 Data Localization &amp; Transfer Solutions
               </h3>
 
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 text-sm text-black/40 opacity-0 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-white group-hover:opacity-100">
-                ↗
-              </span>
+          
             </div>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
@@ -822,17 +734,14 @@ export default function CrossBorderPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
       </article>
 
 
       {/* 05 */}
-      <article className="group relative border-t border-black/10 py-10 transition-all duration-500 hover:bg-[#ff6a00]/[0.025]">
+      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
         <div className="flex gap-7">
 
-          <span className="w-10 shrink-0 text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-            05
-          </span>
 
           <div className="flex-1">
 
@@ -841,9 +750,6 @@ export default function CrossBorderPage() {
                 AI &amp; Emerging Technology Compliance
               </h3>
 
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 text-sm text-black/40 opacity-0 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-white group-hover:opacity-100">
-                ↗
-              </span>
             </div>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
@@ -854,17 +760,15 @@ export default function CrossBorderPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
       </article>
 
 
       {/* 06 */}
-      <article className="group relative border-t border-black/10 py-10 transition-all duration-500 hover:bg-[#ff6a00]/[0.025]">
+      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
         <div className="flex gap-7">
 
-          <span className="w-10 shrink-0 text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-            06
-          </span>
+        
 
           <div className="flex-1">
 
@@ -873,9 +777,7 @@ export default function CrossBorderPage() {
                 Continuous Monitoring &amp; Adaptation
               </h3>
 
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 text-sm text-black/40 opacity-0 transition-all duration-500 group-hover:border-[#ff6a00] group-hover:bg-[#ff6a00] group-hover:text-white group-hover:opacity-100">
-                ↗
-              </span>
+              
             </div>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
@@ -886,7 +788,7 @@ export default function CrossBorderPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
       </article>
 
     </div>
@@ -921,12 +823,10 @@ export default function CrossBorderPage() {
             {benefits.map((benefit) => (
               <article
                 key={benefit.icon}
-                className="group relative min-h-[250px] overflow-hidden rounded-[28px] border border-white/10 bg-[#151916] p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#ff6a00]/40"
+                className="group relative min-h-[250px] overflow-hidden rounded-[18px] border border-white/[0.10] bg-[#151916] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/45 hover:bg-[#171a18]"
               >
 
-                <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-                  {benefit.icon}
-                </span>
+             
 
                 <h3 className="mt-12 text-2xl font-medium tracking-[-0.025em]">
                   {benefit.title}
