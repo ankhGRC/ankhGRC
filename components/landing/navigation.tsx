@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "About", href: "/about" },
@@ -46,12 +47,14 @@ const resourceItems = [
     href: "/partnerships",
   },
   {
-  name: "Trust Center",
-  href: "/trust-center",
-},
+    name: "Trust Center",
+    href: "/trust-center",
+  },
 ];
 
 export function Navigation() {
+  const pathname = usePathname();
+
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isServicesDetailOpen, setIsServicesDetailOpen] = useState(false);
   const [isServicesPinned, setIsServicesPinned] = useState(false);
@@ -59,11 +62,16 @@ export function Navigation() {
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const isLandingPage = pathname === "/";
 
   const menuRef = useRef<HTMLDivElement>(null);
   const resourcesRef = useRef<HTMLDivElement>(null);
 
-  // Close desktop dropdown when clicking outside
+  /* =========================================================
+     CLOSE MENUS WHEN CLICKING OUTSIDE
+  ========================================================= */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -90,7 +98,9 @@ export function Navigation() {
     };
   }, []);
 
-  // Escape key
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -109,6 +119,31 @@ export function Navigation() {
     };
   }, []);
 
+  /* =========================================================
+     SCROLL STATE
+     
+     LANDING:
+     transparent + full screen
+
+     SCROLLED:
+     existing white rounded navbar
+  ========================================================= */
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const closeMenus = () => {
     setIsServicesOpen(false);
     setIsServicesDetailOpen(false);
@@ -117,15 +152,15 @@ export function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
-  // TOP NAV SERVICES CLICK
+  /* =========================================================
+     SERVICES
+  ========================================================= */
   const handleTopServicesClick = () => {
     setIsResourcesOpen(false);
 
     setIsServicesOpen((prev) => {
       const next = !prev;
 
-      // Every time dropdown is newly opened,
-      // right side starts EMPTY.
       if (next) {
         setIsServicesDetailOpen(false);
         setIsServicesPinned(false);
@@ -138,7 +173,9 @@ export function Navigation() {
     });
   };
 
-  // TOP NAV RESOURCES CLICK
+  /* =========================================================
+     RESOURCES
+  ========================================================= */
   const handleTopResourcesClick = () => {
     setIsServicesOpen(false);
     setIsServicesDetailOpen(false);
@@ -147,14 +184,18 @@ export function Navigation() {
     setIsResourcesOpen((prev) => !prev);
   };
 
-  // MIDDLE SERVICES HOVER
+  /* =========================================================
+     SERVICES HOVER
+  ========================================================= */
   const handleServicesHover = () => {
     if (!isServicesPinned) {
       setIsServicesDetailOpen(true);
     }
   };
 
-  // MIDDLE SERVICES CLICK
+  /* =========================================================
+     SERVICES CLICK
+  ========================================================= */
   const handleServicesMiddleClick = () => {
     setIsServicesPinned(true);
     setIsServicesDetailOpen(true);
@@ -162,81 +203,216 @@ export function Navigation() {
 
   return (
     <>
-      {/* ================= DESKTOP / MAIN NAVBAR ================= */}
-      <header className="fixed left-0 right-0 top-0 z-[100]">
-        <nav className="relative w-full border-b border-black/10 bg-white">
-          <div className="mx-auto flex h-[100px] max-w-[1500px] items-center px-4 lg:px-6">
+      {/* =====================================================
+          DESKTOP / MAIN NAVBAR
+          
+          IMPORTANT:
+          Landing = FULL WIDTH + TRANSPARENT
+          Scroll = Existing rounded white navbar
+      ===================================================== */}
+<header
+  className={`
+    fixed
+    top-0
+    left-1/2
+    z-[100]
+    -translate-x-1/2
+    transition-[top,width,max-width]
+    duration-700
+    ease-[cubic-bezier(0.22,1,0.36,1)]
+    ${
+      isLandingPage && !isScrolled
+        ? "w-full"
+        : "top-5 w-[calc(100%-48px)] lg:top-6 lg:w-[calc(100%-64px)] lg:max-w-[1450px]"
+    }
+  `}
+>
+<nav
+  className={`
+    relative
+    w-full
+    transition-[background-color,border-radius,box-shadow,border-color]
+    duration-700
+    ease-[cubic-bezier(0.22,1,0.36,1)]
+    
+    ${
+      isLandingPage && !isScrolled
+        ? `
+          rounded-none
+          border
+          border-transparent
+          bg-white
+          shadow-none
+          backdrop-blur-0
+          text-black
+        `
+        : `
+          rounded-[18px]
+          border
+          border-white/70
+          bg-[#ebe8e1]
+          shadow-[0_8px_30px_rgba(0,0,0,0.32)]
+          backdrop-blur-sm
+        `
+    }
+  `}
+>
+   <div
+  className="
+    mx-auto
+    flex
+    h-[70px]
+    w-full
+    items-center
+    px-5
+    lg:px-7
+  "
+>
+            {/* =================================================
+                LOGO
 
-            {/* LOGO */}
-            <a
-              href="#"
-              onClick={closeMenus}
-              className="relative flex shrink-0 items-center"
-              aria-label="ANKH GRC Home"
-            >
-              <Link href="/" className="inline-block">
-                <Image
-                  src="/ankhgrc-logo (2).png"
-                  alt="Ankh GRC"
-                  width={160}
-                  height={60}
-                  priority
-                />
-              </Link>
-            </a>
+                NO EXTRA WHITE BOX
+                NO mt-[50px]
+                NO h-[72px]
+                NO w-[170px]
 
-            {/* DESKTOP NAV */}
-            <div className="hidden flex-1 items-center justify-end md:flex">
+                Only the image itself.
+            ================================================= */}
+       <Link
+  href="/"
+  onClick={closeMenus}
+  className="
+    relative
+    z-[110]
+    flex
+    h-[52px]
+    w-[140px]
+    shrink-0
+    items-center
+    justify-start
+    border-none
+    outline-none
+    ring-0
+    focus:border-none
+    focus:outline-none
+    focus:ring-0
+    focus-visible:border-none
+    focus-visible:outline-none
+    focus-visible:ring-0
+  "
+>
+              <Image
+                src="/ankhgrc-logo (2).png"
+                alt="Ankh GRC"
+                width={190}
+                height={192}
+                priority
+                className="
+                  h-auto
+                  w-[140px]
+                  object-contain
+                "
+              />
+            </Link>
+
+            {/* =================================================
+                DESKTOP NAV
+            ================================================= */}
+            <div className="hidden flex-1 items-center justify-end md:flex ">
               <div className="flex items-center gap-10 lg:gap-14">
 
-                {/* ================= TOP SERVICES ================= */}
+                {/* =================================================
+                    SERVICES
+                ================================================= */}
                 <div
                   ref={menuRef}
                   className="relative"
+                  
                 >
                   <button
                     type="button"
                     onClick={handleTopServicesClick}
-                    className={`group relative flex items-center gap-2 px-1 py-3 text-[20px] font-medium tracking-[-0.01em] transition-colors duration-300 ${
-                      isServicesOpen
-                        ? "text-[#E85D04]"
-                        : "text-neutral-800 hover:text-[#E85D04]"
-                    }`}
+                    className={`
+                      group
+                      relative
+                      flex
+                      items-center
+                      gap-2
+                      px-1
+                      py-3
+                      text-[20px]
+                      font-medium
+                      tracking-[-0.01em]
+                      transition-colors
+                      duration-300
+                      ${
+                        isServicesOpen
+                          ? "text-[#E85D04]"
+                          : isLandingPage && !isScrolled
+                            ? "text-black hover:text-[#E85D04]"
+                            : "text-neutral-800 hover:text-[#E85D04]"
+                      }
+                    `}
                     aria-expanded={isServicesOpen}
                     aria-haspopup="true"
                   >
-                    <span>Services</span>
+                    <span>Capabilities</span>
 
                     <ChevronDown
-                      className={`h-[17px] w-[17px] transition-transform duration-300 ${
-                        isServicesOpen ? "rotate-180" : ""
-                      }`}
+                      className={`
+                        h-[17px]
+                        w-[17px]
+                        transition-transform
+                        duration-300
+                        ${isServicesOpen ? "rotate-180" : ""}
+                      `}
                     />
 
                     <span
-                      className={`absolute bottom-1 left-0 h-[2px] bg-[#E85D04] transition-all duration-300 ${
-                        isServicesOpen
-                          ? "w-full"
-                          : "w-0 group-hover:w-full"
-                      }`}
+                      className={`
+                        absolute
+                        bottom-1
+                        left-0
+                        h-[2px]
+                        bg-[#E85D04]
+                        transition-all
+                        duration-300
+                        ${
+                          isServicesOpen
+                            ? "w-full"
+                            : "w-0 group-hover:w-full"
+                        }
+                      `}
                     />
                   </button>
 
-                  {/* ================= FULL WIDTH MEGA MENU ================= */}
+                  {/* =================================================
+                      SERVICES MEGA MENU
+                  ================================================= */}
                   <div
-                    className={`fixed left-0 right-0 top-[100px] z-[200] w-full bg-[#1C211F] text-white transition-all duration-300 ${
-                      isServicesOpen
-                        ? "visible translate-y-0 opacity-100"
-                        : "invisible -translate-y-3 pointer-events-none opacity-0"
-                    }`}
+                    className={`
+                      fixed
+                      left-0
+                      right-0
+                      top-[70px]
+                      z-[200]
+                      w-full
+                      bg-[#1C211F]
+                      text-white
+                      transition-all
+                      duration-300
+                      ${
+                        isServicesOpen
+                          ? "visible translate-y-0 opacity-100"
+                          : "invisible pointer-events-none -translate-y-3 opacity-0"
+                      }
+                    `}
                   >
                     <div className="w-full">
-
                       <div className="mx-auto flex min-h-[470px] w-full max-w-[1500px] px-8 py-10 lg:px-12">
 
-                        {/* ================= LEFT PART ================= */}
+                        {/* LEFT */}
                         <div className="w-[390px] shrink-0 pr-14">
-
                           <h2 className="text-[30px] font-medium leading-[1.2] tracking-[-0.02em] text-white">
                             Infrastructure to
                             <br />
@@ -249,10 +425,9 @@ export function Navigation() {
                             talent, reimagines processes, and accelerates
                             business transformation.
                           </p>
-
                         </div>
 
-                        {/* ================= MIDDLE + RIGHT AREA ================= */}
+                        {/* MIDDLE + RIGHT */}
                         <div
                           className="flex flex-1"
                           onMouseLeave={() => {
@@ -261,13 +436,10 @@ export function Navigation() {
                             }
                           }}
                         >
-
-                          {/* ================= MIDDLE PART ================= */}
+                          {/* MIDDLE */}
                           <div className="w-[360px] shrink-0">
 
-
-
-                            {/* SERVICES */}
+                            {/* COMPLIANCE */}
                             <div className="border-b border-white/15">
                               <div
                                 role="button"
@@ -283,27 +455,46 @@ export function Navigation() {
                                     handleServicesMiddleClick();
                                   }
                                 }}
-                                className={`flex h-[64px] cursor-pointer items-center justify-between px-4 text-[24px] transition-all duration-200 ${
-                                  isServicesDetailOpen
-                                    ? "bg-[#343936] text-white"
-                                    : "text-white/60 hover:text-white"
-                                }`}
+                                className={`
+                                  flex
+                                  h-[64px]
+                                  cursor-pointer
+                                  items-center
+                                  justify-between
+                                  px-4
+                                  text-[24px]
+                                  transition-all
+                                  duration-200
+                                  ${
+                                    isServicesDetailOpen
+                                      ? "bg-[#343936] text-white"
+                                      : "text-white/60 hover:text-white"
+                                  }
+                                `}
                               >
                                 <span>Compliance</span>
 
                                 <ArrowRight
-                                  className={`h-5 w-5 transition-colors duration-200 ${
-                                    isServicesDetailOpen
-                                      ? "text-[#E85D04]"
-                                      : "text-white/60"
-                                  }`}
+                                  className={`
+                                    h-5
+                                    w-5
+                                    transition-colors
+                                    duration-200
+                                    ${
+                                      isServicesDetailOpen
+                                        ? "text-[#E85D04]"
+                                        : "text-white/60"
+                                    }
+                                  `}
                                 />
                               </div>
                             </div>
 
+                            {/* CONSULTING */}
                             <div className="border-b border-white/15">
                               <Link
                                 href="/consulting"
+                                onClick={closeMenus}
                                 className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all hover:bg-[#343936] hover:text-white"
                               >
                                 <span>Consulting</span>
@@ -314,14 +505,12 @@ export function Navigation() {
                             <div className="border-b border-white/15">
                               <div className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:text-white">
                                 <span>Projects</span>
-
                                 <ArrowRight className="h-5 w-5" />
                               </div>
                             </div>
-
                           </div>
 
-                          {/* ================= RIGHT SERVICES CONTENT ================= */}
+                          {/* RIGHT */}
                           {isServicesDetailOpen && (
                             <div
                               className="ml-12 flex-1 border-l border-white/15 pl-12"
@@ -329,7 +518,6 @@ export function Navigation() {
                                 setIsServicesDetailOpen(true);
                               }}
                             >
-                              {/* TITLE */}
                               <div className="mb-8">
                                 <p className="text-[12px] font-semibold uppercase tracking-[0.22em] text-[#E85D04]">
                                   ANKH GRC
@@ -340,9 +528,7 @@ export function Navigation() {
                                 </h3>
                               </div>
 
-                              {/* SERVICE LIST */}
                               <div className="grid grid-cols-2 gap-x-12">
-
                                 {serviceItems.map((item) => (
                                   <a
                                     key={item.name}
@@ -357,37 +543,67 @@ export function Navigation() {
                                     />
                                   </a>
                                 ))}
-
                               </div>
-
                             </div>
                           )}
-
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-
-                {/* ================= TOP INDUSTRIES ================= */}
+                {/* =================================================
+                    INDUSTRIES
+                ================================================= */}
                 <Link
                   href="/industries"
                   onClick={closeMenus}
-                  className="group relative px-1 py-3 text-[20px] font-medium tracking-[-0.01em] text-neutral-800 transition-colors duration-300 hover:text-[#E85D04]"
+                  className={`
+                    group
+                    relative
+                    px-1
+                    py-3
+                    text-[20px]
+                    font-medium
+                    tracking-[-0.01em]
+                    transition-colors
+                    duration-300
+                    ${
+                      isLandingPage && !isScrolled
+                        ? "text-black hover:text-[#E85D04]"
+                        : "text-neutral-800 hover:text-[#E85D04]"
+                    }
+                  `}
                 >
                   Industries
 
                   <span className="absolute bottom-1 left-0 h-[2px] w-0 bg-[#E85D04] transition-all duration-300 group-hover:w-full" />
                 </Link>
 
-                {/* HOME / ABOUT */}
+                {/* =================================================
+                    ABOUT
+                ================================================= */}
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={closeMenus}
-                    className="group relative px-1 py-3 text-[20px] font-medium tracking-[-0.01em] text-neutral-800 transition-colors duration-300 hover:text-[#E85D04]"
+                    className={`
+                      group
+                      relative
+                      px-1
+                      py-3
+                      text-[20px]
+                      font-medium
+                      tracking-[-0.01em]
+                      transition-colors
+                      duration-300
+                      ${
+                        isLandingPage && !isScrolled
+                          ? "text-black hover:text-[#E85D04]"
+                          : "text-neutral-800 hover:text-[#E85D04]"
+                      }
+                    `}
                   >
                     {link.name}
 
@@ -395,7 +611,9 @@ export function Navigation() {
                   </a>
                 ))}
 
-                {/* ================= TOP RESOURCES ================= */}
+                {/* =================================================
+                    RESOURCES
+                ================================================= */}
                 <div
                   ref={resourcesRef}
                   className="relative"
@@ -403,46 +621,87 @@ export function Navigation() {
                   <button
                     type="button"
                     onClick={handleTopResourcesClick}
-                    className={`group relative flex items-center gap-2 px-1 py-3 text-[20px] font-medium tracking-[-0.01em] transition-colors duration-300 ${
-                      isResourcesOpen
-                        ? "text-[#E85D04]"
-                        : "text-neutral-800 hover:text-[#E85D04]"
-                    }`}
+                    className={`
+                      group
+                      relative
+                      flex
+                      items-center
+                      gap-2
+                      px-1
+                      py-3
+                      text-[20px]
+                      font-medium
+                      tracking-[-0.01em]
+                      transition-colors
+                      duration-300
+                      ${
+                        isResourcesOpen
+                          ? "text-[#E85D04]"
+                          : isLandingPage && !isScrolled
+                            ? "text-black hover:text-[#E85D04]"
+                            : "text-neutral-800 hover:text-[#E85D04]"
+                      }
+                    `}
                     aria-expanded={isResourcesOpen}
                     aria-haspopup="true"
                   >
                     <span>Resources</span>
 
                     <ChevronDown
-                      className={`h-[17px] w-[17px] transition-transform duration-300 ${
-                        isResourcesOpen ? "rotate-180" : ""
-                      }`}
+                      className={`
+                        h-[17px]
+                        w-[17px]
+                        transition-transform
+                        duration-300
+                        ${isResourcesOpen ? "rotate-180" : ""}
+                      `}
                     />
 
                     <span
-                      className={`absolute bottom-1 left-0 h-[2px] bg-[#E85D04] transition-all duration-300 ${
-                        isResourcesOpen
-                          ? "w-full"
-                          : "w-0 group-hover:w-full"
-                      }`}
+                      className={`
+                        absolute
+                        bottom-1
+                        left-0
+                        h-[2px]
+                        bg-[#E85D04]
+                        transition-all
+                        duration-300
+                        ${
+                          isResourcesOpen
+                            ? "w-full"
+                            : "w-0 group-hover:w-full"
+                        }
+                      `}
                     />
                   </button>
 
-                  {/* ================= RESOURCES MEGA MENU ================= */}
+                  {/* =================================================
+                      RESOURCES MEGA MENU
+                  ================================================= */}
                   <div
-                    className={`fixed left-0 right-0 top-[100px] z-[200] w-full bg-[#1C211F] text-white transition-all duration-300 ${
-                      isResourcesOpen
-                        ? "visible translate-y-0 opacity-100"
-                        : "invisible -translate-y-3 pointer-events-none opacity-0"
-                    }`}
+                    className={`
+                      fixed
+                      left-0
+                      right-0
+                      top-[70px]
+                      z-[200]
+                      w-full
+                      bg-[#1C211F]
+                      text-white
+                      transition-all
+                      duration-300
+                      ${
+                        isResourcesOpen
+                          ? "visible translate-y-0 opacity-100"
+                          : "invisible pointer-events-none -translate-y-3 opacity-0"
+                      }
+                    `}
                   >
                     <div className="w-full">
-
                       <div className="mx-auto flex min-h-[470px] w-full max-w-[1500px] px-8 py-10 lg:px-12">
 
-                        {/* ================= LEFT PART ================= */}
+                        {/* LEFT */}
                         <div className="w-[390px] shrink-0 pr-14">
-
                           <h2 className="text-[30px] font-medium leading-[1.2] tracking-[-0.02em] text-white">
                             Knowledge for
                             <br />
@@ -460,21 +719,14 @@ export function Navigation() {
                             onClick={closeMenus}
                             className="group mt-12 inline-flex items-center gap-4 text-[20px] font-medium text-white transition-colors duration-300 hover:text-[#E85D04]"
                           >
-                            <span>
-                              Explore our resources
-                            </span>
+                            <span>Explore our resources</span>
 
-                            <ArrowRight
-                              className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2"
-                            />
+                            <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2" />
                           </a>
-
                         </div>
 
-                        {/* ================= MIDDLE AREA ================= */}
+                        {/* MIDDLE */}
                         <div className="flex flex-1">
-
-                          {/* ================= MIDDLE PART ================= */}
                           <div className="w-[360px] shrink-0">
 
                             {/* INSIGHTS */}
@@ -485,8 +737,6 @@ export function Navigation() {
                                 className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
                               >
                                 <span>Insights</span>
-
-                                
                               </Link>
                             </div>
 
@@ -498,26 +748,23 @@ export function Navigation() {
                                 className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
                               >
                                 <span>Partnerships</span>
-
-                                
                               </Link>
                             </div>
-{/* TRUST CENTER */}
-<div className="border-b border-white/15">
-  <Link
-    href="/trust-center"
-    onClick={closeMenus}
-    className="flex h-[64px] items-center px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
-  >
-    <span>Trust Center</span>
-  </Link>
-</div>
+
+                            {/* TRUST CENTER */}
+                            <div className="border-b border-white/15">
+                              <Link
+                                href="/trust-center"
+                                onClick={closeMenus}
+                                className="flex h-[64px] items-center px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
+                              >
+                                <span>Trust Center</span>
+                              </Link>
+                            </div>
+
                           </div>
-
                         </div>
-
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -525,13 +772,26 @@ export function Navigation() {
               </div>
             </div>
 
-            {/* ================= MOBILE BUTTON ================= */}
+            {/* =================================================
+                MOBILE BUTTON
+            ================================================= */}
             <button
               type="button"
               onClick={() =>
                 setIsMobileMenuOpen((prev) => !prev)
               }
-              className="ml-auto rounded-lg p-2 text-neutral-900 transition-colors hover:bg-neutral-100 md:hidden"
+              className={`
+                ml-auto
+                rounded-lg
+                p-2
+                transition-colors
+                md:hidden
+                ${
+                  isLandingPage && !isScrolled
+                    ? "text-white hover:bg-white/10"
+                    : "text-neutral-900 hover:bg-neutral-100"
+                }
+              `}
               aria-label="Toggle navigation"
               aria-expanded={isMobileMenuOpen}
             >
@@ -541,18 +801,28 @@ export function Navigation() {
                 <Menu className="h-7 w-7" />
               )}
             </button>
-
           </div>
         </nav>
       </header>
 
-      {/* ================= MOBILE MENU ================= */}
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
       <div
-        className={`fixed inset-0 z-[90] bg-white transition-all duration-500 md:hidden ${
-          isMobileMenuOpen
-            ? "visible opacity-100"
-            : "invisible pointer-events-none opacity-0"
-        }`}
+        className={`
+          fixed
+          inset-0
+          z-[90]
+          bg-white
+          transition-all
+          duration-500
+          md:hidden
+          ${
+            isMobileMenuOpen
+              ? "visible opacity-100"
+              : "invisible pointer-events-none opacity-0"
+          }
+        `}
       >
         <div className="flex h-full flex-col px-7 pb-10 pt-[120px]">
 
@@ -560,7 +830,6 @@ export function Navigation() {
 
             {/* MOBILE SERVICES */}
             <div className="border-b border-black/10">
-
               <button
                 type="button"
                 onClick={() =>
@@ -571,21 +840,29 @@ export function Navigation() {
                 <span>Services</span>
 
                 <ChevronDown
-                  className={`h-8 w-8 transition-transform duration-300 ${
-                    isServicesOpen ? "rotate-180" : ""
-                  }`}
+                  className={`
+                    h-8
+                    w-8
+                    transition-transform
+                    duration-300
+                    ${isServicesOpen ? "rotate-180" : ""}
+                  `}
                 />
               </button>
 
               <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  isServicesOpen
-                    ? "max-h-[650px] opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
+                className={`
+                  overflow-hidden
+                  transition-all
+                  duration-500
+                  ${
+                    isServicesOpen
+                      ? "max-h-[650px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }
+                `}
               >
                 <div className="pb-5 pl-2">
-
                   {serviceItems.map((item) => (
                     <a
                       key={item.name}
@@ -594,16 +871,12 @@ export function Navigation() {
                       className="flex items-center justify-between border-b border-black/5 py-4 text-lg text-neutral-700 transition-colors hover:text-[#E85D04]"
                     >
                       {item.name}
-
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   ))}
-
                 </div>
               </div>
-
             </div>
-
 
             {/* MOBILE INDUSTRIES */}
             <a
@@ -614,7 +887,7 @@ export function Navigation() {
               Industries
             </a>
 
-            {/* HOME / ABOUT */}
+            {/* MOBILE ABOUT */}
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -628,7 +901,6 @@ export function Navigation() {
 
             {/* MOBILE RESOURCES */}
             <div className="border-b border-black/10">
-
               <button
                 type="button"
                 onClick={() =>
@@ -639,21 +911,29 @@ export function Navigation() {
                 <span>Resources</span>
 
                 <ChevronDown
-                  className={`h-8 w-8 transition-transform duration-300 ${
-                    isResourcesOpen ? "rotate-180" : ""
-                  }`}
+                  className={`
+                    h-8
+                    w-8
+                    transition-transform
+                    duration-300
+                    ${isResourcesOpen ? "rotate-180" : ""}
+                  `}
                 />
               </button>
 
               <div
-                className={`overflow-hidden transition-all duration-500 ${
-                  isResourcesOpen
-                    ? "max-h-[300px] opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
+                className={`
+                  overflow-hidden
+                  transition-all
+                  duration-500
+                  ${
+                    isResourcesOpen
+                      ? "max-h-[300px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }
+                `}
               >
                 <div className="pb-5 pl-2">
-
                   {resourceItems.map((item) => (
                     <Link
                       key={item.name}
@@ -662,14 +942,11 @@ export function Navigation() {
                       className="flex items-center justify-between border-b border-black/5 py-4 text-lg text-neutral-700 transition-colors hover:text-[#E85D04]"
                     >
                       {item.name}
-
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   ))}
-
                 </div>
               </div>
-
             </div>
 
           </div>

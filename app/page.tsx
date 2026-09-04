@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
@@ -99,6 +100,173 @@ const insights = [
   },
 ];
 
+function FullscreenClassyMeshHero() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationFrameId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
+
+    const handleResize = () => {
+      if (!canvas || !canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Grid Mesh Nodes spread edge-to-edge
+    const cols = Math.floor(width / 90) + 2;
+    const rows = Math.floor(height / 70) + 2;
+    const nodes: Array<{
+      x: number;
+      y: number;
+      baseX: number;
+      baseY: number;
+      vx: number;
+      vy: number;
+    }> = [];
+
+    for (let r = 0; r <= rows; r++) {
+      for (let c = 0; c <= cols; c++) {
+        const x = (c * width) / cols;
+        const y = (r * height) / rows;
+        nodes.push({
+          x,
+          y,
+          baseX: x,
+          baseY: y,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+        });
+      }
+    }
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    let step = 0;
+
+    const render = () => {
+      step += 0.008;
+      ctx.clearRect(0, 0, width, height);
+
+      // Deep Dark Luxury Gradient
+      const baseGrad = ctx.createLinearGradient(0, 0, width, height);
+      baseGrad.addColorStop(0, "#060807");
+      baseGrad.addColorStop(0.5, "#0b0f0d");
+      baseGrad.addColorStop(1, "#050706");
+      ctx.fillStyle = baseGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Smooth Edge-to-Edge Ambient Glow Waves
+      for (let i = 0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, height * (0.3 + i * 0.2));
+
+        for (let x = 0; x <= width; x += 30) {
+          const waveY =
+            Math.sin(x * 0.002 + step + i) * 60 +
+            Math.cos((x + step * 50) * 0.001) * 30 +
+            height * (0.4 + i * 0.15);
+          ctx.lineTo(x, waveY);
+        }
+
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+
+        const waveGrad = ctx.createLinearGradient(0, 0, width, 0);
+        waveGrad.addColorStop(0, `rgba(255, 101, 0, ${0.015 + i * 0.01})`);
+        waveGrad.addColorStop(0.5, `rgba(255, 120, 30, ${0.04 + i * 0.015})`);
+        waveGrad.addColorStop(1, `rgba(255, 101, 0, ${0.01 + i * 0.01})`);
+
+        ctx.fillStyle = waveGrad;
+        ctx.fill();
+      }
+
+      // Update Node Positions
+      nodes.forEach((node) => {
+        node.x += Math.sin(step + node.baseY) * 0.3;
+        node.y += Math.cos(step + node.baseX) * 0.3;
+
+        const dx = mouseX - node.x;
+        const dy = mouseY - node.y;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < 180) {
+          const force = (180 - dist) / 180;
+          node.x -= (dx / dist) * force * 12;
+          node.y -= (dy / dist) * force * 12;
+        }
+      });
+
+      // Render Dynamic Connecting Mesh Across Entire Canvas
+      for (let i = 0; i < nodes.length; i++) {
+        const n1 = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const n2 = nodes[j];
+          const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+
+          if (dist < 110) {
+            ctx.beginPath();
+            ctx.moveTo(n1.x, n1.y);
+            ctx.lineTo(n2.x, n2.y);
+
+            const alpha = (1 - dist / 110) * 0.12;
+            ctx.strokeStyle = `rgba(255, 115, 20, ${alpha})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Subtle Ambient Glowing Orbs at specific positions for depth
+      const glow1 = ctx.createRadialGradient(width * 0.2, height * 0.3, 0, width * 0.2, height * 0.3, 500);
+      glow1.addColorStop(0, "rgba(255, 101, 0, 0.06)");
+      glow1.addColorStop(1, "transparent");
+      ctx.fillStyle = glow1;
+      ctx.fillRect(0, 0, width, height);
+
+      const glow2 = ctx.createRadialGradient(width * 0.85, height * 0.6, 0, width * 0.85, height * 0.6, 600);
+      glow2.addColorStop(0, "rgba(255, 101, 0, 0.08)");
+      glow2.addColorStop(1, "transparent");
+      ctx.fillStyle = glow2;
+      ctx.fillRect(0, 0, width, height);
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-[#050706]">
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-[#f5f2eb] text-[#151916]">
@@ -110,91 +278,84 @@ export default function Home() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative min-h-[720px] overflow-hidden bg-[#151916] text-white">
-        {/* Ambient orange glow */}
-        <div className="pointer-events-none absolute -right-40 top-10 h-[520px] w-[520px] rounded-full bg-[#ff6500]/[0.06] blur-3xl" />
-        <div className="pointer-events-none absolute -left-40 bottom-0 h-[360px] w-[360px] rounded-full bg-[#ff6500]/[0.025] blur-3xl" />
+      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#0b0f0d] text-white">
+        {/* Full-screen animated background canvas */}
+        <div className="pointer-events-none absolute inset-0 z-0 h-full w-full">
+          <FullscreenClassyMeshHero />
+        </div>
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-24 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:pb-32 lg:pt-32">
-          {/* Hero copy */}
-          <div className="max-w-3xl">
-            <p className="mb-7 text-sm font-semibold uppercase tracking-[0.24em] text-[#ff6500]">
-              Governance • Risk • Compliance
-            </p>
+        {/* Subtle grid pattern overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 z-10 opacity-[0.12]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
+        />
 
-            <h1 className="max-w-5xl text-[50px] font-medium leading-[0.98] tracking-[-0.045em] sm:text-[62px] md:text-[76px] lg:text-[84px]">
-              Make complexity your{" "}
-              <span className="text-[#ff6500]">
-                competitive advantage.
-              </span>
-            </h1>
-
-            <p className="mt-9 max-w-2xl text-[17px] leading-8 text-white/60 md:text-[18px]">
-              Ankh GRC helps organizations navigate the intersection of
-              regulation, technology, cybersecurity, privacy, data and AI —
-              turning complex requirements into practical governance and
-              confident business decisions.
-            </p>
-
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Link
-                href="/services"
-                className="group inline-flex min-h-[54px] items-center gap-3 rounded-[10px] bg-[#ff6500] px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00] hover:shadow-[0_12px_30px_rgba(255,101,0,0.18)]"
-              >
-                Explore Our Services
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-
-              <Link
-                href="/contact"
-                className="inline-flex min-h-[54px] items-center rounded-[10px] border border-white/20 px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/[0.04]"
-              >
-                Talk to Ankh GRC
-              </Link>
-            </div>
-          </div>
-
-          {/* Hero visual */}
-          <div className="relative min-h-[470px] lg:min-h-[510px]">
-            <div className="absolute inset-0 rounded-[28px] border border-white/10 bg-[#181d1a]" />
-
-            <div className="absolute inset-0 overflow-hidden rounded-[28px]">
-              <div className="absolute right-[-90px] top-[35px] h-[430px] w-[430px] rounded-full border border-white/[0.08] animate-[spin_24s_linear_infinite]" />
-              <div className="absolute right-[-20px] top-[100px] h-[300px] w-[300px] rounded-full border border-[#ff6500]/20 border-dashed animate-[spin_17s_linear_infinite_reverse]" />
-              <div className="absolute right-[40px] top-[165px] h-[170px] w-[170px] rounded-full border border-[#ff6500]/20 animate-pulse" />
-
-              <div className="absolute right-[92px] top-[220px] flex h-[70px] w-[70px] items-center justify-center rounded-full border border-[#ff6500]/70 bg-[#ff6500]/[0.08] text-[11px] font-semibold tracking-[0.18em] text-[#ff6500] shadow-[0_0_35px_rgba(255,101,0,0.12)] animate-pulse">
-                GRC
+        <div className="relative z-20 min-h-[calc(100vh-80px)] overflow-hidden">
+          <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1900px] items-center px-6 pb-16 pt-20 lg:px-24 lg:pb-12 lg:pt-16">
+            <div className="max-w-[720px]">
+              <div className="mb-7 flex items-center gap-4 pt-[40px] text-[11px] font-semibold uppercase tracking-[0.32em] text-white/55">
+                <span className="h-px w-12 bg-[#ff6500]/60" />
+                Governance
+                <span className="text-[#ff6500]">•</span>
+                Risk
+                <span className="text-[#ff6500]">•</span>
+                Compliance
               </div>
 
-              <div className="absolute left-8 top-8">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.32em] text-white/35">
-                  ANKH GRC
-                </p>
-                <p className="mt-3 text-[9px] uppercase tracking-[0.28em] text-white/20">
-                  Governance Architecture
-                </p>
+              <h1 className="max-w-[700px] text-[56px] font-medium leading-[0.93] tracking-[-0.055em] sm:text-[68px] md:text-[82px] lg:text-[88px] xl:text-[94px]">
+                Make
+                <br />
+                complexity your
+                <br />
+                <span className="text-[#ff6500]">competitive</span>
+                <br />
+                <span className="text-[#ff6500]">advantage.</span>
+              </h1>
+
+              <p className="mt-9 max-w-[650px] text-[16px] leading-7 text-white/60 md:text-[17px] md:leading-8">
+                Ankh GRC helps organizations navigate the intersection of
+                regulation, technology, cybersecurity, privacy, data and AI —
+                turning complex requirements into practical governance and
+                confident business decisions.
+              </p>
+
+              <div className="mt-9 flex flex-wrap gap-4">
+                <Link
+                  href="/services"
+                  className="group inline-flex min-h-[56px] items-center gap-8 rounded-[7px] bg-[#ff6500] px-7 text-sm font-semibold text-black transition-all duration-500 hover:-translate-y-1 hover:bg-[#ff7418] hover:shadow-[0_18px_45px_rgba(255,101,0,0.22)]"
+                >
+                  Explore Our Services
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </Link>
+
+                <Link
+                  href="/contact"
+                  className="inline-flex min-h-[56px] items-center rounded-[7px] border border-white/25 px-7 text-sm font-semibold text-white transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6500]/60 hover:bg-white/[0.035]"
+                >
+                  Talk to Ankh GRC
+                </Link>
               </div>
 
-              <div className="absolute bottom-8 left-8 border-l border-[#ff6500] pl-5">
-                <p className="text-[28px] font-medium tracking-[-0.02em]">
-                  Secure.
-                </p>
-                <p className="text-[13px] text-white/40">
-                  Compliant. Future Ready.
-                </p>
-              </div>
-
-              <div className="absolute bottom-8 right-8 flex items-end gap-1 opacity-60">
-                <span className="h-5 w-px bg-[#ff6500]" />
-                <span className="h-9 w-px bg-[#ff6500]" />
-                <span className="h-14 w-px bg-[#ff6500]" />
-                <span className="h-8 w-px bg-[#ff6500]" />
-                <span className="h-11 w-px bg-[#ff6500]" />
+              <div className="mt-16 flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-white/45">
+                <span className="relative block h-16 w-px overflow-hidden bg-white/15">
+                  <span className="absolute left-0 top-0 h-7 w-px bg-[#ff6500] animate-[scrollLine_2.4s_ease-in-out_infinite]" />
+                </span>
+                <span>Scroll</span>
               </div>
             </div>
           </div>
         </div>
+
+        <style jsx>{`
+          @keyframes scrollLine {
+            0%, 100% { transform: translateY(-2px); opacity: .4; }
+            50% { transform: translateY(38px); opacity: 1; }
+          }
+        `}</style>
       </section>
 
       {/* =========================================================
