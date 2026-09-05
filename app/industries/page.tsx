@@ -197,9 +197,7 @@ export default function IndustriesPage() {
 
           <div className="flex items-end">
             <div className="w-full border-t border-white/20 pt-7 lg:border-l lg:border-t-0 lg:pb-4 lg:pl-10 lg:pt-0">
-              <span className="text-[14px] font-medium text-[#ff6500]">
-                01
-              </span>
+             ``
 
               <p className="mt-6 max-w-md text-[28px] leading-[1.2] tracking-[-0.025em] text-white/90 md:text-[34px]">
                 Business context first.

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { name: "About", href: "/about" },
+  { name: "Company", href: "/about" },
 ];
 
 const serviceItems = [
@@ -50,6 +50,10 @@ const resourceItems = [
     name: "Trust Center",
     href: "/trust-center",
   },
+   {
+    name: "Certifications",
+    href: "/certifications",
+  },
 ];
 
 export function Navigation() {
@@ -62,7 +66,7 @@ export function Navigation() {
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+ 
 
   const isLandingPage = pathname === "/";
 
@@ -128,21 +132,7 @@ export function Navigation() {
      SCROLLED:
      existing white rounded navbar
   ========================================================= */
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-    };
 
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const closeMenus = () => {
     setIsServicesOpen(false);
@@ -211,51 +201,28 @@ export function Navigation() {
           Scroll = Existing rounded white navbar
       ===================================================== */}
 <header
-  className={`
+  className="
     fixed
-    top-0
+    top-5
     left-1/2
     z-[100]
     -translate-x-1/2
-    transition-[top,width,max-width]
-    duration-700
-    ease-[cubic-bezier(0.22,1,0.36,1)]
-    ${
-      isLandingPage && !isScrolled
-        ? "w-full"
-        : "top-5 w-[calc(100%-48px)] lg:top-6 lg:w-[calc(100%-64px)] lg:max-w-[1450px]"
-    }
-  `}
+    w-[calc(100%-48px)]
+    lg:w-[calc(100%-64px)]
+    lg:max-w-[1450px]
+  "
 >
 <nav
-  className={`
+  className="
     relative
     w-full
-    transition-[background-color,border-radius,box-shadow,border-color]
-    duration-700
-    ease-[cubic-bezier(0.22,1,0.36,1)]
-    
-    ${
-      isLandingPage && !isScrolled
-        ? `
-          rounded-none
-          border
-          border-transparent
-          bg-white
-          shadow-none
-          backdrop-blur-0
-          text-black
-        `
-        : `
-          rounded-[18px]
-          border
-          border-white/70
-          bg-[#ebe8e1]
-          shadow-[0_8px_30px_rgba(0,0,0,0.32)]
-          backdrop-blur-sm
-        `
-    }
-  `}
+    rounded-[18px]
+    border
+    border-white/70
+    bg-[#ebe8e1]
+    shadow-[0_8px_30px_rgba(0,0,0,0.32)]
+    backdrop-blur-sm
+  "
 >
    <div
   className="
@@ -345,13 +312,11 @@ export function Navigation() {
                       tracking-[-0.01em]
                       transition-colors
                       duration-300
-                      ${
-                        isServicesOpen
-                          ? "text-[#E85D04]"
-                          : isLandingPage && !isScrolled
-                            ? "text-black hover:text-[#E85D04]"
-                            : "text-neutral-800 hover:text-[#E85D04]"
-                      }
+                    ${
+  isServicesOpen
+    ? "text-[#E85D04]"
+    : "text-neutral-800 hover:text-[#E85D04]"
+}
                     `}
                     aria-expanded={isServicesOpen}
                     aria-haspopup="true"
@@ -411,21 +376,52 @@ export function Navigation() {
                     <div className="w-full">
                       <div className="mx-auto flex min-h-[470px] w-full max-w-[1500px] px-8 py-10 lg:px-12">
 
-                        {/* LEFT */}
-                        <div className="w-[390px] shrink-0 pr-14">
-                          <h2 className="text-[30px] font-medium leading-[1.2] tracking-[-0.02em] text-white">
-                            Infrastructure to
-                            <br />
-                            Intelligence
-                          </h2>
+                    <div className="mt-8 h-[220px] w-[330px]">
+  <div className="relative h-full w-full">
 
-                          <p className="mt-7 max-w-[330px] text-[20px] font-normal leading-[1.8] text-white/55">
-                            Navigate the AI era with confidence. TCS helps you
-                            turn AI into a strategic partner that empowers
-                            talent, reimagines processes, and accelerates
-                            business transformation.
-                          </p>
-                        </div>
+    {/* Soft orange atmosphere */}
+    <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/10 blur-3xl" />
+
+    {/* Outer rotating network ring */}
+    <div className="absolute left-1/2 top-1/2 h-[155px] w-[155px] -translate-x-1/2 -translate-y-1/2 animate-[spin_18s_linear_infinite] rounded-full border border-orange-500/20">
+      <span className="absolute -left-1 top-1/2 h-2 w-2 rounded-full bg-orange-400 shadow-[0_0_14px_4px_rgba(249,115,22,0.7)]" />
+      <span className="absolute right-5 top-5 h-1.5 w-1.5 rounded-full bg-orange-300 shadow-[0_0_12px_3px_rgba(249,115,22,0.7)]" />
+      <span className="absolute bottom-4 right-8 h-2 w-2 rounded-full bg-orange-500 shadow-[0_0_14px_4px_rgba(249,115,22,0.6)]" />
+    </div>
+
+    {/* Second orbit */}
+    <div className="absolute left-1/2 top-1/2 h-[115px] w-[180px] -translate-x-1/2 -translate-y-1/2 rotate-[25deg] animate-[spin_12s_linear_infinite_reverse] rounded-[50%] border border-orange-400/15">
+      <span className="absolute left-1/2 -top-1 h-2 w-2 -translate-x-1/2 rounded-full bg-orange-400 shadow-[0_0_12px_3px_rgba(249,115,22,0.7)]" />
+    </div>
+
+    {/* Connection lines */}
+    <div className="absolute left-[52px] top-[62px] h-px w-[75px] rotate-[28deg] bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
+    <div className="absolute right-[45px] top-[70px] h-px w-[65px] -rotate-[32deg] bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
+    <div className="absolute bottom-[63px] left-[65px] h-px w-[110px] -rotate-[8deg] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
+
+    {/* Network nodes */}
+    <span className="absolute left-[47px] top-[55px] h-2 w-2 animate-pulse rounded-full bg-orange-500 shadow-[0_0_12px_4px_rgba(249,115,22,0.45)]" />
+    <span className="absolute right-[43px] top-[64px] h-1.5 w-1.5 animate-pulse rounded-full bg-orange-400 shadow-[0_0_10px_3px_rgba(249,115,22,0.5)]" />
+    <span className="absolute bottom-[58px] left-[63px] h-1.5 w-1.5 animate-pulse rounded-full bg-orange-300 shadow-[0_0_10px_3px_rgba(249,115,22,0.45)]" />
+    <span className="absolute bottom-[48px] right-[65px] h-2 w-2 animate-pulse rounded-full bg-orange-500 shadow-[0_0_12px_4px_rgba(249,115,22,0.5)]" />
+
+    {/* Central GRC core */}
+    <div className="absolute left-1/2 top-1/2 flex h-[72px] w-[72px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-orange-400/50 bg-[#171c19] shadow-[0_0_30px_rgba(249,115,22,0.22)]">
+      <div className="flex h-[48px] w-[48px] items-center justify-center rounded-xl border border-orange-500/30 bg-orange-500/10">
+        <div className="h-4 w-4 animate-pulse rounded-full bg-orange-400 shadow-[0_0_18px_7px_rgba(249,115,22,0.65)]" />
+      </div>
+    </div>
+
+    {/* Small floating blocks */}
+    <div className="absolute left-[27px] top-[105px] h-3 w-3 rotate-45 border border-orange-500/40 bg-orange-500/10" />
+    <div className="absolute right-[27px] top-[105px] h-3 w-3 rotate-45 border border-orange-500/40 bg-orange-500/10" />
+    <div className="absolute bottom-[25px] left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-orange-500/60" />
+
+    {/* Bottom glow */}
+    <div className="absolute bottom-0 left-1/2 h-px w-[80%] -translate-x-1/2 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
+
+  </div>
+</div>
 
                         {/* MIDDLE + RIGHT */}
                         <div
@@ -437,7 +433,7 @@ export function Navigation() {
                           }}
                         >
                           {/* MIDDLE */}
-                          <div className="w-[360px] shrink-0">
+                          <div className="w-[360px] shrink-0 space-y-4">
 
                             {/* COMPLIANCE */}
                             <div className="border-b border-white/15">
@@ -501,13 +497,8 @@ export function Navigation() {
                               </Link>
                             </div>
 
-                            {/* PROJECTS */}
-                            <div className="border-b border-white/15">
-                              <div className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:text-white">
-                                <span>Projects</span>
-                                <ArrowRight className="h-5 w-5" />
-                              </div>
-                            </div>
+                           
+                           
                           </div>
 
                           {/* RIGHT */}
@@ -568,11 +559,11 @@ export function Navigation() {
                     tracking-[-0.01em]
                     transition-colors
                     duration-300
-                    ${
-                      isLandingPage && !isScrolled
-                        ? "text-black hover:text-[#E85D04]"
-                        : "text-neutral-800 hover:text-[#E85D04]"
-                    }
+                 ${
+  isServicesOpen
+    ? "text-[#E85D04]"
+    : "text-neutral-800 hover:text-[#E85D04]"
+}
                   `}
                 >
                   Industries
@@ -598,11 +589,7 @@ export function Navigation() {
                       tracking-[-0.01em]
                       transition-colors
                       duration-300
-                      ${
-                        isLandingPage && !isScrolled
-                          ? "text-black hover:text-[#E85D04]"
-                          : "text-neutral-800 hover:text-[#E85D04]"
-                      }
+                      text-neutral-800 hover:text-[#E85D04]
                     `}
                   >
                     {link.name}
@@ -634,13 +621,11 @@ export function Navigation() {
                       tracking-[-0.01em]
                       transition-colors
                       duration-300
-                      ${
-                        isResourcesOpen
-                          ? "text-[#E85D04]"
-                          : isLandingPage && !isScrolled
-                            ? "text-black hover:text-[#E85D04]"
-                            : "text-neutral-800 hover:text-[#E85D04]"
-                      }
+                    ${
+  isResourcesOpen
+    ? "text-[#E85D04]"
+    : "text-neutral-800 hover:text-[#E85D04]"
+}
                     `}
                     aria-expanded={isResourcesOpen}
                     aria-haspopup="true"
@@ -702,19 +687,54 @@ export function Navigation() {
 
                         {/* LEFT */}
                         <div className="w-[390px] shrink-0 pr-14">
-                          <h2 className="text-[30px] font-medium leading-[1.2] tracking-[-0.02em] text-white">
-                            Knowledge for
-                            <br />
-                            Better Decisions
-                          </h2>
+                         
 
-                          <p className="mt-7 max-w-[330px] text-[20px] font-normal leading-[1.8] text-white/55">
-                            Explore practical insights, ideas, and perspectives
-                            that help organizations navigate governance, risk,
-                            compliance, and emerging regulatory challenges.
-                          </p>
+                          {/* SMALL RESOURCE DATA ANIMATION */}
+                          <div className="mt-8 h-[190px] w-[330px]">
+                            <div className="relative h-full w-full overflow-hidden">
 
-                          <a
+                              {/* Soft glow */}
+                              <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/10 blur-3xl" />
+
+                              {/* Moving scan lines */}
+                              <div className="absolute left-[16%] top-0 h-full w-px animate-[pulse_2.8s_ease-in-out_infinite] bg-gradient-to-b from-transparent via-orange-500/45 to-transparent" />
+                              <div className="absolute right-[18%] top-0 h-full w-px animate-[pulse_3.6s_ease-in-out_infinite] bg-gradient-to-b from-transparent via-orange-400/30 to-transparent" />
+
+                              {/* Data paths */}
+                              <div className="absolute left-[15%] top-[35%] h-px w-[68%] rotate-[7deg] bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
+                              <div className="absolute left-[20%] top-[65%] h-px w-[60%] -rotate-[10deg] bg-gradient-to-r from-transparent via-orange-400/35 to-transparent" />
+
+                              {/* Floating data points */}
+                              <span className="absolute left-[13%] top-[31%] h-2 w-2 animate-pulse rounded-full bg-orange-400 shadow-[0_0_14px_4px_rgba(249,115,22,0.55)]" />
+                              <span className="absolute left-[31%] top-[48%] h-1.5 w-1.5 animate-pulse rounded-full bg-orange-500 shadow-[0_0_11px_3px_rgba(249,115,22,0.5)]" />
+                              <span className="absolute left-[49%] top-[27%] h-2 w-2 animate-pulse rounded-full bg-orange-300 shadow-[0_0_14px_4px_rgba(249,115,22,0.5)]" />
+                              <span className="absolute right-[23%] top-[57%] h-1.5 w-1.5 animate-pulse rounded-full bg-orange-500 shadow-[0_0_11px_3px_rgba(249,115,22,0.5)]" />
+                              <span className="absolute right-[12%] top-[34%] h-2 w-2 animate-pulse rounded-full bg-orange-400 shadow-[0_0_14px_4px_rgba(249,115,22,0.5)]" />
+                              <span className="absolute left-[25%] bottom-[22%] h-1.5 w-1.5 animate-pulse rounded-full bg-orange-300 shadow-[0_0_10px_3px_rgba(249,115,22,0.45)]" />
+                              <span className="absolute right-[34%] bottom-[19%] h-2 w-2 animate-pulse rounded-full bg-orange-500 shadow-[0_0_13px_4px_rgba(249,115,22,0.5)]" />
+
+                              {/* Central data visualization */}
+                              <div className="absolute left-1/2 top-1/2 flex h-[78px] w-[116px] -translate-x-1/2 -translate-y-1/2 items-center justify-center border border-orange-500/25 bg-[#171c19]/50">
+                                <div className="flex h-full items-end justify-center gap-2 px-5 py-4">
+                                  <span className="h-[28%] w-2 animate-[pulse_1.4s_ease-in-out_infinite] bg-orange-500/50" />
+                                  <span className="h-[65%] w-2 animate-[pulse_1.8s_ease-in-out_infinite] bg-orange-400/70" />
+                                  <span className="h-[45%] w-2 animate-[pulse_1.6s_ease-in-out_infinite] bg-orange-500/60" />
+                                  <span className="h-[82%] w-2 animate-[pulse_2s_ease-in-out_infinite] bg-orange-300/70" />
+                                  <span className="h-[55%] w-2 animate-[pulse_1.5s_ease-in-out_infinite] bg-orange-500/50" />
+                                </div>
+                              </div>
+
+                              {/* Floating markers */}
+                              <span className="absolute left-[7%] top-[72%] h-2 w-2 rotate-45 border border-orange-500/40" />
+                              <span className="absolute right-[7%] bottom-[25%] h-2 w-2 rotate-45 border border-orange-400/40" />
+
+                              {/* Bottom data glow */}
+                              <div className="absolute bottom-1 left-1/2 h-px w-[78%] -translate-x-1/2 bg-gradient-to-r from-transparent via-orange-500/45 to-transparent" />
+
+                            </div>
+                          </div>
+
+                          <Link
                             href="/insights"
                             onClick={closeMenus}
                             className="group mt-12 inline-flex items-center gap-4 text-[20px] font-medium text-white transition-colors duration-300 hover:text-[#E85D04]"
@@ -722,7 +742,7 @@ export function Navigation() {
                             <span>Explore our resources</span>
 
                             <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-2" />
-                          </a>
+                          </Link>
                         </div>
 
                         {/* MIDDLE */}
@@ -762,6 +782,19 @@ export function Navigation() {
                               </Link>
                             </div>
 
+                             {/* TRUST CENTER */}
+                            <div className="border-b border-white/15">
+                              <Link
+                                href="/certifications"
+                                onClick={closeMenus}
+                                className="flex h-[64px] items-center px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
+                              >
+                                <span>Certifications</span>
+                              </Link>
+                            </div>
+
+                            
+
                           </div>
                         </div>
                       </div>
@@ -786,11 +819,11 @@ export function Navigation() {
                 p-2
                 transition-colors
                 md:hidden
-                ${
-                  isLandingPage && !isScrolled
-                    ? "text-white hover:bg-white/10"
-                    : "text-neutral-900 hover:bg-neutral-100"
-                }
+             ${
+  isServicesOpen
+    ? "text-[#E85D04]"
+    : "text-neutral-800 hover:text-[#E85D04]"
+}
               `}
               aria-label="Toggle navigation"
               aria-expanded={isMobileMenuOpen}

@@ -109,164 +109,325 @@ function FullscreenClassyMeshHero() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationFrameId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || window.innerHeight);
+    let raf = 0, frame = 0, width = 0, height = 0, dpr = 1;
+    let seed = 20260905;
+    const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
 
-    const handleResize = () => {
-      if (!canvas || !canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.clientWidth;
-      height = canvas.height = canvas.parentElement.clientHeight;
+    type Dot = { x:number; y:number; r:number; a:number; speed:number; phase:number; glow:boolean };
+    let dots: Dot[] = [];
+    let streaks: Dot[] = [];
+
+    const resize = () => {
+      width = canvas.parentElement?.clientWidth || window.innerWidth;
+      height = canvas.parentElement?.clientHeight || window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = width * dpr; canvas.height = height * dpr;
+      canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      seed = 20260905;
+      dots = Array.from({length: Math.max(650, Math.floor(width*height/3000))}, () => ({
+        x:rnd()*width, y:rnd()*height, r:rnd()<.08?2+rnd()*1.8:.45+rnd()*1.2,
+a:.14+rnd()*.62, speed:.16+rnd()*2.8, phase:rnd()*Math.PI*2, glow:rnd()<.1
+      }));
+      streaks = Array.from({length:Math.max(24,Math.floor(width/55))},()=>({
+        x:rnd()*width,y:rnd()*height,r:.7+rnd()*1.5,a:.15+rnd()*.4,speed:.15+rnd()*.35,phase:rnd()*6.28,glow:rnd()<.4
+      }));
+    };
+    resize(); window.addEventListener("resize",resize);
+
+    const wave = (x:number, i:number, t:number) => {
+      const n=x/width;
+      return height*.70 - n*height*.49 + Math.sin(n*Math.PI*2.2+t*.38+i*.045)*height*.075 + Math.sin(n*Math.PI*4.1-t*.22+i)*height*.018 + (i-6)*14;
     };
 
-    window.addEventListener("resize", handleResize);
+    const render=()=>{
+      frame++; const t=frame*.012;
+      ctx.clearRect(0,0,width,height);
+      const bg=ctx.createLinearGradient(0,0,width,height);
+      bg.addColorStop(0,"#030303"); bg.addColorStop(.5,"#090604"); bg.addColorStop(1,"#020303");
+      ctx.fillStyle=bg; ctx.fillRect(0,0,width,height);
 
-    // Grid Mesh Nodes spread edge-to-edge
-    const cols = Math.floor(width / 90) + 2;
-    const rows = Math.floor(height / 70) + 2;
-    const nodes: Array<{
-      x: number;
-      y: number;
-      baseX: number;
-      baseY: number;
-      vx: number;
-      vy: number;
-    }> = [];
+      const glow=ctx.createRadialGradient(width*.67,height*.46,0,width*.67,height*.46,Math.max(width*.48,550));
+      glow.addColorStop(0,"rgba(255,91,10,.13)"); glow.addColorStop(.3,"rgba(255,90,10,.055)"); glow.addColorStop(1,"rgba(255,70,0,0)");
+      ctx.fillStyle=glow; ctx.fillRect(0,0,width,height);
 
-    for (let r = 0; r <= rows; r++) {
-      for (let c = 0; c <= cols; c++) {
-        const x = (c * width) / cols;
-        const y = (r * height) / rows;
-        nodes.push({
-          x,
-          y,
-          baseX: x,
-          baseY: y,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-        });
+      // Very faint technical grid.
+      ctx.save(); ctx.globalAlpha=.055; ctx.strokeStyle="#c55b1a"; ctx.lineWidth=.45;
+      for(let x=-100;x<width+100;x+=92){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+width*.04,height);ctx.stroke();}
+      for(let y=20;y<height;y+=92){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y-height*.018);ctx.stroke();}
+      ctx.restore();
+
+      // The reference has a whole FIELD of ribbons, not one wave.
+      for(let i=0;i<15;i++){
+        const p=new Path2D(); p.moveTo(-120,wave(-120,i,t));
+        for(let x=-120;x<=width+140;x+=10)p.lineTo(x,wave(x,i,t));
+        ctx.save();
+        if(i===7){ctx.strokeStyle="#ff9b4b";ctx.lineWidth=2.7;ctx.globalAlpha=.92;ctx.shadowColor="#ff6a16";ctx.shadowBlur=18;}
+        else if(i===6||i===8){ctx.strokeStyle="#ff751d";ctx.lineWidth=1.55;ctx.globalAlpha=.58;ctx.shadowColor="#ff6500";ctx.shadowBlur=8;}
+        else{ctx.strokeStyle=i%2?"#d85b13":"#ff812d";ctx.lineWidth=i%3===0?1.05:.62;ctx.globalAlpha=.18+(1-Math.abs(i-7)/8)*.2;}
+        ctx.stroke(p); ctx.restore();
       }
-    }
 
-    let mouseX = -1000;
-    let mouseY = -1000;
+      // Bright moving dashes riding the main ribbon.
+      const main=new Path2D(); main.moveTo(-120,wave(-120,7,t));
+      for(let x=-120;x<=width+140;x+=10)main.lineTo(x,wave(x,7,t));
+      ctx.save(); ctx.strokeStyle="#ffd0a5";ctx.lineWidth=1.05;ctx.globalAlpha=.82;ctx.setLineDash([1,12]);ctx.lineDashOffset=-frame*1.7;ctx.stroke(main);ctx.restore();
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-    };
+      // Dense atmospheric particles.
+      for(const p of dots){
+const tt=t*p.speed+p.phase; const x=p.x+Math.sin(tt*.72)*22; const y=p.y+Math.cos(tt*.5)*16;
+        const ry=wave(x,7,t); const near=Math.abs(y-ry); const a=Math.min(1,p.a*(.7+.3*Math.sin(tt))+(near<50?(1-near/50)*.3:0));
+        ctx.beginPath();ctx.arc(x,y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,${p.glow?185:112},${p.glow?80:24},${a})`;
+        ctx.shadowColor="#ff701b";ctx.shadowBlur=p.glow||near<20?8:0;ctx.fill();
+      }
 
-    window.addEventListener("mousemove", handleMouseMove);
+      // Bright particles that travel along the complete ribbon.
+      for(let i=0;i<48;i++){
+        const q=(i/48+t*(.015+(i%5)*.0018))%1; const x=-80+q*(width+160); const y=wave(x,7,t);
+        ctx.beginPath();ctx.arc(x,y,i%7===0?2.3:1,0,Math.PI*2);ctx.fillStyle=i%7===0?"rgba(255,220,190,.95)":"rgba(255,137,53,.8)";ctx.shadowColor="#ff7620";ctx.shadowBlur=i%7===0?13:6;ctx.fill();
+      }
 
-    let step = 0;
+      // WAVE-WRAPPED ORBITAL FIELD
+      // Full 360° orbital rings are anchored into the flowing ribbon field.
+      // They are deliberately blended into the wave instead of appearing as
+      // isolated circles or half-orbits.
 
-    const render = () => {
-      step += 0.008;
-      ctx.clearRect(0, 0, width, height);
+      const drawOrbitSystem = (
+        cx: number,
+        cy: number,
+        rxBase: number,
+        ryBase: number,
+        rotation: number,
+        rings: number,
+        scaleStep: number,
+        phaseOffset: number,
+        orbitMotion: number = 0
+      ) => {
+        ctx.save();
 
-      // Deep Dark Luxury Gradient
-      const baseGrad = ctx.createLinearGradient(0, 0, width, height);
-      baseGrad.addColorStop(0, "#060807");
-      baseGrad.addColorStop(0.5, "#0b0f0d");
-      baseGrad.addColorStop(1, "#050706");
-      ctx.fillStyle = baseGrad;
-      ctx.fillRect(0, 0, width, height);
+// ============================================================
+// ANTI-CLOCKWISE ORBIT MOVEMENT
+// The ellipse itself DOES NOT rotate.
+// The complete orbital system revolves around an invisible
+// circular path in an anti-clockwise direction.
+// ============================================================
 
-      // Smooth Edge-to-Edge Ambient Glow Waves
-      for (let i = 0; i < 3; i++) {
+const revolutionSpeed = 0.02185;
+
+// Negative angle = anti-clockwise
+const revolutionAngle = -frame * revolutionSpeed;
+
+// Radius of the invisible revolution path
+const revolutionRadiusX = width * 0.055;
+const revolutionRadiusY = height * 0.035;
+
+// Move the COMPLETE orbit around the invisible center
+const movingCx =
+  cx + Math.cos(revolutionAngle) * revolutionRadiusX;
+
+const movingCy =
+  cy + Math.sin(revolutionAngle) * revolutionRadiusY;
+
+// Orbit shape keeps its original orientation.
+// IMPORTANT: no frame value inside rotate().
+ctx.translate(movingCx, movingCy);
+ctx.rotate(rotation);
+        // Soft atmospheric glow behind each orbital family.
+        const orbitGlow = ctx.createRadialGradient(
+          0, 0, 0,
+          0, 0, Math.max(rxBase, ryBase) * 1.25
+        );
+        orbitGlow.addColorStop(0, "rgba(255,105,25,0.075)");
+        orbitGlow.addColorStop(0.42, "rgba(255,88,10,0.025)");
+        orbitGlow.addColorStop(1, "rgba(255,70,0,0)");
+        ctx.fillStyle = orbitGlow;
+        ctx.fillRect(
+          -Math.max(rxBase, ryBase) * 1.3,
+          -Math.max(rxBase, ryBase) * 1.3,
+          Math.max(rxBase, ryBase) * 2.6,
+          Math.max(rxBase, ryBase) * 2.6
+        );
+
+        // Full elliptical orbit rings.
+        for (let i = 0; i < rings; i++) {
+          const scale = 1 + i * scaleStep;
+          const rx = rxBase * scale;
+          const ry = ryBase * (1 + i * scaleStep * 0.82);
+
+          ctx.beginPath();
+          ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+
+          const centerRing = Math.floor(rings * 0.48);
+          ctx.strokeStyle =
+            i === centerRing
+              ? "#ff9a4b"
+              : i % 2 === 0
+                ? "#e9681d"
+                : "#c95313";
+
+          ctx.globalAlpha =
+            i === centerRing
+              ? 0.48
+              : 0.095 + (1 - Math.abs(i - centerRing) / rings) * 0.10;
+
+          ctx.lineWidth =
+            i === centerRing
+              ? 1.65
+              : i === centerRing - 1 || i === centerRing + 1
+                ? 0.95
+                : 0.52;
+
+          ctx.shadowColor = "#ff6500";
+          ctx.shadowBlur = i === centerRing ? 14 : 4;
+          ctx.stroke();
+        }
+
+        // A dotted full orbit, integrated into the same family.
+        ctx.save();
+        ctx.setLineDash([1, 11]);
+        ctx.lineDashOffset = -frame * 0.85;
         ctx.beginPath();
-        ctx.moveTo(0, height * (0.3 + i * 0.2));
+        ctx.ellipse(
+          0,
+          0,
+          rxBase * (1 + (rings - 1) * scaleStep * 0.55),
+          ryBase * (1 + (rings - 1) * scaleStep * 0.42),
+          0,
+          0,
+          Math.PI * 2
+        );
+        ctx.strokeStyle = "#ff984c";
+        ctx.globalAlpha = 0.30;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+        ctx.restore();
 
-        for (let x = 0; x <= width; x += 30) {
-          const waveY =
-            Math.sin(x * 0.002 + step + i) * 60 +
-            Math.cos((x + step * 50) * 0.001) * 30 +
-            height * (0.4 + i * 0.15);
-          ctx.lineTo(x, waveY);
+        // Moving particles travel around the COMPLETE orbit, not just an arc.
+        for (let i = 0; i < 13; i++) {
+          const ringIndex = i % rings;
+          const scale = 1 + ringIndex * scaleStep;
+          const rx = rxBase * scale;
+          const ry = ryBase * (1 + ringIndex * scaleStep * 0.82);
+
+          const angle =
+            phaseOffset +
+            frame * (0.0038 + (i % 5) * 0.00065) +
+            i * (Math.PI * 2 / 13);
+
+          const px = Math.cos(angle) * rx;
+          const py = Math.sin(angle) * ry;
+
+          ctx.beginPath();
+          ctx.arc(px, py, i % 6 === 0 ? 2.15 : 0.82, 0, Math.PI * 2);
+          ctx.fillStyle =
+            i % 6 === 0
+              ? "rgba(255,224,198,0.96)"
+              : "rgba(255,132,43,0.82)";
+          ctx.shadowColor = "#ff6a16";
+          ctx.shadowBlur = i % 6 === 0 ? 15 : 6;
+          ctx.fill();
         }
 
-        ctx.lineTo(width, height);
-        ctx.lineTo(0, height);
-        ctx.closePath();
+        // A subtle travelling highlight gives the orbit a living connection
+        // to the moving wave.
+        const highlightRadius = Math.min(
+          rxBase * 0.92,
+          ryBase * 0.92
+        );
+        const highlightAngle =
+          phaseOffset + frame * 0.0032;
 
-        const waveGrad = ctx.createLinearGradient(0, 0, width, 0);
-        waveGrad.addColorStop(0, `rgba(255, 101, 0, ${0.015 + i * 0.01})`);
-        waveGrad.addColorStop(0.5, `rgba(255, 120, 30, ${0.04 + i * 0.015})`);
-        waveGrad.addColorStop(1, `rgba(255, 101, 0, ${0.01 + i * 0.01})`);
+        const hx = Math.cos(highlightAngle) * highlightRadius;
+        const hy =
+          Math.sin(highlightAngle) *
+          Math.max(ryBase * 0.92, 1);
 
-        ctx.fillStyle = waveGrad;
+        const hGlow = ctx.createRadialGradient(
+          hx, hy, 0,
+          hx, hy, 27
+        );
+        hGlow.addColorStop(0, "rgba(255,235,215,0.90)");
+        hGlow.addColorStop(0.18, "rgba(255,150,72,0.58)");
+        hGlow.addColorStop(1, "rgba(255,80,0,0)");
+
+        ctx.fillStyle = hGlow;
+        ctx.fillRect(hx - 27, hy - 27, 54, 54);
+
+        ctx.beginPath();
+        ctx.arc(hx, hy, 2.35, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffe9d5";
+        ctx.shadowColor = "#ff6a16";
+        ctx.shadowBlur = 19;
         ctx.fill();
+
+        ctx.restore();
+      };
+
+      // The orbital systems sit directly on/around the ribbon flow.
+      // Their positions intentionally overlap the wave field so the two
+      // visual systems read as one continuous structure.
+
+    
+
+      
+
+      // Right: the main orbital family, fully visible and blended with the
+      // lower flowing ribbon instead of being a disconnected ellipse.
+      drawOrbitSystem(
+        width * 0.84,
+        height * 0.68,
+        width * 0.145,
+        height * 0.085,
+        -0.05,
+        11,
+        0.095,
+        4.35,
+        0.00042
+      );
+
+      // Fine connecting filaments between the main wave and the right orbit.
+      // These keep the transition visually continuous.
+      ctx.save();
+      ctx.globalAlpha = 0.20;
+      ctx.strokeStyle = "#df6419";
+      ctx.lineWidth = 0.55;
+
+      for (let i = 0; i < 8; i++) {
+        const p = new Path2D();
+        const startX = width * 0.55;
+        const endX = width * 0.86;
+        const startY = wave(startX, 7 + (i % 3), t) + (i - 4) * 4;
+        const endY = height * 0.68 + Math.sin(i * 0.7) * height * 0.075;
+
+        p.moveTo(startX, startY);
+        p.bezierCurveTo(
+          width * 0.64,
+          startY + (i - 4) * 5,
+          width * 0.73,
+          endY - (i - 4) * 8,
+          endX,
+          endY
+        );
+
+        ctx.stroke(p);
+      }
+      ctx.restore();
+
+      // Thin vertical data streaks add the small details seen throughout the image.
+      for(const p of streaks){
+        const y=((frame*p.speed+p.phase*100)%(height+160))-80, x=p.x+Math.sin(t+p.phase)*8;
+        const g=ctx.createLinearGradient(x,y-32,x,y+32);g.addColorStop(0,"rgba(255,100,20,0)");g.addColorStop(.5,`rgba(255,125,35,${p.a})`);g.addColorStop(1,"rgba(255,100,20,0)");
+        ctx.fillStyle=g;ctx.fillRect(x,y-32,p.r,64);
       }
 
-      // Update Node Positions
-      nodes.forEach((node) => {
-        node.x += Math.sin(step + node.baseY) * 0.3;
-        node.y += Math.cos(step + node.baseX) * 0.3;
-
-        const dx = mouseX - node.x;
-        const dy = mouseY - node.y;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist < 180) {
-          const force = (180 - dist) / 180;
-          node.x -= (dx / dist) * force * 12;
-          node.y -= (dy / dist) * force * 12;
-        }
-      });
-
-      // Render Dynamic Connecting Mesh Across Entire Canvas
-      for (let i = 0; i < nodes.length; i++) {
-        const n1 = nodes[i];
-        for (let j = i + 1; j < nodes.length; j++) {
-          const n2 = nodes[j];
-          const dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
-
-          if (dist < 110) {
-            ctx.beginPath();
-            ctx.moveTo(n1.x, n1.y);
-            ctx.lineTo(n2.x, n2.y);
-
-            const alpha = (1 - dist / 110) * 0.12;
-            ctx.strokeStyle = `rgba(255, 115, 20, ${alpha})`;
-            ctx.lineWidth = 0.6;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Subtle Ambient Glowing Orbs at specific positions for depth
-      const glow1 = ctx.createRadialGradient(width * 0.2, height * 0.3, 0, width * 0.2, height * 0.3, 500);
-      glow1.addColorStop(0, "rgba(255, 101, 0, 0.06)");
-      glow1.addColorStop(1, "transparent");
-      ctx.fillStyle = glow1;
-      ctx.fillRect(0, 0, width, height);
-
-      const glow2 = ctx.createRadialGradient(width * 0.85, height * 0.6, 0, width * 0.85, height * 0.6, 600);
-      glow2.addColorStop(0, "rgba(255, 101, 0, 0.08)");
-      glow2.addColorStop(1, "transparent");
-      ctx.fillStyle = glow2;
-      ctx.fillRect(0, 0, width, height);
-
-      animationFrameId = requestAnimationFrame(render);
+      raf=requestAnimationFrame(render);
     };
-
     render();
+    return()=>{cancelAnimationFrame(raf);window.removeEventListener("resize",resize);};
+  },[]);
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <div className="absolute inset-0 overflow-hidden bg-[#050706]">
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-    </div>
-  );
+  return <div className="absolute inset-0 overflow-hidden bg-[#030303]"><canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" /></div>;
 }
-
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-[#f5f2eb] text-[#151916]">
@@ -278,7 +439,7 @@ export default function Home() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-[#0b0f0d] text-white">
+      <section className="relative min-h-[calc(110vh-80px)] overflow-hidden bg-[#0b0f0d] text-white">
         {/* Full-screen animated background canvas */}
         <div className="pointer-events-none absolute inset-0 z-0 h-full w-full">
           <FullscreenClassyMeshHero />
