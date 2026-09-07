@@ -1,3 +1,4 @@
+```jsonc
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "websiteankhgrc",
@@ -10,12 +11,6 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "websiteankhgrc"
-    }
-  ],
   "images": {
     "binding": "IMAGES"
   },
@@ -23,3 +18,4 @@
     "enabled": true
   }
 }
+```
