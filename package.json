@@ -1,4 +1,4 @@
-```json
+
 {
   "name": "websiteankhgrc",
   "version": "0.1.0",
@@ -81,4 +81,4 @@
     "wrangler": "latest"
   }
 }
-```
+
