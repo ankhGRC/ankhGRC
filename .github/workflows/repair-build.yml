@@ -1,4 +1,4 @@
-name: Repair and verify build
+name: Verify Cloudflare Pages build
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  repair:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,17 +21,20 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Regenerate lockfile
+      - name: Synchronize lockfile
         run: npm install --package-lock-only
 
       - name: Install from lockfile
         run: npm ci
 
-      - name: Verify Next.js build
+      - name: Build static site
         run: npm run build
 
-      - name: Verify Cloudflare OpenNext build
-        run: npm run cf-build
+      - name: Verify Cloudflare Pages output
+        run: |
+          test -d out
+          test -f out/index.html
+          echo "Cloudflare Pages output is ready: $(find out -type f | wc -l) files"
 
       - name: Commit regenerated lockfile
         run: |
