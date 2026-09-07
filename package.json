@@ -7,7 +7,8 @@
     "npm": ">=10 <11"
   },
   "scripts": {
-    "build": "opennextjs-cloudflare build",
+    "build": "next build",
+    "cf-build": "opennextjs-cloudflare build",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start",
