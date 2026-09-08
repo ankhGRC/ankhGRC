@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
@@ -100,334 +100,334 @@ const insights = [
   },
 ];
 
-function FullscreenClassyMeshHero() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+function HorizontalGrcStory() {
+  const storyRef = useRef<HTMLElement | null>(null);
+  const wheelLockRef = useRef(false);
+  const pointerStartRef = useRef<number | null>(null);
+  const [active, setActive] = useState(0);
+
+  // Always start the landing story from the first slide when Home mounts.
+  useEffect(() => {
+    setActive(0);
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  }, []);
+
+  // One unique background image per slide.
+  // The cards are text-only; the active slide controls the full background.
+  const slides = [
+    {
+      type: "intro",
+      image: "/ankhgrc1.png",
+      label: "GOVERNANCE • RISK • COMPLIANCE",
+      title: "Make complexity your competitive advantage.",
+      description:
+        "Ankh GRC helps organizations navigate the intersection of regulation, technology, cybersecurity, privacy, data and AI — turning complex requirements into practical governance and confident business decisions.",
+      details: [],
+    },
+    {
+      image: "/governance.png",
+   
+      title: "Governance",
+      description:
+        "Build accountable decision-making, strong policies and transparent governance.",
+      details: ["STRATEGY", "POLICIES", "ACCOUNTABILITY", "TRANSPARENCY"],
+    },
+    {
+      image: "/img1ext.png",
+      
+      title: "A stronger foundation for every decision.",
+      description:
+        "Create clear ownership, effective controls and decision frameworks that connect leadership priorities with day-to-day execution.",
+      details: ["OWNERSHIP", "CONTROLS", "DECISIONS", "OVERSIGHT"],
+    },
+    {
+      image: "/risk.png",
+    
+      title: "Risk",
+      description:
+        "Anticipate uncertainty, assess what matters and stay ahead of emerging business risks.",
+      details: ["IDENTIFY", "ANALYZE", "MITIGATE", "MONITOR"],
+    },
+    {
+      image: "/img2ext.png",
+     
+      title: "See uncertainty before it becomes disruption.",
+      description:
+        "Turn risk signals into practical priorities with a connected view of exposure, impact, controls and business resilience.",
+      details: ["EXPOSURE", "IMPACT", "RESILIENCE", "ACTION"],
+    },
+    {
+      image: "/compliance.png",
+  
+      title: "Compliance",
+      description:
+        "Translate regulatory obligations into practical requirements, controls, ownership and evidence.",
+      details: ["REGULATIONS", "STANDARDS", "REPORTING", "READINESS"],
+    },
+    {
+      image: "/img3ext.png",
+  
+      title: "Turn requirements into confidence.",
+      description:
+        "Stay prepared for changing expectations with clear requirements, accountable owners, reliable evidence and continuous readiness.",
+      details: ["REQUIREMENTS", "EVIDENCE", "ASSURANCE", "READINESS"],
+    },
+    {
+      image: "/last.png",
+   
+      title: "A connected world needs connected GRC.",
+      description:
+        "Bring governance, risk and compliance together across markets, technologies and changing expectations.",
+      details: ["GLOBAL", "CONNECTED", "TRUST", "PROGRESS"],
+    },
+  ];
+
+  const goTo = (index: number) => {
+    setActive(Math.max(0, Math.min(slides.length - 1, index)));
+  };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const el = storyRef.current;
+    if (!el) return;
 
-    let raf = 0, frame = 0, width = 0, height = 0, dpr = 1;
-    let seed = 20260905;
-    const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const onWheel = (event: WheelEvent) => {
+      const delta =
+        Math.abs(event.deltaX) > Math.abs(event.deltaY)
+          ? event.deltaX
+          : event.deltaY;
 
-    type Dot = { x:number; y:number; r:number; a:number; speed:number; phase:number; glow:boolean };
-    let dots: Dot[] = [];
-    let streaks: Dot[] = [];
+      if (Math.abs(delta) < 8) return;
+      if (wheelLockRef.current) {
+        event.preventDefault();
+        return;
+      }
 
-    const resize = () => {
-      width = canvas.parentElement?.clientWidth || window.innerWidth;
-      height = canvas.parentElement?.clientHeight || window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = width * dpr; canvas.height = height * dpr;
-      canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      seed = 20260905;
-      dots = Array.from({length: Math.max(650, Math.floor(width*height/3000))}, () => ({
-        x:rnd()*width, y:rnd()*height, r:rnd()<.08?2+rnd()*1.8:.45+rnd()*1.2,
-a:.14+rnd()*.62, speed:.16+rnd()*2.8, phase:rnd()*Math.PI*2, glow:rnd()<.1
-      }));
-      streaks = Array.from({length:Math.max(24,Math.floor(width/55))},()=>({
-        x:rnd()*width,y:rnd()*height,r:.7+rnd()*1.5,a:.15+rnd()*.4,speed:.15+rnd()*.35,phase:rnd()*6.28,glow:rnd()<.4
-      }));
-    };
-    resize(); window.addEventListener("resize",resize);
+      const direction: 1 | -1 = delta > 0 ? 1 : -1;
+      const next = active + direction;
 
-    const wave = (x:number, i:number, t:number) => {
-      const n=x/width;
-      return height*.70 - n*height*.49 + Math.sin(n*Math.PI*2.2+t*.38+i*.045)*height*.075 + Math.sin(n*Math.PI*4.1-t*.22+i)*height*.018 + (i-6)*14;
+      // At the first/last card, let the page continue vertically.
+      if (next < 0 || next > slides.length - 1) return;
+
+      event.preventDefault();
+      wheelLockRef.current = true;
+      goTo(next);
+
+      window.setTimeout(() => {
+        wheelLockRef.current = false;
+      }, 520);
     };
 
-    const render=()=>{
-      frame++; const t=frame*.012;
-      ctx.clearRect(0,0,width,height);
-      const bg=ctx.createLinearGradient(0,0,width,height);
-      bg.addColorStop(0,"#030303"); bg.addColorStop(.5,"#090604"); bg.addColorStop(1,"#020303");
-      ctx.fillStyle=bg; ctx.fillRect(0,0,width,height);
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [active, slides.length]);
 
-      const glow=ctx.createRadialGradient(width*.67,height*.46,0,width*.67,height*.46,Math.max(width*.48,550));
-      glow.addColorStop(0,"rgba(255,91,10,.13)"); glow.addColorStop(.3,"rgba(255,90,10,.055)"); glow.addColorStop(1,"rgba(255,70,0,0)");
-      ctx.fillStyle=glow; ctx.fillRect(0,0,width,height);
+  const onPointerDown = (event: React.PointerEvent<HTMLElement>) => {
+    pointerStartRef.current = event.clientX;
+  };
 
-      // Very faint technical grid.
-      ctx.save(); ctx.globalAlpha=.055; ctx.strokeStyle="#c55b1a"; ctx.lineWidth=.45;
-      for(let x=-100;x<width+100;x+=92){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+width*.04,height);ctx.stroke();}
-      for(let y=20;y<height;y+=92){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y-height*.018);ctx.stroke();}
-      ctx.restore();
+  const onPointerUp = (event: React.PointerEvent<HTMLElement>) => {
+    const start = pointerStartRef.current;
+    pointerStartRef.current = null;
+    if (start === null) return;
 
-      // The reference has a whole FIELD of ribbons, not one wave.
-      for(let i=0;i<15;i++){
-        const p=new Path2D(); p.moveTo(-120,wave(-120,i,t));
-        for(let x=-120;x<=width+140;x+=10)p.lineTo(x,wave(x,i,t));
-        ctx.save();
-        if(i===7){ctx.strokeStyle="#ff9b4b";ctx.lineWidth=2.7;ctx.globalAlpha=.92;ctx.shadowColor="#ff6a16";ctx.shadowBlur=18;}
-        else if(i===6||i===8){ctx.strokeStyle="#ff751d";ctx.lineWidth=1.55;ctx.globalAlpha=.58;ctx.shadowColor="#ff6500";ctx.shadowBlur=8;}
-        else{ctx.strokeStyle=i%2?"#d85b13":"#ff812d";ctx.lineWidth=i%3===0?1.05:.62;ctx.globalAlpha=.18+(1-Math.abs(i-7)/8)*.2;}
-        ctx.stroke(p); ctx.restore();
-      }
+    const distance = event.clientX - start;
+    if (Math.abs(distance) < 45) return;
 
-      // Bright moving dashes riding the main ribbon.
-      const main=new Path2D(); main.moveTo(-120,wave(-120,7,t));
-      for(let x=-120;x<=width+140;x+=10)main.lineTo(x,wave(x,7,t));
-      ctx.save(); ctx.strokeStyle="#ffd0a5";ctx.lineWidth=1.05;ctx.globalAlpha=.82;ctx.setLineDash([1,12]);ctx.lineDashOffset=-frame*1.7;ctx.stroke(main);ctx.restore();
+    goTo(distance < 0 ? active + 1 : active - 1);
+  };
 
-      // Dense atmospheric particles.
-      for(const p of dots){
-const tt=t*p.speed+p.phase; const x=p.x+Math.sin(tt*.72)*22; const y=p.y+Math.cos(tt*.5)*16;
-        const ry=wave(x,7,t); const near=Math.abs(y-ry); const a=Math.min(1,p.a*(.7+.3*Math.sin(tt))+(near<50?(1-near/50)*.3:0));
-        ctx.beginPath();ctx.arc(x,y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,${p.glow?185:112},${p.glow?80:24},${a})`;
-        ctx.shadowColor="#ff701b";ctx.shadowBlur=p.glow||near<20?8:0;ctx.fill();
-      }
+  return (
+    <section
+      ref={storyRef}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-[#050706] text-white select-none"
+      style={{ touchAction: "pan-y" }}
+    >
+      {/* Full-screen background: only the active slide is visible. */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#050706]">
+        {slides.map((slide, index) => (
+          <img
+            key={`${slide.image}-${index}`}
+            src={slide.image}
+            alt=""
+            className={`absolute inset-0 h-full w-full object-cover transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              active === index
+                ? "scale-100 opacity-100"
+                : "scale-[1.025] opacity-0"
+            }`}
+            aria-hidden="true"
+          />
+        ))}
 
-      // Bright particles that travel along the complete ribbon.
-      for(let i=0;i<48;i++){
-        const q=(i/48+t*(.015+(i%5)*.0018))%1; const x=-80+q*(width+160); const y=wave(x,7,t);
-        ctx.beginPath();ctx.arc(x,y,i%7===0?2.3:1,0,Math.PI*2);ctx.fillStyle=i%7===0?"rgba(255,220,190,.95)":"rgba(255,137,53,.8)";ctx.shadowColor="#ff7620";ctx.shadowBlur=i%7===0?13:6;ctx.fill();
-      }
+        {active > 0 && (
+          <>
+            <div className="absolute inset-0 bg-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/10 to-black/35" />
+          </>
+        )}
+      </div>
 
-      // WAVE-WRAPPED ORBITAL FIELD
-      // Full 360° orbital rings are anchored into the flowing ribbon field.
-      // They are deliberately blended into the wave instead of appearing as
-      // isolated circles or half-orbits.
+      {/* The first landing image remains exactly as the supplied image. */}
+      {active === 0 && (
+        <div className="pointer-events-none absolute bottom-8 right-8 z-30 hidden md:block">
+          <p className="text-[9px] uppercase tracking-[0.3em] text-white/55">
+            Scroll / Swipe →
+          </p>
+        </div>
+      )}
 
-      const drawOrbitSystem = (
-        cx: number,
-        cy: number,
-        rxBase: number,
-        ryBase: number,
-        rotation: number,
-        rings: number,
-        scaleStep: number,
-        phaseOffset: number,
-        orbitMotion: number = 0
-      ) => {
-        ctx.save();
+      {/* Landing-page content over the plain background image. */}
+      {active === 0 && (
+        <div className="absolute inset-0 z-10 flex items-center">
+          <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
+            <div className="max-w-3xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.38em] text-[#ff6500] md:text-[12px]">
+                GOVERNANCE • RISK • COMPLIANCE
+              </p>
 
-// ============================================================
-// ANTI-CLOCKWISE ORBIT MOVEMENT
-// The ellipse itself DOES NOT rotate.
-// The complete orbital system revolves around an invisible
-// circular path in an anti-clockwise direction.
-// ============================================================
+              <h1 className="mt-7 max-w-3xl text-[52px] font-semibold leading-[0.96] tracking-[-0.055em] text-white sm:text-[64px] lg:text-[76px] xl:text-[84px]">
+                Make complexity your competitive advantage.
+              </h1>
 
-const revolutionSpeed = 0.02185;
+              <p className="mt-7 max-w-2xl text-[16px] leading-8 text-white/75 md:text-[18px] md:leading-9">
+                Ankh GRC helps organizations navigate the intersection of regulation, technology, cybersecurity, privacy, data and AI — turning complex requirements into practical governance and confident business decisions.
+              </p>
 
-// Negative angle = anti-clockwise
-const revolutionAngle = -frame * revolutionSpeed;
+              <div className="mt-9 flex flex-wrap gap-3">
+             <Link
+  href="/about"
+  className="group inline-flex items-center gap-3 rounded-[10px] bg-[#ff6500] px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00]"
+>
+  Explore Our Services
+  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+</Link>
 
-// Radius of the invisible revolution path
-const revolutionRadiusX = width * 0.055;
-const revolutionRadiusY = height * 0.035;
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 rounded-[10px] border border-white/20 bg-black/10 px-6 py-4 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-white/35 hover:bg-white/10"
+                >
+                  Talk to Ankh GRC
+                </Link>
+              </div>
+            </div>
 
-// Move the COMPLETE orbit around the invisible center
-const movingCx =
-  cx + Math.cos(revolutionAngle) * revolutionRadiusX;
+         
+          </div>
+        </div>
+      )}
 
-const movingCy =
-  cy + Math.sin(revolutionAngle) * revolutionRadiusY;
+      {/* Normal horizontal card carousel: previous | active | next. */}
+      {active > 0 && (
+        <div className="absolute inset-0 z-10 overflow-hidden">
+          <div className="relative h-full w-full">
+            {slides.slice(1).map((slide, cardIndex) => {
+              const index = cardIndex + 1;
+              const relative = index - active;
+              const isActive = relative === 0;
+              const isSide = Math.abs(relative) === 1;
+              const isFar = Math.abs(relative) > 1;
 
-// Orbit shape keeps its original orientation.
-// IMPORTANT: no frame value inside rotate().
-ctx.translate(movingCx, movingCy);
-ctx.rotate(rotation);
-        // Soft atmospheric glow behind each orbital family.
-        const orbitGlow = ctx.createRadialGradient(
-          0, 0, 0,
-          0, 0, Math.max(rxBase, ryBase) * 1.25
-        );
-        orbitGlow.addColorStop(0, "rgba(255,105,25,0.075)");
-        orbitGlow.addColorStop(0.42, "rgba(255,88,10,0.025)");
-        orbitGlow.addColorStop(1, "rgba(255,70,0,0)");
-        ctx.fillStyle = orbitGlow;
-        ctx.fillRect(
-          -Math.max(rxBase, ryBase) * 1.3,
-          -Math.max(rxBase, ryBase) * 1.3,
-          Math.max(rxBase, ryBase) * 2.6,
-          Math.max(rxBase, ryBase) * 2.6
-        );
+              // Keep the neighbouring cards clearly visible at left/right.
+              const x = relative * 48;
+              const scale = isActive ? 1 : isSide ? 0.82 : 0.68;
+              const opacity = isActive ? 1 : isSide ? 0.22 : 0;
 
-        // Full elliptical orbit rings.
-        for (let i = 0; i < rings; i++) {
-          const scale = 1 + i * scaleStep;
-          const rx = rxBase * scale;
-          const ry = ryBase * (1 + i * scaleStep * 0.82);
+              return (
+                <button
+                  key={`${slide.label}-${index}`}
+                  type="button"
+                  onClick={() => goTo(index)}
+                  aria-label={`Open ${slide.label} slide`}
+                  className="absolute left-1/2 top-[108px] bottom-[72px] flex w-[64vw] min-w-[640px] items-center text-left transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{
+                    transform: `translate(calc(-50% + ${x}vw), 0) scale(${scale})`,
+                    opacity,
+                    pointerEvents: isFar ? "none" : "auto",
+                  }}
+                >
+                  <div className="max-w-[980px] px-4 py-8 md:px-8 md:py-12">
+                    <p
+                      className={`uppercase tracking-[0.4em] transition-all duration-[650ms] ${
+                        isActive
+                          ? "text-[12px] font-semibold text-[#ff6500]"
+                          : "text-[15px] font-semibold text-white/90"
+                      }`}
+                    >
+                      {slide.label}
+                    </p>
 
-          ctx.beginPath();
-          ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+                    <h2
+                      className={`mt-5 max-w-[820px] leading-[0.94] tracking-[-0.055em] transition-all duration-[650ms] ${
+                        isActive
+                          ? "text-[68px] font-bold text-white sm:text-[84px] lg:text-[104px] xl:text-[116px]"
+                          : "text-[56px] font-semibold text-white"
+                      }`}
+                    >
+                      {slide.title}
+                    </h2>
 
-          const centerRing = Math.floor(rings * 0.48);
-          ctx.strokeStyle =
-            i === centerRing
-              ? "#ff9a4b"
-              : i % 2 === 0
-                ? "#e9681d"
-                : "#c95313";
+                    <p
+                      className={`mt-8 max-w-[900px] leading-8 transition-all duration-[650ms] ${
+                        isActive
+                          ? "text-[17px] text-white/80 md:text-[19px] md:leading-9"
+                          : "text-[16px] text-white/55 md:text-[18px] md:leading-8"
+                      }`}
+                    >
+                      {slide.description}
+                    </p>
 
-          ctx.globalAlpha =
-            i === centerRing
-              ? 0.48
-              : 0.095 + (1 - Math.abs(i - centerRing) / rings) * 0.10;
+                    <div
+                      className={`mt-9 flex flex-wrap gap-x-12 gap-y-4 transition-all duration-[650ms] ${
+                        isActive ? "opacity-100" : "opacity-70"
+                      }`}
+                    >
+                      {slide.details.map((detail) => (
+                        <span
+                          key={detail}
+                          className={`text-[10px] font-semibold uppercase tracking-[0.3em] md:text-[11px] ${
+                            isActive ? "text-white/75" : "text-white/45"
+                          }`}
+                        >
+                          {detail}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
-          ctx.lineWidth =
-            i === centerRing
-              ? 1.65
-              : i === centerRing - 1 || i === centerRing + 1
-                ? 0.95
-                : 0.52;
+      {/* 8-position progress indicator. */}
+      <div className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2">
+        {slides.map((slide, index) => (
+          <button
+            key={`${slide.image}-dot-${index}`}
+            type="button"
+            aria-label={`Go to ${index === 0 ? "landing page" : slide.label}`}
+            onClick={() => goTo(index)}
+            className={`h-1 transition-all duration-500 ${
+              active === index ? "w-10 bg-[#ff6500]" : "w-2 bg-white/30"
+            }`}
+          />
+        ))}
+      </div>
 
-          ctx.shadowColor = "#ff6500";
-          ctx.shadowBlur = i === centerRing ? 14 : 4;
-          ctx.stroke();
-        }
-
-        // A dotted full orbit, integrated into the same family.
-        ctx.save();
-        ctx.setLineDash([1, 11]);
-        ctx.lineDashOffset = -frame * 0.85;
-        ctx.beginPath();
-        ctx.ellipse(
-          0,
-          0,
-          rxBase * (1 + (rings - 1) * scaleStep * 0.55),
-          ryBase * (1 + (rings - 1) * scaleStep * 0.42),
-          0,
-          0,
-          Math.PI * 2
-        );
-        ctx.strokeStyle = "#ff984c";
-        ctx.globalAlpha = 0.30;
-        ctx.lineWidth = 0.8;
-        ctx.stroke();
-        ctx.restore();
-
-        // Moving particles travel around the COMPLETE orbit, not just an arc.
-        for (let i = 0; i < 13; i++) {
-          const ringIndex = i % rings;
-          const scale = 1 + ringIndex * scaleStep;
-          const rx = rxBase * scale;
-          const ry = ryBase * (1 + ringIndex * scaleStep * 0.82);
-
-          const angle =
-            phaseOffset +
-            frame * (0.0038 + (i % 5) * 0.00065) +
-            i * (Math.PI * 2 / 13);
-
-          const px = Math.cos(angle) * rx;
-          const py = Math.sin(angle) * ry;
-
-          ctx.beginPath();
-          ctx.arc(px, py, i % 6 === 0 ? 2.15 : 0.82, 0, Math.PI * 2);
-          ctx.fillStyle =
-            i % 6 === 0
-              ? "rgba(255,224,198,0.96)"
-              : "rgba(255,132,43,0.82)";
-          ctx.shadowColor = "#ff6a16";
-          ctx.shadowBlur = i % 6 === 0 ? 15 : 6;
-          ctx.fill();
-        }
-
-        // A subtle travelling highlight gives the orbit a living connection
-        // to the moving wave.
-        const highlightRadius = Math.min(
-          rxBase * 0.92,
-          ryBase * 0.92
-        );
-        const highlightAngle =
-          phaseOffset + frame * 0.0032;
-
-        const hx = Math.cos(highlightAngle) * highlightRadius;
-        const hy =
-          Math.sin(highlightAngle) *
-          Math.max(ryBase * 0.92, 1);
-
-        const hGlow = ctx.createRadialGradient(
-          hx, hy, 0,
-          hx, hy, 27
-        );
-        hGlow.addColorStop(0, "rgba(255,235,215,0.90)");
-        hGlow.addColorStop(0.18, "rgba(255,150,72,0.58)");
-        hGlow.addColorStop(1, "rgba(255,80,0,0)");
-
-        ctx.fillStyle = hGlow;
-        ctx.fillRect(hx - 27, hy - 27, 54, 54);
-
-        ctx.beginPath();
-        ctx.arc(hx, hy, 2.35, 0, Math.PI * 2);
-        ctx.fillStyle = "#ffe9d5";
-        ctx.shadowColor = "#ff6a16";
-        ctx.shadowBlur = 19;
-        ctx.fill();
-
-        ctx.restore();
-      };
-
-      // The orbital systems sit directly on/around the ribbon flow.
-      // Their positions intentionally overlap the wave field so the two
-      // visual systems read as one continuous structure.
-
-    
-
-      
-
-      // Right: the main orbital family, fully visible and blended with the
-      // lower flowing ribbon instead of being a disconnected ellipse.
-      drawOrbitSystem(
-        width * 0.84,
-        height * 0.68,
-        width * 0.145,
-        height * 0.085,
-        -0.05,
-        11,
-        0.095,
-        4.35,
-        0.00042
-      );
-
-      // Fine connecting filaments between the main wave and the right orbit.
-      // These keep the transition visually continuous.
-      ctx.save();
-      ctx.globalAlpha = 0.20;
-      ctx.strokeStyle = "#df6419";
-      ctx.lineWidth = 0.55;
-
-      for (let i = 0; i < 8; i++) {
-        const p = new Path2D();
-        const startX = width * 0.55;
-        const endX = width * 0.86;
-        const startY = wave(startX, 7 + (i % 3), t) + (i - 4) * 4;
-        const endY = height * 0.68 + Math.sin(i * 0.7) * height * 0.075;
-
-        p.moveTo(startX, startY);
-        p.bezierCurveTo(
-          width * 0.64,
-          startY + (i - 4) * 5,
-          width * 0.73,
-          endY - (i - 4) * 8,
-          endX,
-          endY
-        );
-
-        ctx.stroke(p);
-      }
-      ctx.restore();
-
-      // Thin vertical data streaks add the small details seen throughout the image.
-      for(const p of streaks){
-        const y=((frame*p.speed+p.phase*100)%(height+160))-80, x=p.x+Math.sin(t+p.phase)*8;
-        const g=ctx.createLinearGradient(x,y-32,x,y+32);g.addColorStop(0,"rgba(255,100,20,0)");g.addColorStop(.5,`rgba(255,125,35,${p.a})`);g.addColorStop(1,"rgba(255,100,20,0)");
-        ctx.fillStyle=g;ctx.fillRect(x,y-32,p.r,64);
-      }
-
-      raf=requestAnimationFrame(render);
-    };
-    render();
-    return()=>{cancelAnimationFrame(raf);window.removeEventListener("resize",resize);};
-  },[]);
-
-  return <div className="absolute inset-0 overflow-hidden bg-[#030303]"><canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" /></div>;
+      {active > 0 && (
+        <p className="pointer-events-none absolute bottom-8 right-8 z-30 hidden text-[9px] uppercase tracking-[0.3em] text-white/40 md:block">
+          Scroll / Swipe →
+        </p>
+      )}
+    </section>
+  );
 }
+
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-[#f5f2eb] text-[#151916]">
@@ -437,87 +437,10 @@ export default function Home() {
       <Navigation />
 
       {/* =========================================================
-          HERO
+          HORIZONTAL LANDING STORY
+          Only the landing hero is changed; all following sections remain untouched.
       ========================================================= */}
-      <section className="relative min-h-[calc(110vh-80px)] overflow-hidden bg-[#0b0f0d] text-white">
-        {/* Full-screen animated background canvas */}
-        <div className="pointer-events-none absolute inset-0 z-0 h-full w-full">
-          <FullscreenClassyMeshHero />
-        </div>
-
-        {/* Subtle grid pattern overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 z-10 opacity-[0.12]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-
-        <div className="relative z-20 min-h-[calc(100vh-80px)] overflow-hidden">
-          <div className="relative mx-auto flex min-h-[calc(100vh-80px)] max-w-[1900px] items-center px-6 pb-16 pt-20 lg:px-24 lg:pb-12 lg:pt-16">
-            <div className="max-w-[720px]">
-              <div className="mb-7 flex items-center gap-4 pt-[40px] text-[11px] font-semibold uppercase tracking-[0.32em] text-white/55">
-                <span className="h-px w-12 bg-[#ff6500]/60" />
-                Governance
-                <span className="text-[#ff6500]">•</span>
-                Risk
-                <span className="text-[#ff6500]">•</span>
-                Compliance
-              </div>
-
-              <h1 className="max-w-[700px] text-[56px] font-medium leading-[0.93] tracking-[-0.055em] sm:text-[68px] md:text-[82px] lg:text-[88px] xl:text-[94px]">
-                Make
-                <br />
-                complexity your
-                <br />
-                <span className="text-[#ff6500]">competitive</span>
-                <br />
-                <span className="text-[#ff6500]">advantage.</span>
-              </h1>
-
-              <p className="mt-9 max-w-[650px] text-[16px] leading-7 text-white/60 md:text-[17px] md:leading-8">
-                Ankh GRC helps organizations navigate the intersection of
-                regulation, technology, cybersecurity, privacy, data and AI —
-                turning complex requirements into practical governance and
-                confident business decisions.
-              </p>
-
-              <div className="mt-9 flex flex-wrap gap-4">
-                <Link
-                  href="/services"
-                  className="group inline-flex min-h-[56px] items-center gap-8 rounded-[7px] bg-[#ff6500] px-7 text-sm font-semibold text-black transition-all duration-500 hover:-translate-y-1 hover:bg-[#ff7418] hover:shadow-[0_18px_45px_rgba(255,101,0,0.22)]"
-                >
-                  Explore Our Services
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Link>
-
-                <Link
-                  href="/contact"
-                  className="inline-flex min-h-[56px] items-center rounded-[7px] border border-white/25 px-7 text-sm font-semibold text-white transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6500]/60 hover:bg-white/[0.035]"
-                >
-                  Talk to Ankh GRC
-                </Link>
-              </div>
-
-              <div className="mt-16 flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-white/45">
-                <span className="relative block h-16 w-px overflow-hidden bg-white/15">
-                  <span className="absolute left-0 top-0 h-7 w-px bg-[#ff6500] animate-[scrollLine_2.4s_ease-in-out_infinite]" />
-                </span>
-                <span>Scroll</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <style jsx>{`
-          @keyframes scrollLine {
-            0%, 100% { transform: translateY(-2px); opacity: .4; }
-            50% { transform: translateY(38px); opacity: 1; }
-          }
-        `}</style>
-      </section>
+      <HorizontalGrcStory />
 
       {/* =========================================================
           PERSPECTIVE
