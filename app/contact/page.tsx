@@ -279,198 +279,186 @@ export default function ContactPage() {
       ========================================================= */}
       <section
         id="contact-form"
-        className="border-y border-[#e4e1db] bg-[#faf9f7] py-20 lg:py-24"
+        className="border-y border-[#e4e1db] bg-[#f4f1eb] py-20 lg:py-28"
       >
-        <div className="mx-auto w-full max-w-3xl px-6 lg:px-10">
-          {/* HEADER */}
-          <div className="mb-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6500]">
-              Send a Message
-            </p>
+        <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-start lg:gap-20">
+            {/* FORM INTRO */}
+            <div className="max-w-md lg:sticky lg:top-32">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6500]">
+                Send a Message
+              </p>
 
-            <h2 className="mt-4 text-4xl font-medium leading-[1.1] tracking-[-0.04em] sm:text-5xl">
-              Tell us about your compliance needs
-            </h2>
+              <h2 className="mt-5 text-4xl font-medium leading-[1.05] tracking-[-0.045em] sm:text-5xl">
+                Tell us about your compliance needs
+              </h2>
 
-            <p className="mt-5 text-base leading-7 text-black/55">
-              Fill out the form and we&apos;ll get back to you within 1-2
-              business days.
-            </p>
-          </div>
+              <p className="mt-6 text-base leading-7 text-black/55">
+                Fill out the form and we&apos;ll get back to you within 1-2
+                business days.
+              </p>
 
-          {/* FORM */}
-          <form
-            onSubmit={handleSubmit}
-            className="grid grid-cols-1 gap-5 sm:grid-cols-2"
-          >
-            {/* FIRST NAME */}
-            <div>
-              <label
-                htmlFor="first_name"
-                className="mb-2 block text-[13px] font-semibold"
-              >
-                First Name *
-              </label>
+              <div className="mt-10 h-px w-16 bg-[#ff6500]" />
 
-              <input
-                id="first_name"
-                type="text"
-                name="first_name"
-                required
-                className="w-full border border-[#e4e1db] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#ff6500]"
-              />
-            </div>
-
-            {/* LAST NAME */}
-            <div>
-              <label
-                htmlFor="last_name"
-                className="mb-2 block text-[13px] font-semibold"
-              >
-                Last Name *
-              </label>
-
-              <input
-                id="last_name"
-                type="text"
-                name="last_name"
-                required
-                className="w-full border border-[#e4e1db] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#ff6500]"
-              />
-            </div>
-
-            {/* WORK EMAIL */}
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-2 block text-[13px] font-semibold"
-              >
-                Work Email *
-              </label>
-
-              <input
-                id="email"
-                type="email"
-                name="email"
-                required
-                className="w-full border border-[#e4e1db] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#ff6500]"
-              />
-            </div>
-
-            {/* COMPANY */}
-            <div>
-              <label
-                htmlFor="company"
-                className="mb-2 block text-[13px] font-semibold"
-              >
-                Company
-              </label>
-
-              <input
-                id="company"
-                type="text"
-                name="company"
-                className="w-full border border-[#e4e1db] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#ff6500]"
-              />
-            </div>
-
-            {/* REASON */}
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="reason"
-                className="mb-2 block text-[13px] font-semibold"
-              >
-                What can we help with? *
-              </label>
-
-              <select
-                id="reason"
-                name="reason"
-                required
-                defaultValue=""
-                className="w-full border border-[#e4e1db] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#ff6500]"
-              >
-                <option value="" disabled>
-                  Select an option
-                </option>
-
-                <option value="ISO 27001 Consulting">
-                  ISO 27001 Consulting
-                </option>
-
-                <option value="SOC 2 Readiness">
-                  SOC 2 Readiness
-                </option>
-
-                <option value="PCI DSS Compliance">
-                  PCI DSS Compliance
-                </option>
-
-                <option value="DPDPA / Privacy Compliance">
-                  DPDPA / Privacy Compliance
-                </option>
-
-                <option value="GRC Tool Implementation">
-                  GRC Tool Implementation
-                </option>
-
-                <option value="Internal Audit Services">
-                  Internal Audit Services
-                </option>
-
-                <option value="Partnership Inquiry">
-                  Partnership Inquiry
-                </option>
-
-                <option value="Other">
-                  Other
-                </option>
-              </select>
-            </div>
-
-            {/* MESSAGE */}
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="message"
-                className="mb-2 block text-[13px] font-semibold"
-              >
-                Message *
-              </label>
-
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={5}
-                className="w-full resize-y border border-[#e4e1db] bg-white px-4 py-3 text-sm outline-none transition focus:border-[#ff6500]"
-              />
-            </div>
-
-            {/* SUBMIT */}
-            <div className="sm:col-span-2">
-              <button
-                type="submit"
-                className="inline-flex items-center gap-3 bg-[#111111] px-7 py-4 text-sm font-semibold text-white transition hover:bg-[#ff6500] hover:text-black"
-              >
-                Submit
-                <span>→</span>
-              </button>
-
-              <p className="mt-4 text-xs leading-5 text-black/45">
-                This form currently opens your email client on submit.
-                Connect it to a form backend (e.g., Formspree, HubSpot, or
-                your CRM) for a proper inbox-delivered submission before
-                publishing.
+              <p className="mt-5 text-xs uppercase tracking-[0.2em] text-black/35">
+                Ankh GRC • Secure • Compliant • Future Ready
               </p>
             </div>
-          </form>
+
+            {/* FORM CARD */}
+            <div className="rounded-[24px] border border-black/10 bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.07)] sm:p-8 lg:p-10">
+              <form
+                onSubmit={handleSubmit}
+                className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2"
+              >
+                {/* FIRST NAME */}
+                <div>
+                  <label
+                    htmlFor="first_name"
+                    className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-black/65"
+                  >
+                    First Name *
+                  </label>
+
+                  <input
+                    id="first_name"
+                    type="text"
+                    name="first_name"
+                    required
+                    className="w-full rounded-[10px] border border-[#ddd9d1] bg-[#faf9f7] px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[#ff6500] focus:bg-white focus:ring-4 focus:ring-[#ff6500]/10"
+                  />
+                </div>
+
+                {/* LAST NAME */}
+                <div>
+                  <label
+                    htmlFor="last_name"
+                    className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-black/65"
+                  >
+                    Last Name *
+                  </label>
+
+                  <input
+                    id="last_name"
+                    type="text"
+                    name="last_name"
+                    required
+                    className="w-full rounded-[10px] border border-[#ddd9d1] bg-[#faf9f7] px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[#ff6500] focus:bg-white focus:ring-4 focus:ring-[#ff6500]/10"
+                  />
+                </div>
+
+                {/* WORK EMAIL */}
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-black/65"
+                  >
+                    Work Email *
+                  </label>
+
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full rounded-[10px] border border-[#ddd9d1] bg-[#faf9f7] px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[#ff6500] focus:bg-white focus:ring-4 focus:ring-[#ff6500]/10"
+                  />
+                </div>
+
+                {/* COMPANY */}
+                <div>
+                  <label
+                    htmlFor="company"
+                    className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-black/65"
+                  >
+                    Company
+                  </label>
+
+                  <input
+                    id="company"
+                    type="text"
+                    name="company"
+                    className="w-full rounded-[10px] border border-[#ddd9d1] bg-[#faf9f7] px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[#ff6500] focus:bg-white focus:ring-4 focus:ring-[#ff6500]/10"
+                  />
+                </div>
+
+                {/* REASON */}
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="reason"
+                    className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-black/65"
+                  >
+                    What can we help with? *
+                  </label>
+
+                  <select
+                    id="reason"
+                    name="reason"
+                    required
+                    defaultValue=""
+                    className="w-full rounded-[10px] border border-[#ddd9d1] bg-[#faf9f7] px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[#ff6500] focus:bg-white focus:ring-4 focus:ring-[#ff6500]/10"
+                  >
+                    <option value="" disabled>
+                      Select an option
+                    </option>
+                    <option value="ISO 27001 Consulting">ISO 27001 Consulting</option>
+                    <option value="SOC 2 Readiness">SOC 2 Readiness</option>
+                    <option value="PCI DSS Compliance">PCI DSS Compliance</option>
+                    <option value="DPDPA / Privacy Compliance">DPDPA / Privacy Compliance</option>
+                    <option value="GRC Tool Implementation">GRC Tool Implementation</option>
+                    <option value="Internal Audit Services">Internal Audit Services</option>
+                    <option value="Partnership Inquiry">Partnership Inquiry</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                {/* MESSAGE */}
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-black/65"
+                  >
+                    Message *
+                  </label>
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={6}
+                    className="w-full resize-y rounded-[10px] border border-[#ddd9d1] bg-[#faf9f7] px-4 py-3.5 text-sm outline-none transition-all duration-200 focus:border-[#ff6500] focus:bg-white focus:ring-4 focus:ring-[#ff6500]/10"
+                  />
+                </div>
+
+                {/* SUBMIT */}
+                <div className="flex flex-col items-start gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center gap-3 rounded-[10px] bg-[#111111] px-7 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#ff6500] hover:shadow-[0_10px_25px_rgba(255,101,0,0.18)]"
+                  >
+                    Submit
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+
+                  <p className="max-w-md text-xs leading-5 text-black/40">
+                    This form currently opens your email client on submit.
+                    Connect it to a form backend (e.g., Formspree, HubSpot, or
+                    your CRM) for a proper inbox-delivered submission before
+                    publishing.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* =========================================================
           FINAL CTA
       ========================================================= */}
-      <section className="bg-[#111412] px-6 py-24 text-center text-white lg:px-10 lg:py-28">
+      <section className="bg-[#111412] px-6 py- 24 text-center text-white lg:px-10 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6500]">
             ANKH GRC

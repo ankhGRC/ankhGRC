@@ -166,12 +166,12 @@ export default function IndustriesPage() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative bg-[#151916] text-white h-[690px]">
+      <section className="relative bg-[#151916] text-white h-[700px]">
         <div
           className="absolute inset-0 opacity-70 pt-60"
           style={{
             background:
-              "radial-gradient(circle at 80% 20%, rgba(255,101,0,0.14), transparent 30%)",
+              "radial-gradient(circle at 80% 20%, transparent 30%)",
           }}
         />
 
@@ -197,7 +197,7 @@ export default function IndustriesPage() {
 
           <div className="flex items-end">
             <div className="w-full border-t border-white/20 pt-7 lg:border-l lg:border-t-0 lg:pb-4 lg:pl-10 lg:pt-0">
-             ``
+             
 
               <p className="mt-6 max-w-md text-[28px] leading-[1.2] tracking-[-0.025em] text-white/90 md:text-[34px]">
                 Business context first.
