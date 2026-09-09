@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Navigation } from "@/components/landing/navigation";
-import { Footer } from "@/components/landing/footer";
+import Footer from "@/components/landing/footer";
 
 type Section = {
   number: string;

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Navigation } from "@/components/landing/navigation";
-import { Footer } from "@/components/landing/footer";
+import Footer from "@/components/landing/footer";
 
 const challenges = [
   {

@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/landing/navigation";
-import { Footer } from "@/components/landing/footer";
+import Footer from "@/components/landing/footer";
 
 export default function InsightsPage() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { Navigation } from "@/components/landing/navigation";
-
+import Footer from "@/components/landing/footer";
 const challenges = [
   {
     number: "01",
@@ -707,61 +707,7 @@ export default function AIGovernancePage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#111412] text-white">
-        <div className="mx-auto max-w-[10px] px-6 py-12 lg:px-10">
-          <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end">
-            <div>
-              <p className="text-sm font-semibold tracking-[0.16em]">
-                <span className="text-[#ff6a00]">ANKH</span> GRC
-              </p>
-
-              <p className="mt-3 text-xs text-white/30">
-                Govern AI. Build Trust. Enable Innovation.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/40">
-              <a href="/" className="transition hover:text-[#ff6a00]">
-                Home
-              </a>
-
-              <a
-                href="#framework"
-                className="transition hover:text-[#ff6a00]"
-              >
-                Framework
-              </a>
-
-              <a
-                href="#coverage"
-                className="transition hover:text-[#ff6a00]"
-              >
-                Coverage
-              </a>
-
-              <a
-                href="#services"
-                className="transition hover:text-[#ff6a00]"
-              >
-                Services
-              </a>
-
-              <a
-                href="#contact"
-                className="transition hover:text-[#ff6a00]"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-between gap-3 pt-6 text-xs text-white/25 md:flex-row">
-            <p>© 2024 Ankh GRC. All rights reserved.</p>
-
-            <p>Govern AI. Build Trust. Enable Innovation.</p>
-          </div>
-        </div>
-      </footer>
+     <Footer/>
     </main>
   );
 }

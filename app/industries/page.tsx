@@ -166,7 +166,7 @@ export default function IndustriesPage() {
       {/* =========================================================
           HERO
       ========================================================= */}
-      <section className="relative bg-[#151916] text-white h-[700px]">
+      <section className="relative bg-[#151916] text-white h-[703px]">
         <div
           className="absolute inset-0 opacity-70 pt-60"
           style={{

@@ -6,8 +6,15 @@ import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const navLinks = [
-  { name: "Company", href: "/about" },
+const companyItems = [
+  {
+    name: "About Us",
+    href: "/about",
+  },
+  {
+    name: "Contact",
+    href: "/contact",
+  },
 ];
 
 const serviceItems = [
@@ -64,6 +71,7 @@ export function Navigation() {
   const [isServicesPinned, setIsServicesPinned] = useState(false);
 
   const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const [isCompanyOpen, setIsCompanyOpen] = useState(false);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
  
@@ -134,19 +142,21 @@ export function Navigation() {
   ========================================================= */
 
 
-  const closeMenus = () => {
-    setIsServicesOpen(false);
-    setIsServicesDetailOpen(false);
-    setIsServicesPinned(false);
-    setIsResourcesOpen(false);
-    setIsMobileMenuOpen(false);
-  };
+const closeMenus = () => {
+  setIsServicesOpen(false);
+  setIsServicesDetailOpen(false);
+  setIsServicesPinned(false);
+  setIsResourcesOpen(false);
+  setIsCompanyOpen(false);
+  setIsMobileMenuOpen(false);
+};
 
   /* =========================================================
      SERVICES
   ========================================================= */
   const handleTopServicesClick = () => {
     setIsResourcesOpen(false);
+    setIsCompanyOpen(false);
 
     setIsServicesOpen((prev) => {
       const next = !prev;
@@ -170,6 +180,7 @@ export function Navigation() {
     setIsServicesOpen(false);
     setIsServicesDetailOpen(false);
     setIsServicesPinned(false);
+    setIsCompanyOpen(false);
 
     setIsResourcesOpen((prev) => !prev);
   };
@@ -574,14 +585,25 @@ export function Navigation() {
                 {/* =================================================
                     ABOUT
                 ================================================= */}
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={closeMenus}
+                {/* =================================================
+                    COMPANY
+                ================================================= */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsServicesOpen(false);
+                      setIsServicesDetailOpen(false);
+                      setIsServicesPinned(false);
+                      setIsResourcesOpen(false);
+                      setIsCompanyOpen((prev) => !prev);
+                    }}
                     className={`
                       group
                       relative
+                      flex
+                      items-center
+                      gap-2
                       px-1
                       py-3
                       text-[20px]
@@ -589,14 +611,103 @@ export function Navigation() {
                       tracking-[-0.01em]
                       transition-colors
                       duration-300
-                      text-neutral-800 hover:text-[#E85D04]
+                      ${
+                        isCompanyOpen
+                          ? "text-[#E85D04]"
+                          : "text-neutral-800 hover:text-[#E85D04]"
+                      }
+                    `}
+                    aria-expanded={isCompanyOpen}
+                    aria-haspopup="true"
+                  >
+                    <span>Company</span>
+
+                    <ChevronDown
+                      className={`
+                        h-[17px]
+                        w-[17px]
+                        transition-transform
+                        duration-300
+                        ${isCompanyOpen ? "rotate-180" : ""}
+                      `}
+                    />
+
+                    <span
+                      className={`
+                        absolute
+                        bottom-1
+                        left-0
+                        h-[2px]
+                        bg-[#E85D04]
+                        transition-all
+                        duration-300
+                        ${isCompanyOpen ? "w-full" : "w-0 group-hover:w-full"}
+                      `}
+                    />
+                  </button>
+
+                  {/* COMPANY DROPDOWN — same style as the other dropdowns */}
+                  <div
+                    className={`
+                      fixed
+                      left-0
+                      right-0
+                      top-[70px]
+                      z-[200]
+                      w-full
+                      bg-[#1C211F]
+                      text-white
+                      transition-all
+                      duration-300
+                      ${
+                        isCompanyOpen
+                          ? "visible translate-y-0 opacity-100"
+                          : "invisible pointer-events-none -translate-y-3 opacity-0"
+                      }
                     `}
                   >
-                    {link.name}
+                    <div className="w-full">
+                      <div className="mx-auto flex min-h-[470px] w-full max-w-[1500px] px-8 py-10 lg:px-12">
 
-                    <span className="absolute bottom-1 left-0 h-[2px] w-0 bg-[#E85D04] transition-all duration-300 group-hover:w-full" />
-                  </a>
-                ))}
+                        {/* LEFT */}
+                        <div className="w-[390px] shrink-0 pr-14">
+                          <div className="mt-8 flex h-[190px] w-[330px] items-center justify-center">
+                            <div className="relative flex h-[150px] w-[150px] items-center justify-center rounded-full border border-orange-500/20">
+                              <div className="absolute h-[105px] w-[105px] rounded-full border border-orange-400/20" />
+                              <div className="absolute h-[58px] w-[58px] rounded-2xl border border-orange-400/50 bg-[#171c19] shadow-[0_0_30px_rgba(249,115,22,0.22)]">
+                                <div className="absolute inset-3 flex items-center justify-center rounded-xl border border-orange-500/30 bg-orange-500/10">
+                                  <div className="h-4 w-4 animate-pulse rounded-full bg-orange-400 shadow-[0_0_18px_7px_rgba(249,115,22,0.65)]" />
+                                </div>
+                              </div>
+                              <span className="absolute left-1 top-1/2 h-2 w-2 rounded-full bg-orange-400 shadow-[0_0_14px_4px_rgba(249,115,22,0.7)]" />
+                              <span className="absolute right-2 top-7 h-2 w-2 rounded-full bg-orange-300 shadow-[0_0_12px_3px_rgba(249,115,22,0.7)]" />
+                              <span className="absolute bottom-3 right-8 h-2 w-2 rounded-full bg-orange-500 shadow-[0_0_14px_4px_rgba(249,115,22,0.6)]" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* MIDDLE */}
+                        <div className="flex flex-1">
+                          <div className="w-[360px] shrink-0 space-y-4">
+                            {companyItems.map((item) => (
+                              <div key={item.name} className="border-b border-white/15">
+                                <Link
+                                  href={item.href}
+                                  onClick={closeMenus}
+                                  className="group flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all duration-200 hover:bg-[#343936] hover:text-white"
+                                >
+                                  <span>{item.name}</span>
+                                  <ArrowRight className="h-5 w-5 text-white/50 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[#E85D04]" />
+                                </Link>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 {/* =================================================
                     RESOURCES
@@ -921,16 +1032,54 @@ export function Navigation() {
             </a>
 
             {/* MOBILE ABOUT */}
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={closeMenus}
-                className="border-b border-black/10 py-5 text-4xl font-medium tracking-tight text-neutral-900 transition-colors hover:text-[#E85D04]"
+            <div className="border-b border-black/10">
+              <button
+                type="button"
+                onClick={() =>
+                  setIsCompanyOpen((prev) => !prev)
+                }
+                className="flex w-full items-center justify-between py-5 text-left text-4xl font-medium tracking-tight text-neutral-900"
               >
-                {link.name}
-              </a>
-            ))}
+                <span>About</span>
+
+                <ChevronDown
+                  className={`
+                    h-8
+                    w-8
+                    transition-transform
+                    duration-300
+                    ${isCompanyOpen ? "rotate-180" : ""}
+                  `}
+                />
+              </button>
+
+              <div
+                className={`
+                  overflow-hidden
+                  transition-all
+                  duration-500
+                  ${
+                    isCompanyOpen
+                      ? "max-h-[180px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }
+                `}
+              >
+                <div className="pb-5 pl-2">
+                  {companyItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={closeMenus}
+                      className="flex items-center justify-between border-b border-black/5 py-4 text-lg text-neutral-700 transition-colors hover:text-[#E85D04]"
+                    >
+                      {item.name}
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* MOBILE RESOURCES */}
             <div className="border-b border-black/10">

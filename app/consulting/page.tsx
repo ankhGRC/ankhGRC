@@ -1,7 +1,7 @@
 "use client";
 import { Navigation } from "@/components/landing/navigation";
 import { useState, type WheelEvent } from "react";
-import { Footer } from "@/components/landing/footer";
+import Footer from "@/components/landing/footer";
 
 const riskCapabilities = [
   "Enterprise Risk Management (ERM)",

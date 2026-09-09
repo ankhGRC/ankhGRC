@@ -2,6 +2,7 @@
 
 import { FormEvent } from "react";
 import { Navigation } from "@/components/landing/navigation";
+import Footer from "@/components/landing/footer";
 
 export default function ContactPage() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -486,23 +487,7 @@ export default function ContactPage() {
       {/* =========================================================
           FOOTER
       ========================================================= */}
-      <footer className="border-t border-black/10 bg-[#f4f1eb] px-6 py-8 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-          <div>
-            <p className="text-sm font-semibold tracking-[0.15em]">
-              <span className="text-[#ff6500]">ANKH</span> GRC
-            </p>
-
-            <p className="mt-2 text-xs text-black/40">
-              Secure. Compliant. Future Ready.
-            </p>
-          </div>
-
-          <p className="text-xs text-black/35">
-            © 2026 Ankh GRC. All rights reserved.
-          </p>
-        </div>
-      </footer>
+<Footer/>
     </main>
   );
 }

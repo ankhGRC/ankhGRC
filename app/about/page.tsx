@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/landing/navigation";
-import { Footer } from "@/components/landing/footer";
+import Footer from "@/components/landing/footer";
 
 const expertise = [
   {
@@ -106,7 +106,7 @@ export default function AboutPage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[#111412] text-[#f4f1eb]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_35%,rgba(255,95,0,0.10),transparent_32%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_35%,transparent_32%)]" />
 
         <div className="relative mx-auto grid min-h-[900px] w-full max-w-7xl grid-cols-1 items-center gap-16 px-6 py-24 md:px-10 lg:grid-cols-[1.15fr_0.85fr] lg:px-8">
           <div>
