@@ -20,6 +20,8 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains'
 });
 
+const googleSiteVerification = 'tkzsgMaZfc-fsnOZqllvrvuXWi7NmqkP8nVRyds6J3A'
+
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -110,7 +112,7 @@ export const metadata: Metadata = {
   creator: 'Ankh GRC',
   publisher: 'Ankh GRC',
   verification: {
-    google: 'tkzsgMaZfc-fsnOZqllvrvuXWi7NmqkP8nVRyds6J3A',
+    google: googleSiteVerification,
   },
   alternates: {
     canonical: '/',
@@ -149,6 +151,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content={googleSiteVerification} />
+      </head>
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
