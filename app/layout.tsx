@@ -20,26 +20,81 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains'
 });
 
-const organizationJsonLd = {
+const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Ankh GRC',
-  url: 'https://www.ankhgrc.com',
-  email: 'help@ankhgrc.com',
-  description:
-    'Ankh GRC helps organizations strengthen governance, risk management, regulatory compliance, cybersecurity, privacy, data protection, and AI governance.',
-  areaServed: 'Global',
-  knowsAbout: [
-    'Governance',
-    'Risk Management',
-    'Regulatory Compliance',
-    'Cybersecurity',
-    'Information Security',
-    'Privacy',
-    'Data Protection',
-    'AI Governance',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.ankhgrc.com/#organization',
+      name: 'Ankh GRC',
+      url: 'https://www.ankhgrc.com',
+      email: 'help@ankhgrc.com',
+      description:
+        'Ankh GRC helps organizations strengthen governance, risk management, regulatory compliance, cybersecurity, privacy, data protection, and AI governance.',
+      areaServed: 'Global',
+      knowsAbout: [
+        'Governance',
+        'Risk Management',
+        'Regulatory Compliance',
+        'Cybersecurity',
+        'Information Security',
+        'Privacy',
+        'Data Protection',
+        'AI Governance',
+      ],
+      sameAs: ['https://github.com/ankhGRC'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.ankhgrc.com/#website',
+      url: 'https://www.ankhgrc.com',
+      name: 'Ankh GRC',
+      publisher: { '@id': 'https://www.ankhgrc.com/#organization' },
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'ItemList',
+      '@id': 'https://www.ankhgrc.com/#services',
+      name: 'Ankh GRC advisory services',
+      itemListElement: [
+        {
+          '@type': 'Service',
+          name: 'GRC Consulting',
+          serviceType: 'Governance, risk, and compliance consulting',
+          url: 'https://www.ankhgrc.com/consulting',
+          provider: { '@id': 'https://www.ankhgrc.com/#organization' },
+        },
+        {
+          '@type': 'Service',
+          name: 'Information Security Advisory',
+          serviceType: 'Information security governance and risk advisory',
+          url: 'https://www.ankhgrc.com/information-security',
+          provider: { '@id': 'https://www.ankhgrc.com/#organization' },
+        },
+        {
+          '@type': 'Service',
+          name: 'Privacy and Data Protection Advisory',
+          serviceType: 'Privacy, data protection, and data governance advisory',
+          url: 'https://www.ankhgrc.com/privacy-data-protection',
+          provider: { '@id': 'https://www.ankhgrc.com/#organization' },
+        },
+        {
+          '@type': 'Service',
+          name: 'AI Governance Advisory',
+          serviceType: 'Responsible AI governance and model risk advisory',
+          url: 'https://www.ankhgrc.com/ai-governance',
+          provider: { '@id': 'https://www.ankhgrc.com/#organization' },
+        },
+        {
+          '@type': 'Service',
+          name: 'Cybersecurity Regulation Advisory',
+          serviceType: 'Cybersecurity regulatory compliance advisory',
+          url: 'https://www.ankhgrc.com/cybersecurity-regulation',
+          provider: { '@id': 'https://www.ankhgrc.com/#organization' },
+        },
+      ],
+    },
   ],
-  sameAs: ['https://github.com/ankhGRC'],
 }
 
 export const metadata: Metadata = {
@@ -94,7 +149,7 @@ export default function RootLayout({
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         {children}
         <Analytics />
