@@ -3,6 +3,7 @@
 import React from "react";
 import Navigation from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
+import { motion } from "framer-motion";
 
 const frameworks = [
   {
@@ -281,377 +282,271 @@ const benefits = [
 
 export default function CybersecurityRegulationPage() {
   return (
-    <main className="min-h-screen bg-[#111412] text-[#f4f2ec]">
+    <main className="min-h-screen overflow-x-hidden bg-[#111412] text-[#f4f2ec]">
       {/* =========================================================
           NAVBAR
       ========================================================= */}
      <Navigation/>
 
-      {/* =========================================================
-          HERO — DARK
+            {/* =========================================================
+          HERO — CINEMATIC / PARALLAX
       ========================================================= */}
-      <section className="relative overflow-hidden bg-[#111412] h-[970px]  pt-20">
-        <div className="absolute right-[-180px] top-[-160px] h-[600px] w-[600px] rounded-full bg-[#ff6a00]/[0.06] blur-[100px]" />
-
-        <div className="relative mx-auto max-w-[1240px] px-6 pb-24 pt-24 lg:px-8 lg:pb-32 lg:pt-28">
+      <section className="relative isolate overflow-hidden bg-[#111412] pt-20">
+        <motion.div initial={{ opacity:0, scale:0.45 }} animate={{ opacity:1, scale:1 }} transition={{ duration:1.5 }} className="pointer-events-none absolute -right-40 -top-40 h-[620px] w-[620px] rounded-full bg-[#ff6a00]/[0.055] blur-[120px]" />
+        <div className="relative mx-auto min-h-[900px] max-w-[1240px] px-6 pb-28 pt-24 lg:px-8 lg:pt-28">
           <div className="grid items-end gap-16 lg:grid-cols-[1.15fr_0.85fr]">
-            <div>
-              <p className="mb-7 pt-10 text-[11px] font-semibold uppercase tracking-[0.38em] text-[#ff6a00]">
-                Defend. Detect. Respond. Comply. Dominate.
-              </p>
-
-              <h1 className="max-w-[850px] text-[54px] font-medium leading-[0.94] tracking-[-0.055em] sm:text-[68px] lg:text-[82px]">
-                Cybersecurity
-                <br />
-                Regulation
-                <br />
-                Framework
-              </h1>
-
-              <p className="mt-9 max-w-[720px] text-[17px] leading-8 text-[#a8aaa7] lg:text-[19px]">
-                Cybersecurity regulations have moved from optional to critical.
-                NIS2, SEC Cybersecurity Rules, TISAX, and emerging mandates
-                require comprehensive controls, incident reporting, and
-                governance. Ankh GRC helps organizations operationalize
-                cybersecurity regulations across critical infrastructure,
-                financial services, technology, and government sectors.
-              </p>
-
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a
-                  href="#frameworks"
-                  className="inline-flex items-center gap-4 bg-[#ff6a00] px-7 py-4 text-sm font-semibold text-black transition hover:bg-[#ff7b20]"
-                >
-                  Explore Frameworks
-                  <span>→</span>
-                </a>
-
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-4 border border-white/20 px-7 py-4 text-sm font-semibold text-white transition hover:border-[#ff6a00] hover:text-[#ff6a00]"
-                >
-                  Build Strategy
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="hidden lg:block">
-              <div className="border-l border-[#ff6a00]/60 pl-8">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-[#777c78]">
-                  ANKH GRC
-                </p>
-
-                <p className="mt-6 max-w-[330px] text-[38px] leading-[1] tracking-[-0.04em]">
-                  Security
-                  <br />
-                  <span className="text-[#888d89]">by design.</span>
-                </p>
-
-                <div className="mt-8 h-[1px] w-20 bg-[#ff6a00]" />
-              </div>
-            </div>
+            <motion.div initial={{ opacity:0,x:-100,filter:"blur(12px)" }} animate={{ opacity:1,x:0,filter:"blur(0px)" }} transition={{ duration:1,ease:[0.22,1,0.36,1] }}>
+              <motion.p initial={{ opacity:0,y:25 }} animate={{ opacity:1,y:0 }} transition={{ delay:0.2 }} className="mb-7 text-[11px] font-semibold uppercase tracking-[0.38em] text-[#ff6a00]">Defend. Detect. Respond. Comply. Dominate.</motion.p>
+              <motion.h1 initial={{ opacity:0,y:80,scale:0.9 }} animate={{ opacity:1,y:0,scale:1 }} transition={{ duration:1,delay:0.3,ease:[0.16,1,0.3,1] }} className="max-w-[850px] text-[54px] font-medium leading-[0.94] tracking-[-0.055em] sm:text-[68px] lg:text-[82px]">Cybersecurity<br />Regulation<br />Framework</motion.h1>
+              <motion.p initial={{ opacity:0,y:35 }} animate={{ opacity:1,y:0 }} transition={{ duration:0.8,delay:0.6 }} className="mt-9 max-w-[720px] text-[17px] leading-8 text-[#a8aaa7] lg:text-[19px]">Cyber threats, nation-state actors, and critical infrastructure risks have elevated cybersecurity from IT concern to regulatory imperative. Organizations face mandatory breach reporting, incident response requirements, and board-level accountability.</motion.p>
+              <motion.div initial={{ opacity:0,y:30 }} animate={{ opacity:1,y:0 }} transition={{ delay:0.8 }} className="mt-10 flex flex-wrap gap-3">
+                <a href="#frameworks" className="inline-flex items-center gap-4 bg-[#ff6a00] px-7 py-4 text-sm font-semibold text-black transition hover:bg-[#ff7b20]">Explore Frameworks</a>
+                <a href="#contact" className="inline-flex items-center gap-4 border border-white/20 px-7 py-4 text-sm font-semibold text-white transition hover:border-[#ff6a00] hover:text-[#ff6a00]">Build Strategy</a>
+              </motion.div>
+            </motion.div>
+            <motion.div initial={{ opacity:0,x:100,rotate:5 }} animate={{ opacity:1,x:0,rotate:0 }} transition={{ duration:1,delay:0.5 }} className="hidden lg:block">
+              <motion.div animate={{ y:[0,-12,0] }} transition={{ duration:5,repeat:Infinity,ease:"easeInOut" }} className="border-l border-[#ff6a00]/60 pl-8">
+                <p className="text-[10px] uppercase tracking-[0.35em] text-[#777c78]">ANKH GRC</p>
+                <p className="mt-6 max-w-[330px] text-[38px] leading-[1] tracking-[-0.04em]">Security<br /><span className="text-[#888d89]">by design.</span></p>
+                <div className="mt-8 h-px w-20 bg-[#ff6a00]" />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          WHY — WHITE
+          WHY — NORMAL RESPONSIVE GRID
       ========================================================= */}
-      <section className="bg-[#f5f2eb] text-[#111412]">
+      <section className="overflow-hidden bg-[#f5f2eb] text-[#111412]">
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[0.55fr_1.45fr]">
-            <div>
-              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff5f00]">
-                01 / The Need
-              </p>
-
-              <h2 className="text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">
-                Why
-                <br />
-                Cybersecurity
-                <br />
-                Regulation
-                <br />
-                Matters
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-[780px] text-[18px] leading-8 text-[#59646c]">
-                Cyber threats, nation-state actors, and critical infrastructure
-                risks have elevated cybersecurity from IT concern to regulatory
-                imperative. Organizations face mandatory breach reporting,
-                incident response requirements, and board-level accountability.
-              </p>
-
-              <div className="mt-14 grid border-l border-t border-[#111412]/10 sm:grid-cols-2 lg:grid-cols-3">
-                {challenges.map((item) => (
-                  <article
-                    key={item.number}
-                    className="min-h-[240px] border-b border-r border-[#111412]/10 p-7 lg:p-8"
-                  >
-                  
-
-                    <h3 className="mt-8 text-[20px] font-semibold leading-tight tracking-[-0.02em]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-5 text-[14px] leading-6 text-[#69737b]">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          FRAMEWORKS — DARK
-      ========================================================= */}
-      <section id="frameworks" className="bg-[#111412]">
-        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
-          <div className="mb-14 max-w-[850px]">
-            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6a00]">
-              02 / Regulatory Landscape
+          <motion.div
+            initial={{ opacity: 0, y: 70 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff5f00]">
+              01 / The Need
             </p>
-
-            <h2 className="text-[48px] font-medium leading-[0.98] tracking-[-0.05em] sm:text-[64px]">
-              Global Cybersecurity
-              <br />
-              Regulatory Frameworks
+            <h2 className="max-w-[850px] text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">
+              Why Cybersecurity Regulation Matters
             </h2>
+          </motion.div>
 
-            <p className="mt-7 max-w-[720px] text-[17px] leading-8 text-[#8e9490]">
-              Comprehensive coverage of mandatory cybersecurity regulations and
-              best-practice standards.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {frameworks.map((item) => (
-              <article
+          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {challenges.map((item, index) => (
+              <motion.article
                 key={item.number}
-                className="group relative min-h-[370px] overflow-hidden rounded-[26px] border border-white/10 bg-[#171a18] p-7 transition duration-300 hover:-translate-y-1 hover:border-[#ff6a00]/70"
+                initial={{ opacity: 0, y: 80, scale: 0.94 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: false, amount: 0.18 }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                whileHover={{ y: -10 }}
+                className="group min-h-[245px] border border-[#111412]/10 bg-white/45 p-8 transition-colors duration-500 hover:border-[#ff5f00]/50"
               >
-           
-                <div className="relative z-10 flex h-full flex-col">
-                 
-
-                  <p className="mt-8 text-[10px] uppercase tracking-[0.3em] text-[#69716d]">
-                    {item.region}
-                  </p>
-
-                  <h3 className="mt-4 text-[27px] font-medium tracking-[-0.04em]">
-                    {item.title}
-                  </h3>
-
-                  <div className="mt-7 h-px w-10 bg-[#ff6a00] transition-all duration-300 group-hover:w-20" />
-
-                  <ul className="mt-6 space-y-3 text-[14px] leading-6 text-[#9da29f]">
-                    {item.items.map((listItem) => (
-                      <li key={listItem} className="flex gap-3">
-                        <span className="mt-[10px] h-1 w-1 shrink-0 bg-[#ff6a00]" />
-                        <span>{listItem}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 40 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.6, delay: index * 0.08 + 0.2 }}
+                  className="h-px bg-[#ff5f00]"
+                />
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.5, delay: index * 0.08 + 0.28 }}
+                  className="mt-7 text-[22px] font-semibold leading-tight tracking-[-0.025em]"
+                >
+                  {item.title}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.5, delay: index * 0.08 + 0.4 }}
+                  className="mt-5 text-[14px] leading-6 text-[#69737b]"
+                >
+                  {item.text}
+                </motion.p>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          DOMAINS — WHITE
+          FRAMEWORKS — NORMAL RESPONSIVE GRID
+      ========================================================= */}
+      <section id="frameworks" className="bg-[#111412]">
+        <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
+          <motion.div
+            initial={{ opacity: 0, y: 70, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.9 }}
+            className="max-w-[850px]"
+          >
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6a00]">
+              02 / Regulatory Landscape
+            </p>
+            <h2 className="text-[48px] font-medium leading-[0.98] tracking-[-0.05em] sm:text-[64px]">
+              Global Cybersecurity Regulatory Frameworks
+            </h2>
+            <p className="mt-7 max-w-[720px] text-[17px] leading-8 text-[#8e9490]">
+              Comprehensive coverage of mandatory cybersecurity regulations and best-practice standards.
+            </p>
+          </motion.div>
+
+          <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {frameworks.map((item, index) => {
+              const origins = [
+                { x: -80, y: 40, r: -2 },
+                { x: 80, y: 30, r: 2 },
+                { x: 0, y: 70, r: -2 },
+                { x: -70, y: 60, r: 2 },
+                { x: 70, y: 50, r: -2 },
+                { x: 0, y: 70, r: 2 },
+              ];
+              const origin = origins[index];
+
+              return (
+                <motion.article
+                  key={item.number}
+                  initial={{
+                    opacity: 0,
+                    x: origin.x,
+                    y: origin.y,
+                    rotate: origin.r,
+                    scale: 0.94,
+                  }}
+                  whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+                  viewport={{ once: false, amount: 0.14 }}
+                  transition={{
+                    duration: 0.75,
+                    delay: index * 0.08,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{ y: -8 }}
+                  className="group relative rounded-[24px] border border-white/10 bg-[#171a18] p-7 transition-colors duration-500 hover:border-[#ff6a00]/60 lg:p-8"
+                >
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 0.9, delay: index * 0.08 + 0.2 }}
+                    className="pointer-events-none absolute -right-20 -top-20 h-60 w-60 rounded-full bg-[#ff6a00]/[0.055] blur-[75px]"
+                  />
+
+                  <div className="relative z-10">
+                    <p className="text-[10px] uppercase tracking-[0.3em] text-[#69716d]">{item.region}</p>
+                    <h3 className="mt-4 text-[27px] font-medium leading-tight tracking-[-0.04em]">{item.title}</h3>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: 40 }}
+                      viewport={{ once: false }}
+                      transition={{ duration: 0.55, delay: index * 0.08 + 0.25 }}
+                      className="mt-6 h-px bg-[#ff6a00] group-hover:w-20"
+                    />
+                    <ul className="mt-6 space-y-3 text-[14px] leading-6 text-[#9da29f]">
+                      {item.items.map((listItem, itemIndex) => (
+                        <motion.li
+                          key={listItem}
+                          initial={{ opacity: 0, x: -12 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: false }}
+                          transition={{ duration: 0.35, delay: index * 0.08 + 0.4 + itemIndex * 0.045 }}
+                          className="flex items-start gap-3"
+                        >
+                          <span className="mt-[9px] h-1 w-1 shrink-0 bg-[#ff6a00]" />
+                          <span>{listItem}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          DOMAINS — SPOTLIGHT ROWS
       ========================================================= */}
       <section id="domains" className="bg-[#f5f2eb] text-[#111412]">
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
-          <div className="grid gap-14 lg:grid-cols-[0.55fr_1.45fr]">
-            <div>
-              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff5f00]">
-                03 / Control Areas
-              </p>
-
-              <h2 className="text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">
-                Key Cybersecurity
-                <br />
-                Compliance
-                <br />
-                Domains
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-[760px] text-[18px] leading-8 text-[#68727a]">
-                Common control requirements across global cybersecurity
-                regulations.
-              </p>
-
-              <div className="mt-12 grid border-l border-t border-[#111412]/10 md:grid-cols-2">
-                {domains.map((item) => (
-                  <article
-                    key={item.number}
-                    className="min-h-[280px] border-b border-r border-[#111412]/10 p-7 lg:p-8"
-                  >
-              
-
-                    <h3 className="mt-7 text-[21px] font-semibold tracking-[-0.025em]">
-                      {item.title}
-                    </h3>
-
-                    <ul className="mt-6 space-y-2 text-[14px] leading-6 text-[#69737b]">
-                      {item.items.map((listItem) => (
-                        <li key={listItem} className="flex gap-3">
-                          <span className="mt-[10px] h-1 w-1 shrink-0 bg-[#ff5f00]" />
-                          <span>{listItem}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                ))}
-              </div>
-            </div>
+          <motion.div initial={{ opacity:0,x:-70 }} whileInView={{ opacity:1,x:0 }} viewport={{ once:false,amount:0.25 }} transition={{ duration:0.8 }}>
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff5f00]">03 / Control Areas</p>
+            <h2 className="max-w-[780px] text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">Key Cybersecurity Compliance Domains</h2>
+          </motion.div>
+          <div className="mt-14 space-y-4">
+            {domains.map((item,index)=><motion.article key={item.number} initial={{ opacity:0,y:90,scale:0.94 }} whileInView={{ opacity:1,y:0,scale:1 }} viewport={{ once:false,amount:0.2 }} transition={{ duration:0.7,delay:index*0.06,ease:[0.16,1,0.3,1] }} whileHover={{ x:12 }} className="group grid gap-6 border border-[#111412]/10 bg-white/25 p-7 md:grid-cols-[90px_0.8fr_1.2fr] md:items-center lg:p-9">
+              <div className="h-px w-10 bg-[#ff5f00]" />
+              <h3 className="text-[24px] font-semibold tracking-[-0.025em]">{item.title}</h3>
+              <ul className="grid gap-2 text-[14px] leading-6 text-[#69737b] sm:grid-cols-2">{item.items.map((listItem,itemIndex)=><motion.li key={listItem} initial={{ opacity:0,x:20 }} whileInView={{ opacity:1,x:0 }} viewport={{ once:false }} transition={{ duration:0.35,delay:index*0.06+itemIndex*0.04 }} className="flex gap-3"><span className="mt-[10px] h-1 w-1 shrink-0 bg-[#ff5f00]" /><span>{listItem}</span></motion.li>)}</ul>
+            </motion.article>)}
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          IMPLEMENTATION — DARK
+          IMPLEMENTATION — TIMELINE
       ========================================================= */}
       <section id="implementation" className="bg-[#111412]">
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
-          <div className="grid gap-16 lg:grid-cols-[0.55fr_1.45fr]">
-            <div>
-              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6a00]">
-                04 / Implementation
-              </p>
-
-              <h2 className="text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">
-                Cybersecurity
-                <br />
-                Compliance
-                <br />
-                Implementation
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-[760px] text-[18px] leading-8 text-[#929894]">
-                A structured approach to achieving and maintaining regulatory
-                cybersecurity compliance.
-              </p>
-
-              <div className="mt-12 grid border-l border-t border-white/10 md:grid-cols-2">
-                {implementation.map((item) => (
-                  <article
-                    key={item.number}
-                    className="min-h-[260px] border-b border-r border-white/10 p-7 lg:p-8"
-                  >
-                    
-
-                    <h3 className="mt-7 text-[21px] font-semibold leading-tight tracking-[-0.02em]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-5 text-[15px] leading-7 text-[#8f9691]">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
+          <motion.div initial={{ opacity:0,x:-70 }} whileInView={{ opacity:1,x:0 }} viewport={{ once:false,amount:0.25 }} transition={{ duration:0.8 }}>
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff6a00]">04 / Implementation</p>
+            <h2 className="max-w-[800px] text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">Cybersecurity Compliance Implementation</h2>
+          </motion.div>
+          <div className="relative mt-16 ml-3 border-l border-white/10">
+            {implementation.map((item,index)=><motion.article key={item.number} initial={{ opacity:0,x:index%2===0?-90:90,scale:0.93 }} whileInView={{ opacity:1,x:0,scale:1 }} viewport={{ once:false,amount:0.2 }} transition={{ duration:0.75,delay:index*0.08,ease:[0.16,1,0.3,1] }} className="relative pb-12 pl-10 last:pb-0 lg:pl-16">
+              <motion.span initial={{ scale:0 }} whileInView={{ scale:1 }} viewport={{ once:false }} transition={{ type:"spring",stiffness:180,damping:14,delay:index*0.08 }} className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-[#ff6a00] shadow-[0_0_0_7px_rgba(255,106,0,0.08)]" />
+              <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-start"><h3 className="text-[24px] font-semibold tracking-[-0.025em]">{item.title}</h3><p className="text-[15px] leading-7 text-[#8f9691]">{item.text}</p></div>
+            </motion.article>)}
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          BENEFITS — WHITE
-          IMPORTANT: CTA-KU ABOVE IRUKKURA FULL SECTION WHITE
+          BENEFITS — FLOATING CARDS
       ========================================================= */}
-      <section className="bg-[#f5f2eb] text-[#111412]">
+      <section className="overflow-hidden bg-[#f5f2eb] text-[#111412]">
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
-          <div className="grid gap-14 lg:grid-cols-[0.55fr_1.45fr]">
-            <div>
-              <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff5f00]">
-                05 / Business Impact
-              </p>
-
-              <h2 className="text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">
-                Business
-                <br />
-                Benefits
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-[760px] text-[18px] leading-8 text-[#68727a]">
-                Strategic advantages of comprehensive cybersecurity compliance.
-              </p>
-
-              <div className="mt-12 grid border-l border-t border-[#111412]/10 md:grid-cols-2">
-                {benefits.map((item) => (
-                  <article
-                    key={item.number}
-                    className="min-h-[250px] border-b border-r border-[#111412]/10 p-7 lg:p-8"
-                  >
-                    
-
-                    <h3 className="mt-7 text-[22px] font-semibold tracking-[-0.025em]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-5 text-[15px] leading-7 text-[#69737b]">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
+          <motion.div initial={{ opacity:0,y:65,filter:"blur(8px)" }} whileInView={{ opacity:1,y:0,filter:"blur(0px)" }} viewport={{ once:false,amount:0.25 }} transition={{ duration:0.85 }}>
+            <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.35em] text-[#ff5f00]">05 / Business Impact</p>
+            <h2 className="text-[46px] font-medium leading-[0.96] tracking-[-0.05em] sm:text-[58px]">Business Benefits</h2>
+          </motion.div>
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((item,index)=><motion.article key={item.number} initial={{ opacity:0,y:index%2===0?100:45,rotate:index%2===0?-3:3,scale:0.88 }} whileInView={{ opacity:1,y:0,rotate:0,scale:1 }} viewport={{ once:false,amount:0.18 }} transition={{ duration:0.8,delay:index*0.09,ease:[0.16,1,0.3,1] }} whileHover={{ y:-14,rotate:index%2===0?1:-1,scale:1.025 }} className="group relative min-h-[270px] overflow-hidden border border-[#111412]/10 bg-white/35 p-8">
+              <div className="mt-2 h-px w-10 bg-[#ff5f00] transition-all duration-500 group-hover:w-20" />
+              <h3 className="mt-7 text-[22px] font-semibold tracking-[-0.025em]">{item.title}</h3>
+              <p className="mt-5 text-[15px] leading-7 text-[#69737b]">{item.text}</p>
+             </motion.article>)}
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          CTA — ORANGE
+          CTA — SPLIT REVEAL
       ========================================================= */}
-      <section id="contact" className="bg-[#ff6500] text-black">
+      <section id="contact" className="overflow-hidden bg-[#ff6500] text-black">
         <div className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8 lg:py-32">
-          <div className="mx-auto max-w-[900px] text-center">
-            <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.4em]">
-              06 / Next Step
-            </p>
-
-            <h2 className="text-[48px] font-medium leading-[0.95] tracking-[-0.055em] sm:text-[66px]">
-              Build Defensible
-              <br />
-              Cybersecurity Compliance
-            </h2>
-
-            <p className="mx-auto mt-8 max-w-[780px] text-[17px] leading-8 text-black/70 lg:text-[19px]">
-              Whether your organization operates in regulated sectors, manages
-              critical infrastructure, handles financial data, or needs to
-              comply with NIS2, SEC rules, NIST CSF, or emerging cybersecurity
-              mandates, Ankh GRC can help you establish comprehensive
-              cybersecurity controls that protect assets, enable incident
-              response, and maintain regulatory compliance.
-            </p>
-
-          <a
-            href="mailto:info@ankhgrc.com"
-            className="mt-10 inline-flex items-center gap-3 bg-[#111412] text-white px-7 py-4 text-sm font-semibold text-black transition"
-          >
-            Contact Ankh GRC
-            <span>→</span>
-          </a>
-          </div>
+          <motion.div initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:false,amount:0.3 }} transition={{ duration:0.8 }} className="mx-auto max-w-[1050px]">
+            <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.4em]">06 / Next Step</p>
+            <div className="overflow-hidden"><motion.h2 initial={{ y:"100%" }} whileInView={{ y:0 }} viewport={{ once:false }} transition={{ duration:0.9,ease:[0.16,1,0.3,1] }} className="text-[48px] font-medium leading-[0.95] tracking-[-0.055em] sm:text-[66px]">Build Defensible<br />Cybersecurity Compliance</motion.h2></div>
+            <motion.p initial={{ opacity:0,y:30 }} whileInView={{ opacity:1,y:0 }} viewport={{ once:false }} transition={{ duration:0.7,delay:0.2 }} className="mt-8 max-w-[820px] text-[17px] leading-8 text-black/70 lg:text-[19px]">Whether your organization operates in regulated sectors, manages critical infrastructure, handles financial data, or needs to comply with NIS2, SEC rules, NIST CSF, or emerging cybersecurity mandates, Ankh GRC can help you establish comprehensive cybersecurity controls that protect assets, enable incident response, and maintain regulatory compliance.</motion.p>
+            <motion.a initial={{ opacity:0,x:-40 }} whileInView={{ opacity:1,x:0 }} viewport={{ once:false }} transition={{ duration:0.65,delay:0.4 }} whileHover={{ x:8,scale:1.03 }} href="mailto:info@ankhgrc.com" className="mt-10 inline-flex items-center gap-3 bg-[#111412] px-7 py-4 text-sm font-semibold text-white">Contact Ankh GRC</motion.a>
+          </motion.div>
         </div>
       </section>
 
-    {/* =========================================================
+{/* =========================================================
     10. FOOTER
 ========================================================= */}
 <Footer/>

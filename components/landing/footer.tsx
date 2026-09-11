@@ -87,6 +87,12 @@ export default function Footer() {
               >
                 Contact
               </Link>
+               <Link
+                href="/training"
+                className="mt-3 block text-sm text-white/55 transition-colors hover:text-[#ff6500]"
+              >
+                Training
+              </Link>
 
               <p className="mt-10 text-xs font-semibold uppercase tracking-[0.2em] text-[#ff6500]">
                 Resources

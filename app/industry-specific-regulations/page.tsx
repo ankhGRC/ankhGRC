@@ -2,6 +2,7 @@
 
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
+import { motion } from "framer-motion";
 
 const reasons = [
   {
@@ -381,519 +382,412 @@ const benefits = [
 ];
 
 export default function IndustrySpecificRegulationsPage() {
+  const reveal = {
+    hidden: { opacity: 0, y: 45, scale: 0.97 },
+    show: { opacity: 1, y: 0, scale: 1 },
+  };
+
   return (
-    <main className="min-h-screen w-full bg-white text-[#171b19]">
-      {/* =========================================================
-          1. NAVBAR
-      ========================================================= */}
+    <main className="min-h-screen w-full overflow-x-hidden bg-white text-[#171b19]">
       <Navigation />
 
-      {/* =========================================================
-          2. HERO - DARK
-      ========================================================= */}
-      <section className="relative overflow-hidden bg-[#111412] text-[#f4f1eb] h-[980px]  pt-20">
-        <div className="pointer-events-none absolute -right-40 top-0 h-[700px] w-[600px] rounded-full bg-[#e65300]/10 blur-[120px]" />
+      {/* HERO — compact, immediate motion */}
+      <section className="relative flex min-h-[720px] items-center overflow-hidden bg-[#111412] pt-24 text-[#f4f1eb] lg:min-h-[760px]">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.75, x: 120 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-none absolute -right-40 top-0 h-[600px] w-[600px] rounded-full bg-[#e65300]/10 blur-[120px]"
+        />
 
-<div className="mx-auto  grid min-h-[680px] w-full max-w-7xl items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          {/* LEFT */}
-          <div >
-            <p className="mb-7 pt-10 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:px-10 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, x: -70 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">
               COMPLY. COMPETE. GROW.
             </p>
-
-            <h1 className="max-w-[1800px] text-5xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
+            <h1 className="max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl">
               Industry-Specific
               <br />
               Regulations
               <br />
               Framework
             </h1>
-
-            <p className="mt-8 max-w-3xl text-lg leading-8 text-white/60 lg:text-xl">
+            <p className="mt-7 max-w-3xl text-base leading-7 text-white/60 lg:text-lg">
               Navigate complex regulatory landscapes across healthcare,
               financial services, retail, technology, energy, and government.
               Achieve compliance while maintaining operational agility and
               competitive advantage.
             </p>
-
-            <div className="mt-10 flex flex-wrap gap-4 font-[20px]">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-3 bg-orange-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-orange-400 "
-              >
-                Get Started <span>→</span>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#contact" className="inline-flex bg-orange-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-orange-400">
+                Get Started
               </a>
-
-              <a
-                href="#why-industry-regulations"
-                className="inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400"
-              >
-                Learn More <span>↓</span>
+              <a href="#why-industry-regulations" className="inline-flex border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400">
+                Learn More
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* RIGHT VISUAL */}
-          <div className="hidden lg:block">
-            <div className="relative rounded-[32px] border border-white/10 bg-[#151916] p-8">
-              <div className="absolute right-7 top-7 h-2.5 w-2.5 rounded-full bg-orange-500 shadow-[0_0_20px_rgba(255,106,0,0.7)]" />
-
-              <p className="text-xs uppercase tracking-[0.3em] text-white/35">
-                ANKH GRC
-              </p>
-
-              <p className="mt-5 text-xs uppercase tracking-[0.28em] text-white/30">
-                INDUSTRY COVERAGE
-              </p>
-
-              <div className="mt-8 grid grid-cols-2 gap-3">
-                {["Healthcare", "Finance", "Technology", "Energy"].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
-                    >
-                      <div className="mb-8 text-2xl text-orange-500">+</div>
-                      <p className="text-sm text-white/70">{item}</p>
-                    </div>
-                  )
-                )}
+          <motion.div
+            initial={{ opacity: 0, x: 80, rotate: 3, scale: 0.94 }}
+            animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:block"
+          >
+            <div className="relative rounded-[30px] border border-white/10 bg-[#151916] p-7">
+              <motion.div
+                animate={{ opacity: [0.35, 1, 0.35], scale: [1, 1.25, 1] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute right-7 top-7 h-2.5 w-2.5 rounded-full bg-orange-500 shadow-[0_0_20px_rgba(255,106,0,0.7)]"
+              />
+              <p className="text-xs uppercase tracking-[0.3em] text-white/35">ANKH GRC</p>
+              <p className="mt-4 text-xs uppercase tracking-[0.28em] text-white/30">INDUSTRY COVERAGE</p>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {["Healthcare", "Finance", "Technology", "Energy"].map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45 + index * 0.1, duration: 0.5 }}
+                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-4"
+                  >
+                    <div className="mb-5 text-2xl text-orange-500">+</div>
+                    <p className="text-sm text-white/70">{item}</p>
+                  </motion.div>
+                ))}
               </div>
-
-              <div className="mt-8 border-t border-white/10 pt-6">
+              <div className="mt-6 border-t border-white/10 pt-5">
                 <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.25em] text-white/35">
                   <span>REGULATORY COVERAGE</span>
                   <span className="text-orange-500">GLOBAL</span>
                 </div>
-
-                <div className="mt-4 h-px w-full bg-white/10">
-                  <div className="h-px w-[82%] bg-orange-500" />
+                <div className="mt-3 h-px w-full bg-white/10">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: "82%" }}
+                    transition={{ duration: 1.2, delay: 0.6 }}
+                    className="h-px bg-orange-500"
+                  />
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* =========================================================
-          3. WHY - WHITE
-      ========================================================= */}
-      <section
-        id="why-industry-regulations"
-        className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
-                01 / THE NEED
-              </p>
-
-              <h2 className="mt-5 text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-                Why Industry
-                <br />
-                Regulations
-                <br />
-                Matter
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-4xl text-lg leading-8 text-black/60">
-                Regulatory requirements vary dramatically by industry. A
-                one-size-fits-all compliance approach fails. You need deep
-                expertise across your specific regulations.
-              </p>
-
-              <div className="mt-12 grid border-t border-black/10 sm:grid-cols-2 lg:grid-cols-3">
-                {reasons.map((item, index) => (
-                  <article
-                    key={item.title}
-                    className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
-                  >
-<h3 className="mt-5 text-xl font-semibold">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-3 text-base leading-6 text-black/55 ">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-     {/* =========================================================
-    4. INDUSTRIES - DARK / GRID
-========================================================= */}
-<section
-  id="industries"
-  className="relative overflow-hidden bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
->
-  <div className="mx-auto max-w-7xl px-6 lg:px-10">
-    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-      02 / INDUSTRY COVERAGE
-    </p>
-
-    <div className="flex items-end justify-between gap-8">
-      <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-        Industries &
-        <br />
-        Key Regulations
-      </h2>
-    </div>
-
-    {/* GRID - horizontal scrolling removed */}
-    <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-      {industries.map((industry) => (
-        <article
-          key={industry.title}
-          className="
-            group
-            relative
-            flex
-            min-h-[460px]
-            w-full
-            flex-col
-            overflow-hidden
-            rounded-[30px]
-            border
-            border-white/10
-            bg-[#151916]
-            p-7
-            transition
-            duration-500
-            hover:-translate-y-2
-            hover:border-orange-500/60
-          "
-        >
-{/* Top */}
-          <div className="relative z-10 flex items-center justify-between">
-          </div>
-
-          {/* Content */}
-          <div className="relative z-10 mt-auto">
-            <div className="mb-5 text-3xl text-orange-500">
-              {industry.icon}
-            </div>
-
-            <h3 className="max-w-[300px] text-2xl font-medium leading-tight tracking-[-0.025em]">
-              {industry.title}
-            </h3>
-
-            <p className="mt-4 text-base leading-6 text-white/45">
-              {industry.description}
-            </p>
-
-            <div className="mt-6 border-t border-white/10 pt-5">
-              <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.25em] text-white/30">
-                KEY REGULATIONS
-              </p>
-
-              <div className="max-h-[105px] overflow-y-auto pr-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                <ul className="space-y-2">
-                  {industry.regulations.map((regulation) => (
-                    <li
-                      key={regulation}
-                      className="flex gap-2 text-sm leading-5 text-white/55"
-                    >
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-orange-500" />
-                      <span>{regulation}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-
-      {/* =========================================================
-          5. GLOBAL REGULATORY LANDSCAPE - WHITE
-      ========================================================= */}
-      <section
-        id="regulations"
-        className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
-                03 / REGULATORY LANDSCAPE
-              </p>
-
-              <h2 className="mt-5 text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-                Global
-                <br />
-                Regulatory
-                <br />
-                Landscape
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-3xl text-lg leading-8 text-black/60">
-                Comprehensive regulatory coverage across regions, industries,
-                and data types.
-              </p>
-
-              <div className="mt-10 overflow-x-auto border-t border-black/10">
-                <table className="w-full min-w-[900px] border-collapse text-left">
-                  <thead>
-                    <tr className="border-b border-black/10">
-                      <th className="px-4 py-5 pl-0 text-xs uppercase tracking-[0.15em] text-black/40">
-                        Regulation
-                      </th>
-                      <th className="px-4 py-5 text-xs uppercase tracking-[0.15em] text-black/40">
-                        Industry / Scope
-                      </th>
-                      <th className="px-4 py-5 text-xs uppercase tracking-[0.15em] text-black/40">
-                        Primary Focus
-                      </th>
-                      <th className="px-4 py-5 text-xs uppercase tracking-[0.15em] text-black/40">
-                        Key Requirements
-                      </th>
-                      <th className="px-4 py-5 pr-0 text-xs uppercase tracking-[0.15em] text-black/40">
-                        Geographic Reach
-                      </th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {regulations.map((item) => (
-                      <tr
-                        key={item.name}
-                        className="border-b border-black/10 transition hover:bg-black/[0.025]"
-                      >
-                        <td className="px-4 py-5 pl-0 font-semibold">
-                          {item.name}
-                        </td>
-
-                        <td className="px-4 py-5">
-                          <span className="inline-flex rounded-full bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-700">
-                            {item.scope}
-                          </span>
-                        </td>
-
-                        <td className="px-4 py-5 text-sm text-black/60">
-                          {item.focus}
-                        </td>
-
-                        <td className="max-w-[300px] px-4 py-5 text-sm leading-6 text-black/60">
-                          {item.requirements}
-                        </td>
-
-                        <td className="px-4 py-5 pr-0 text-sm text-black/55">
-                          {item.reach}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          6. COMPLIANCE REQUIREMENTS - DARK
-      ========================================================= */}
-      <section
-        id="compliance"
-        className="bg-[#111412] py-24 text-[#f4f1eb] lg:py-32"
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-            04 / COMPLIANCE REQUIREMENTS
-          </p>
-
-          <div className="mt-5 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-              Compliance Requirements
-              <br />
-              Across Industries
+      {/* WHY — horizontal scrolling, compact */}
+      <section id="why-industry-regulations" className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+            className="mb-9"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">01 / THE NEED</p>
+            <h2 className="mt-4 max-w-3xl text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+              Why Industry Regulations Matter
             </h2>
+          </motion.div>
 
-            <p className="max-w-md text-sm leading-6 text-white/40">
-              Common patterns and industry-specific compliance obligations.
-            </p>
+          <motion.p
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+            className="mb-8 max-w-3xl text-base leading-7 text-black/60"
+          >
+            Regulatory requirements vary dramatically by industry. A one-size-fits-all compliance approach fails. You need deep expertise across your specific regulations.
+          </motion.p>
+
+          <div className="-mx-6 overflow-x-auto px-6 pb-3 lg:-mx-10 lg:px-10">
+            <div className="flex w-max gap-4">
+              {reasons.map((item, index) => (
+                <motion.article
+                  key={item.title}
+                  initial={{ opacity: 0, x: 70 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.65, delay: index * 0.08 }}
+                  whileHover={{ y: -6 }}
+                  className="w-[300px] rounded-[24px] border border-black/10 bg-white/40 p-6 sm:w-[340px]"
+                >
+                  <div className="h-px w-10 bg-orange-600" />
+                  <h3 className="mt-7 text-xl font-semibold">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-black/55">{item.text}</p>
+                </motion.article>
+              ))}
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16 grid border-l border-t border-white/10 sm:grid-cols-2 lg:grid-cols-3">
+      {/* INDUSTRIES — BENTO */}
+      <section id="industries" className="relative overflow-hidden bg-[#111412] py-16 text-[#f4f1eb] lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div
+            variants={reveal}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.75 }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">02 / INDUSTRY COVERAGE</p>
+            <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+              Industries & Key Regulations
+            </h2>
+          </motion.div>
+
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
+            {industries.map((industry, index) => {
+              const layouts = [
+                "lg:col-span-7 lg:row-span-2",
+                "lg:col-span-5",
+                "lg:col-span-5",
+                "lg:col-span-4",
+                "lg:col-span-4",
+                "lg:col-span-4",
+                "lg:col-span-5",
+                "lg:col-span-7",
+              ];
+              return (
+                <motion.article
+                  key={industry.title}
+                  initial={{ opacity: 0, y: 55, scale: 0.94 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: false, amount: 0.12 }}
+                  transition={{ duration: 0.65, delay: index * 0.06 }}
+                  whileHover={{ y: -7, scale: 1.01 }}
+                  className={`group relative flex min-h-[300px] flex-col overflow-hidden rounded-[26px] border border-white/10 bg-[#151916] p-6 lg:min-h-0 lg:p-7 ${layouts[index]}`}
+                >
+                  <motion.div
+                    initial={{ scale: 0.4, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 0.8, delay: index * 0.06 + 0.15 }}
+                    className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-orange-500/[0.055] blur-[70px]"
+                  />
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="flex justify-end text-2xl text-orange-500/80">{industry.icon}</div>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: 45 }}
+                      viewport={{ once: false, amount: 0.1 }}
+                      transition={{ duration: 0.5, delay: index * 0.06 + 0.2 }}
+                      className="mt-3 h-px bg-orange-500"
+                    />
+                    <h3 className="mt-5 text-2xl font-medium leading-tight tracking-[-0.03em] sm:text-3xl">{industry.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-white/45">{industry.description}</p>
+                    <div className="mt-5 border-t border-white/10 pt-4">
+                      <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.25em] text-white/30">KEY REGULATIONS</p>
+                      <ul className="grid gap-1.5 sm:grid-cols-2">
+                        {industry.regulations.map((regulation, regulationIndex) => (
+                          <motion.li
+                            key={regulation}
+                            initial={{ opacity: 0, x: -12 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false, amount: 0.05 }}
+                            transition={{ duration: 0.3, delay: index * 0.05 + regulationIndex * 0.025 }}
+                            className="flex gap-2 text-xs leading-5 text-white/50"
+                          >
+                            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-orange-500" />
+                            <span>{regulation}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* REGULATIONS — horizontal table rail */}
+      <section id="regulations" className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, x: -45 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">03 / REGULATORY LANDSCAPE</p>
+            <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">Global Regulatory Landscape</h2>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-black/60">Comprehensive regulatory coverage across regions, industries, and data types.</p>
+          </motion.div>
+
+          <div className="mt-8 overflow-x-auto pb-2">
+            <div className="flex w-max gap-4">
+              {regulations.map((item, index) => (
+                <motion.article
+                  key={item.name}
+                  initial={{ opacity: 0, x: 60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.55, delay: index * 0.05 }}
+                  whileHover={{ y: -5 }}
+                  className="w-[270px] rounded-[22px] border border-black/10 bg-white/35 p-5"
+                >
+                  <p className="text-2xl font-semibold">{item.name}</p>
+                  <span className="mt-3 inline-flex rounded-full bg-orange-500/10 px-3 py-1 text-xs font-semibold text-orange-700">{item.scope}</span>
+                  <p className="mt-5 text-xs uppercase tracking-[0.15em] text-black/40">{item.focus}</p>
+                  <p className="mt-2 text-sm leading-6 text-black/55">{item.requirements}</p>
+                  <p className="mt-4 text-xs text-black/40">{item.reach}</p>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPLIANCE — asymmetric bento */}
+      <section id="compliance" className="bg-[#111412] py-16 text-[#f4f1eb] lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 45 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">04 / COMPLIANCE REQUIREMENTS</p>
+            <h2 className="mt-4 max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">Compliance Requirements Across Industries</h2>
+          </motion.div>
+
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
             {complianceAreas.map((item, index) => (
-              <article
+              <motion.article
                 key={item.title}
-                className="border-b border-r border-white/10 p-7 transition hover:bg-white/[0.025] lg:p-8"
+                initial={{ opacity: 0, y: 55, rotate: index % 2 ? 1.5 : -1.5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.65, delay: index * 0.07 }}
+                whileHover={{ y: -6 }}
+                className={`rounded-[24px] border border-white/10 bg-[#151916] p-6 ${index === 0 || index === 3 ? "lg:col-span-2" : "lg:col-span-1"}`}
               >
-                  
-
-                <h3 className="mt-7 text-xl font-medium tracking-[-0.02em]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/30">
-                  {item.subtitle}
-                </p>
-
-                <ul className="mt-6 space-y-3">
+                <div className="h-px w-10 bg-orange-500" />
+                <h3 className="mt-6 text-xl font-medium">{item.title}</h3>
+                <p className="mt-2 text-[10px] uppercase tracking-[0.16em] text-white/30">{item.subtitle}</p>
+                <ul className="mt-5 space-y-2.5">
                   {item.items.map((point) => (
-                    <li
-                      key={point}
-                      className="flex gap-3 text-sm leading-6 text-white/50"
-                    >
-                      <span className="mt-[9px] h-1.5 w-1.5 shrink-0 bg-orange-500" />
+                    <li key={point} className="flex gap-3 text-xs leading-5 text-white/50">
+                      <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-orange-500" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          7. IMPLEMENTATION - WHITE
-      ========================================================= */}
-      <section
-        id="implementation"
-        className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]"
-      >
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
-                05 / IMPLEMENTATION
-              </p>
+      {/* IMPLEMENTATION — compact timeline */}
+      <section id="implementation" className="border-b border-black/10 bg-[#f1eee7] text-[#171b19]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, x: -45 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">05 / IMPLEMENTATION</p>
+            <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">Compliance Implementation Approach</h2>
+          </motion.div>
 
-              <h2 className="mt-5 text-4xl font-medium leading-[1.02] tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-                Compliance
-                <br />
-                Implementation
-                <br />
-                Approach
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-3xl text-lg leading-8 text-black/60">
-                A structured methodology for achieving and maintaining
-                industry-specific compliance.
-              </p>
-
-              <div className="mt-12 grid border-t border-black/10 sm:grid-cols-2">
-                {implementationSteps.map((step) => (
-                  <article
-                    key={step.number}
-                    className="border-b border-r border-black/10 p-7  lg:p-8"
-                  >
-<h3 className="mt-5 text-xl font-semibold tracking-[-0.02em]">
-                      {step.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-6 text-black/55">
-                      {step.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =========================================================
-          8. BUSINESS BENEFITS - DARK
-      ========================================================= */}
-      <section className="bg-[#111412] py-24 text-[#f4f1eb] lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-            06 / BUSINESS VALUE
-          </p>
-
-          <div className="mt-5 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-              Business Benefits
-              <br />
-              of Regulatory Compliance
-            </h2>
-
-            <p className="max-w-md text-sm leading-6 text-white/40">
-              Compliance creates competitive advantage, not just regulatory
-              obligation.
-            </p>
-          </div>
-
-          <div className="mt-16 grid border-l border-t border-white/10 sm:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((benefit) => (
-              <article
-                key={benefit.number}
-                className="border-b border-r border-white/10 p-8 transition hover:bg-white/[0.025]"
+          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {implementationSteps.map((step, index) => (
+              <motion.article
+                key={step.number}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.12 }}
+                transition={{ duration: 0.5, delay: index * 0.06 }}
+                whileHover={{ y: -5 }}
+                className="rounded-[20px] border border-black/10 bg-white/30 p-5"
               >
-                <div className="flex items-center justify-between">
-<span className="text-lg text-orange-500">+</span>
-                </div>
-
-                <h3 className="mt-12 text-xl font-medium">
-                  {benefit.title}
-                </h3>
-
-                <p className="mt-4 text-sm leading-6 text-white/45">
-                  {benefit.text}
-                </p>
-              </article>
+                <div className="h-px w-8 bg-orange-600" />
+                <h3 className="mt-5 text-lg font-semibold tracking-[-0.02em]">{step.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-black/55">{step.text}</p>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* =========================================================
-          9. CTA
-      ========================================================= */}
-      <section
+      {/* BUSINESS BENEFITS — staggered bento */}
+      <section className="bg-[#111412] py-16 text-[#f4f1eb] lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">06 / BUSINESS VALUE</p>
+            <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">Business Benefits of Regulatory Compliance</h2>
+          </motion.div>
+
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((benefit, index) => (
+              <motion.article
+                key={benefit.number}
+                initial={{ opacity: 0, scale: 0.9, y: 35 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.12 }}
+                transition={{ duration: 0.55, delay: index * 0.07 }}
+                whileHover={{ y: -6 }}
+                className={`rounded-[24px] border border-white/10 bg-[#151916] p-6 ${index === 0 ? "lg:row-span-2" : ""}`}
+              >
+                <div className="h-px w-10 bg-orange-500" />
+                <h3 className="mt-7 text-xl font-medium">{benefit.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/45">{benefit.text}</p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <motion.section
         id="contact"
-        className="bg-[#ff6a00] px-6 py-24 text-[#111412] lg:px-10 lg:py-32 "
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
+        className="bg-[#ff6a00] px-6 py-16 text-[#111412] lg:px-10 lg:py-20"
       >
-        <div className="mx-auto max-w-7xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] ">
-            07 / NEXT STEP
-          </p>
-
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
-            Build Industry-Compliant
-            <br />
-            Operations
+        <motion.div
+          initial={{ opacity: 0, y: 45, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.25 }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto max-w-7xl text-center"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.3em]">07 / NEXT STEP</p>
+          <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">
+            Build Industry-Compliant Operations
           </h2>
-
-          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-black/55">
+          <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-black/55">
             Whether you operate in healthcare, financial services, government,
             energy, retail, or technology, Ankh GRC has deep expertise in your
             industry's specific regulatory requirements. We help you achieve
             compliance, maintain audit readiness, and leverage compliance as a
             competitive advantage.
           </p>
-
-          <a
-            href="mailto:info@ankhgrc.com"
-            className="mt-10 inline-flex items-center gap-3 bg-[#111412] text-white px-7 py-4 text-sm font-semibold text-black transition "
-          >
+          <a href="mailto:info@ankhgrc.com" className="mt-7 inline-flex bg-[#111412] px-7 py-4 text-sm font-semibold text-white transition hover:opacity-90">
             Contact Ankh GRC
-            <span>→</span>
           </a>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
-      {/* =========================================================
-          10. FOOTER
-      ========================================================= */}
-     
-      <Footer/>
+      <Footer />
     </main>
   );
 }

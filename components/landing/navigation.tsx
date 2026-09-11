@@ -12,6 +12,10 @@ const companyItems = [
     href: "/about",
   },
   {
+    name: "Training",
+    href: "/training",
+  },
+  {
     name: "Contact",
     href: "/contact",
   },

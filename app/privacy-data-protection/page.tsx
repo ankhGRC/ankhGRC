@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
+import { motion } from "framer-motion";
 
 const challenges = [
   {
@@ -101,7 +104,7 @@ const outcomes = [
 
 export default function PrivacyDataProtectionPage() {
   return (
-    <main className="min-h-screen bg-[#171b19] text-[#f4f1ea] selection:bg-orange-500/30 selection:text-white">
+    <main className="min-h-screen overflow-x-hidden bg-[#171b19] text-[#f4f1ea] selection:bg-orange-500/30 selection:text-white">
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(244,103,12,0.14),transparent_30%),radial-gradient(circle_at_15%_80%,rgba(255,255,255,0.05),transparent_28%)]" />
@@ -112,7 +115,12 @@ export default function PrivacyDataProtectionPage() {
         
           </div>
 
-          <div className="grid gap-14 pt-20 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:pt-28">
+          <motion.div
+            initial={{ opacity: 0, y: 55 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="grid gap-10 pt-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:pt-20"
+          >
             <div>
               <p className="mb-6 text-xs font-semibold uppercase tracking-[0.32em] text-orange-500">
                 Protect Privacy. Build Trust. Govern AI Responsibly.
@@ -133,7 +141,7 @@ export default function PrivacyDataProtectionPage() {
                   href="#contact"
                   className="inline-flex items-center gap-3 bg-orange-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-orange-400"
                 >
-                  Get Started <span>→</span>
+                  Get Started 
                 </a>
 
                 <a
@@ -141,7 +149,7 @@ export default function PrivacyDataProtectionPage() {
                   className=" inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400"
                   
                 >
-                  Learn More <span>↓</span>
+                  Learn More 
                 </a>
               </div>
             </div>
@@ -159,241 +167,145 @@ export default function PrivacyDataProtectionPage() {
                 <div className="mt-8 h-px w-24 bg-orange-500" />
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Why */}
+      {/* Why — HORIZONTAL SCROLL */}
       <section id="why-privacy" className="border-b border-white/10 bg-[#f1eee7] text-[#171b19]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-18">
+          <div className="grid gap-7 lg:grid-cols-[0.65fr_1.35fr]">
+            <motion.div initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }} transition={{ duration: 0.7 }}>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">01 / The Need</p>
+              <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] lg:text-5xl">Why Organizations Need This Framework</h2>
+            </motion.div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
-                01 / The Need
-              </p>
-              <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
-                Why Organizations Need This Framework
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-4xl text-lg leading-8 text-black/60">
-                Organizations today face unprecedented pressure from evolving
-                regulations, expanding AI adoption, and growing stakeholder
-                expectations around responsible data use and governance.
-              </p>
-
-              <div className="mt-12 grid border-t border-black/10 sm:grid-cols-2 lg:grid-cols-3">
-                {challenges.map((item, index) => (
-                  <article
-                    key={item.title}
-                    className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
-                  >
-                 
-                    <h3 className="mt-5 text-xl font-semibold">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-black/55">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
+              <motion.p initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.25 }} transition={{ duration: 0.65 }}
+                className="max-w-3xl text-base leading-7 text-black/60">
+                Organizations today face unprecedented pressure from evolving regulations, expanding AI adoption,
+                and growing stakeholder expectations around responsible data use and governance.
+              </motion.p>
+              <div className="mt-7 overflow-hidden">
+                <div className="flex gap-4 overflow-x-auto pb-3">
+                  {challenges.map((item, index) => (
+                    <motion.article key={item.title}
+                      initial={{ opacity: 0, x: 80, scale: 0.92, rotate: index % 2 ? -2 : 2 }}
+                      whileInView={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
+                      viewport={{ once: false, amount: 0.3 }}
+                      transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ y: -7 }}
+                      className="min-h-[220px] w-[285px] shrink-0 border border-black/10 bg-white/45 p-6 transition-colors duration-500 hover:border-orange-500/50 sm:w-[320px]">
+                      <motion.div initial={{ width: 0 }} whileInView={{ width: 40 }} viewport={{ once: false }}
+                        transition={{ duration: 0.4 }} className="h-px bg-orange-600" />
+                      <h3 className="mt-6 text-xl font-semibold">{item.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-black/55">{item.text}</p>
+                    </motion.article>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-{/* =========================================================
-    PRIVACY DOMAINS - DARK / GRID
-========================================================= */}
-<section className="relative overflow-hidden bg-[#111412] py-20 lg:py-24">
-  {/* Section heading */}
-  <div className="mx-auto max-w-7xl px-6 lg:px-10">
-    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-      Privacy • Data Protection • AI Governance
-    </p>
-
-    <h2 className="max-w-3xl text-4xl font-medium tracking-[-0.04em] text-[#f4f1eb] sm:text-5xl lg:text-6xl">
-      Privacy by design.
-      <br />
-      Trust by default.
-    </h2>
-
-    {/* =====================================================
-        CARDS GRID
-    ===================================================== */}
-    <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-      {domains.map(([number, title, text]) => (
-        <article
-          key={number}
-          className="
-            group
-            relative
-            min-h-[430px]
-            overflow-hidden
-            rounded-[28px]
-            border border-[#f4f1eb]/10
-            bg-[#151916]
-            transition-all duration-500 ease-out
-            hover:-translate-y-2
-            hover:border-[#ff6a00]/50
-          "
-        >
-          {/* Soft orange atmosphere */}
-          <div
-            className="
-              pointer-events-none absolute
-              -bottom-40 -left-24
-              h-[380px] w-[500px]
-              rounded-full
-              bg-[#ff6a00]/[0.055]
-              blur-[75px]
-              transition-all duration-700
-              group-hover:bg-[#ff6a00]/[0.10]
-            "
-          />
-
-          {/* Decorative curved line */}
-          <div
-            className="
-              pointer-events-none absolute
-              -bottom-[250px] -left-[110px]
-              h-[450px] w-[620px]
-              rounded-full
-              border border-[#ff6a00]/20
-              transition-transform duration-700
-              group-hover:scale-105
-            "
-          />
-
-      
-
-          {/* Card content */}
-          <div className="relative z-10 flex min-h-[430px] flex-col p-7 sm:p-8">
-
-           
-
-            {/* Main content */}
-            <div className="mt-auto">
-
-              <div className="mb-5 h-px w-10 bg-[#ff6a00] transition-all duration-500 group-hover:w-16" />
-
-              <h3
-                className="
-                  max-w-[330px]
-                  text-[24px] font-medium leading-[1.12]
-                  tracking-[-0.025em]
-                  text-[#f4f1eb]
-                  sm:text-[26px]
-                "
-              >
-                {title}
-              </h3>
-
-              <p
-                className="
-                  mt-4 max-w-[335px]
-                  text-[15px] leading-7
-                  text-[#f4f1eb]/55
-                "
-              >
-                {text}
-              </p>
-            </div>
-
-            {/* Bottom */}
-            <div className="mt-7 flex items-end justify-between">
-              <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#f4f1eb]/25">
-                ANKH GRC
-              </span>
-
-              <div className="flex gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#ff6a00]" />
-                <span className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
-                <span className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
-              </div>
-            </div>
-
+      {/* PRIVACY DOMAINS — BENTO GRID */}
+      <section className="relative overflow-hidden bg-[#111412] py-14 lg:py-18">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }} transition={{ duration: 0.75 }}>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">Privacy • Data Protection • AI Governance</p>
+            <h2 className="max-w-3xl text-4xl font-medium tracking-[-0.04em] text-[#f4f1eb] sm:text-5xl lg:text-6xl">
+              Privacy by design.<br />Trust by default.
+            </h2>
+          </motion.div>
+          <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {domains.map(([number, title, description], index) => {
+              const layouts = [
+                "sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[310px]",
+                "min-h-[205px]","min-h-[205px]","lg:col-span-2 min-h-[205px]",
+                "min-h-[205px]","min-h-[205px]","lg:col-span-2 min-h-[205px]",
+                "min-h-[205px]","min-h-[205px]","lg:col-span-2 min-h-[205px]",
+                "min-h-[205px]","min-h-[205px]","lg:col-span-2 min-h-[205px]"
+              ];
+              return (
+                <motion.article key={number}
+                  initial={{ opacity: 0, y: index % 2 ? 45 : 65, x: index % 3 === 0 ? -35 : 35, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+                  viewport={{ once: false, amount: 0.14 }}
+                  transition={{ duration: 0.65, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  className={`group relative overflow-hidden rounded-[20px] border border-white/10 bg-[#151916] p-6 transition-colors duration-500 hover:border-[#ff6a00]/45 ${layouts[index]}`}>
+                  <div className="pointer-events-none absolute -bottom-20 -left-16 h-52 w-64 rounded-full bg-[#ff6a00]/[0.05] blur-[60px] transition-all duration-700 group-hover:bg-[#ff6a00]/[0.1]" />
+                  <motion.div initial={{ width: 0 }} whileInView={{ width: index === 0 ? 65 : 40 }}
+                    viewport={{ once: false }} transition={{ duration: 0.45 }} className="relative h-px bg-[#ff6a00]" />
+                  <div className="relative mt-5">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/25">Core Domain</p>
+                    <h3 className="mt-3 text-xl font-medium leading-tight tracking-[-0.025em] text-[#f4f1eb] sm:text-2xl">{title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-[#f4f1eb]/50">{description}</p>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
-      {/* Global Coverage */}
+        </div>
+      </section>
+
+      {/* Global Coverage — HORIZONTAL SCROLL */}
       <section id="coverage" className="border-b border-white/10 bg-[#242825]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-                03 / Global Coverage
-              </p>
-              <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
-                Global Regulatory Coverage
-              </h2>
-            </div>
-
-            <p className="max-w-xl text-base leading-7 text-white/50">
-              Comprehensive expertise across privacy laws and AI governance
-              frameworks worldwide.
-            </p>
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-18">
+          <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }} transition={{ duration: 0.7 }} className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">03 / Global Coverage</p>
+              <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] lg:text-5xl">Global Regulatory Coverage</h2>
+            </motion.div>
+            <p className="max-w-xl text-sm leading-7 text-white/50">Comprehensive expertise across privacy laws and AI governance frameworks worldwide.</p>
           </div>
-
-          <div className="mt-14 grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-            {regions.map((region) => (
-              <article key={region.title} className="bg-[#242825] p-8 lg:min-h-[250px]">
-                <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                  <h3 className="text-xl font-medium">{region.title}</h3>
-                  <span className="text-orange-500">↗</span>
-                </div>
-
-                <ul className="mt-6 space-y-3">
-                  {region.items.map((item) => (
-                    <li key={item} className="text-sm text-white/55">
-                      {item}
-                    </li>
-                  ))}
+          <div className="mt-8 flex gap-3 overflow-x-auto pb-3">
+            {regions.map((region, index) => (
+              <motion.article key={region.title}
+                initial={{ opacity: 0, x: 80, scale: 0.93 }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                viewport={{ once: false, amount: 0.25 }}
+                transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -7 }}
+                className="min-h-[205px] w-[285px] shrink-0 border border-white/10 bg-[#242825] p-6 transition-colors duration-500 hover:border-orange-500/45 sm:w-[310px]">
+                <div className="border-b border-white/10 pb-4"><h3 className="text-xl font-medium">{region.title}</h3></div>
+                <ul className="mt-5 space-y-2">
+                  {region.items.map((item) => <li key={item} className="text-sm text-white/55"><span className="mr-2 text-orange-500">•</span>{item}</li>)}
                 </ul>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Outcomes */}
+      {/* Outcomes — COMPACT BENTO */}
       <section id="outcomes" className="bg-[#f1eee7] text-[#171b19]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-18">
+          <div className="grid gap-7 lg:grid-cols-[0.65fr_1.35fr]">
+            <motion.div initial={{ opacity: 0, x: -55 }} whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }} transition={{ duration: 0.7 }}>
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">04 / Outcomes</p>
+              <h2 className="mt-4 text-4xl font-medium tracking-[-0.04em] lg:text-5xl">Business Outcomes</h2>
+            </motion.div>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
-                04 / Outcomes
-              </p>
-              <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
-                Business Outcomes
-              </h2>
-            </div>
-
-            <div>
-              <p className="max-w-3xl text-lg leading-8 text-black/60">
-                Build a Privacy and AI Governance program that drives business
-                value while reducing risk.
-              </p>
-
-              <div className="mt-12 grid border-t border-black/10 md:grid-cols-2">
+              <p className="max-w-3xl text-base leading-7 text-black/60">Build a Privacy and AI Governance program that drives business value while reducing risk.</p>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {outcomes.map((item, index) => (
-                  <article
-                    key={item.title}
-                    className="border-b border-black/10 py-8 md:pr-10"
-                  >
-                    <div className="flex gap-5">
-                    
-                      <div>
-                        <h3 className="text-xl font-semibold">{item.title}</h3>
-                        <p className="mt-3 text-sm leading-6 text-black/55">
-                          {item.text}
-                        </p>
-                      </div>
-                    </div>
-                  </article>
+                  <motion.article key={item.title}
+                    initial={{ opacity: 0, y: index % 2 ? 40 : 55, x: index % 2 ? 25 : -25 }}
+                    whileInView={{ opacity: 1, y: 0, x: 0 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -5 }}
+                    className="border border-black/10 bg-white/35 p-6 transition-colors duration-500 hover:border-orange-500/45">
+                    <div className="h-px w-9 bg-orange-600" />
+                    <h3 className="mt-5 text-xl font-semibold">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-black/55">{item.text}</p>
+                  </motion.article>
                 ))}
               </div>
             </div>
@@ -405,7 +317,10 @@ export default function PrivacyDataProtectionPage() {
       <section id="contact" className="relative overflow-hidden bg-orange-500 text-black">
         <div className="absolute -right-20 -top-32 h-80 w-80 rounded-full border-[70px] border-black/10" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <motion.div initial={{ opacity: 0, y: 55 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.25 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-black/60">
             ANKH GRC / TRUSTED GOVERNANCE
           </p>
@@ -426,9 +341,9 @@ export default function PrivacyDataProtectionPage() {
             href="mailto:contact@ankhgrc.com"
             className="mt-10 inline-flex items-center gap-4 border border-black bg-black px-7 py-4 text-sm font-semibold text-white transition hover:bg-transparent hover:text-black"
           >
-            Contact Ankh GRC Today <span>→</span>
+            Contact Ankh GRC Today 
           </a>
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}

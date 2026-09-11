@@ -1,894 +1,362 @@
 "use client";
 
-import Link from "next/link";
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
-
+import { motion } from "framer-motion";
 const challenges = [
   {
     number: "01",
-    title: "Regulatory Fragmentation",
-    text: "20+ privacy frameworks, 50+ cyber regulations, different requirements per country. No single standard covers all regions.",
+    title: "Regulatory Complexity",
+    text: "Navigate evolving AI regulations and emerging compliance obligations worldwide.",
   },
   {
     number: "02",
-    title: "Data Localization Mandates",
-    text: "Some countries require data residency; others allow cross-border transfers with conditions. GDPR, PDPL, LGPD have different rules.",
+    title: "AI Risk Exposure",
+    text: "Manage risks associated with bias, hallucinations, explainability, model drift, and unintended outcomes.",
   },
   {
     number: "03",
-    title: "Enforcement & Penalties",
-    text: "GDPR fines up to €20M or 4% revenue; Brazil LGPD up to 2% revenue; China PIPL carries criminal liability.",
+    title: "Data Governance",
+    text: "Ensure AI systems are built on trusted, accurate, secure, and compliant data.",
   },
   {
     number: "04",
-    title: "Operational Complexity",
-    text: "Data processing workflows, consent mechanisms, breach notification timelines vary by region. Impossible to manage manually.",
+    title: "AI Security",
+    text: "Protect AI models and environments against adversarial attacks, prompt injection, and model manipulation.",
   },
   {
     number: "05",
-    title: "Third-Party Risk",
-    text: "Vendors, cloud providers, processors operate across regions. Supply chain compliance requires multi-framework visibility.",
+    title: "Transparency & Trust",
+    text: "Provide clear explanations for AI-driven decisions and recommendations.",
   },
   {
     number: "06",
-    title: "Regulatory Evolution",
-    text: "New frameworks emerging constantly: India's Digital Personal Data Protection Act, UK UK AI Bill, Middle East regulations.",
+    title: "Third-Party AI Oversight",
+    text: "Manage risks associated with foundation models, AI vendors, and external AI platforms.",
+  },
+  {
+    number: "07",
+    title: "Executive Accountability",
+    text: "Establish governance structures that provide board-level visibility and oversight.",
+  },
+  {
+    number: "08",
+    title: "Responsible Innovation",
+    text: "Balance innovation with ethical, secure, and responsible AI adoption.",
   },
 ];
 
-const frameworks = [
+const domains = [
   {
-    icon: "◉",
+    number: "01",
+    title: "AI Governance & Oversight",
+    text: "Establish governance structures, decision-making frameworks, accountability models, and executive oversight for AI programs and initiatives.",
+  },
+  {
+    number: "02",
+    title: "AI Strategy & Risk Management",
+    text: "Align AI initiatives with organizational objectives while managing strategic, operational, legal, regulatory, and reputational risks.",
+  },
+  {
+    number: "03",
+    title: "AI Inventory & Use Case Management",
+    text: "Develop an enterprise-wide inventory of AI systems, models, use cases, and associated risk classifications.",
+  },
+  {
+    number: "04",
+    title: "Regulatory Compliance & Responsible AI",
+    text: "Align AI programs with ISO/IEC 42001, ISO 23894, EU AI Act, NIST AI RMF, OECD AI Principles, and industry-specific requirements.",
+  },
+  {
+    number: "05",
+    title: "AI Ethics & Responsible AI Principles",
+    text: "Embed fairness, accountability, transparency, safety, inclusiveness, and human-centric AI throughout the AI lifecycle.",
+  },
+  {
+    number: "06",
+    title: "Data Governance for AI",
+    text: "Ensure data quality, lineage, ownership, privacy, security, retention, and compliance requirements support trustworthy AI.",
+  },
+  {
+    number: "07",
+    title: "Model Development & Validation",
+    text: "Implement controls governing model development, training, testing, validation, deployment, and retirement.",
+  },
+  {
+    number: "08",
+    title: "Explainability & Transparency",
+    text: "Ensure AI outputs can be understood, challenged, and explained to regulators, customers, employees, and business stakeholders.",
+  },
+  {
+    number: "09",
+    title: "AI Security & Adversarial Risk Management",
+    text: "Protect AI systems from prompt injection, data poisoning, model theft, adversarial attacks, unauthorized access, and AI misuse.",
+  },
+  {
+    number: "10",
+    title: "Human Oversight & Decision Governance",
+    text: "Establish appropriate human review, intervention, escalation, and accountability mechanisms for AI-assisted decisions.",
+  },
+  {
+    number: "11",
+    title: "Third-Party AI Risk Management",
+    text: "Assess and monitor AI vendors, foundation models, SaaS AI providers, cloud platforms, and external AI services.",
+  },
+  {
+    number: "12",
+    title: "AI Monitoring, Assurance & Continuous Compliance",
+    text: "Continuously monitor performance, bias, drift, security, compliance, and operational risk throughout the AI lifecycle.",
+  },
+];
+
+const coverage = [
+  {
+    title: "International Standards",
+    items: [
+      "ISO/IEC 42001",
+      "ISO 23894",
+      "ISO 27001",
+      "ISO 27701",
+      "ISO 31000",
+    ],
+  },
+  {
     title: "European Union",
     items: [
-      "GDPR (General Data Protection Regulation)",
-      "UK GDPR (Post-Brexit)",
-      "Digital Services Act (DSA)",
-      "Digital Markets Act (DMA)",
-      "ePrivacy Directive",
+      "EU AI Act",
+      "GDPR",
+      "Digital Services Act",
     ],
   },
   {
-    icon: "◎",
-    title: "Asia-Pacific",
+    title: "United States",
     items: [
-      "Singapore PDPA",
-      "Japan APPI",
-      "South Korea PIPA",
-      "Thailand PDPA",
-      "Hong Kong PDPO",
+      "NIST AI Risk Management Framework",
+      "Executive AI Guidance",
+      "Sector-Specific AI Requirements",
     ],
   },
   {
-    icon: "◌",
-    title: "Americas",
+    title: "United Kingdom",
     items: [
-      "Canada PIPEDA",
-      "Brazil LGPD",
-      "Mexico LFPDPPP",
-      "US CCPA/CPRA (California)",
-      "US State Privacy Laws",
-    ],
-  },
-  {
-    icon: "◇",
-    title: "China & Special Zones",
-    items: [
-      "China PIPL (Personal Info Prot Law)",
-      "Hong Kong PDPO",
-      "Taiwan PDPA",
-      "Mainland Data Security Law",
-      "Cybersecurity Law",
-    ],
-  },
-  {
-    icon: "○",
-    title: "Middle East & Africa",
-    items: [
-      "UAE GDPR-equivalent",
-      "Saudi Arabia PDPL",
-      "Egypt Data Protection Law",
-      "South Africa POPIA",
-      "Nigeria NDPR",
-    ],
-  },
-  {
-    icon: "✦",
-    title: "Emerging Frameworks",
-    items: [
-      "India DPDP Act",
-      "Indonesia PDP Regulation",
-      "Philippines Data Privacy Act",
-      "Vietnam Data Protection Decrees",
-      "Future Regulations (tracking)",
-    ],
-  },
-];
-
-const regions = [
-  {
-    title: "GDPR Zone (EU/UK/EEA)",
-    items: [
-      "Strictest global privacy standard",
-      "Consent-first approach (opt-in)",
-      "Data subject rights (access, deletion, portability)",
-      "DPA required for processing",
-      "€20M or 4% revenue penalties",
-    ],
-  },
-  {
-    title: "APAC Cluster",
-    items: [
-      "Convergence toward GDPR model",
-      "Singapore PDPA most mature",
-      "Mixed consent approaches",
-      "Emerging China data localization",
-      "Data transfer restrictions (PIPL)",
-    ],
-  },
-  {
-    title: "Americas",
-    items: [
-      "CCPA/CPRA (California) leader",
-      "22+ state privacy laws",
-      "Brazil LGPD strict on rights",
-      "US laws opt-out based",
-      "Sector-specific laws (HIPAA, GLBA)",
-    ],
-  },
-  {
-    title: "China Special",
-    items: [
-      "PIPL (national standard)",
-      "Mandatory data localization",
-      "Data transfer restrictions strict",
-      "Criminal liability possible",
-      "Government access provisions",
+      "UK AI Principles",
+      "ICO AI Guidance",
     ],
   },
   {
     title: "Middle East",
     items: [
-      "UAE laws emerging GDPR-like",
-      "Saudi Arabia PDPL adopted",
-      "Data sovereignty requirements",
-      "Government consultation rights",
-      "Rapidly evolving landscape",
+      "UAE AI Governance Principles",
+      "UAE Responsible AI Guidance",
+      "Saudi AI Ethics Principles",
     ],
   },
   {
-    title: "Africa",
+    title: "Global Frameworks",
     items: [
-      "POPIA (South Africa) most mature",
-      "Pan-African data protection treaty",
-      "Nigeria NDPR enforcement",
-      "Emerging frameworks across continent",
-      "Colonial law heritage varies",
+      "OECD AI Principles",
+      "UNESCO AI Ethics Framework",
+      "Future Regulatory Frameworks",
     ],
   },
 ];
 
-const approach = [
+const services = [
   {
     number: "01",
-    title: "Global Regulatory Landscape Assessment",
-    text: "Map all applicable frameworks by business geography, product scope, and data types. Identify regulatory gaps and overlaps.",
+    title: "AI Governance Maturity Assessment",
+    text: "Measure current governance maturity and identify capability gaps.",
   },
   {
     number: "02",
-    title: "Compliance Maturity & Gap Analysis",
-    text: "Assess current state against highest standards. Identify control gaps, risks, and remediation priorities across regions.",
+    title: "AI Risk Assessments",
+    text: "Evaluate AI-related legal, regulatory, ethical, privacy, cybersecurity, and operational risks.",
   },
   {
     number: "03",
-    title: "Harmonized Compliance Framework",
-    text: "Design unified policies meeting highest global standards (GDPR + CCPA + LGPD + PIPL equivalent). Adapt for local requirements.",
+    title: "Responsible AI Framework Development",
+    text: "Develop policies, standards, procedures, and governance structures.",
   },
   {
     number: "04",
-    title: "Data Localization & Transfer Solutions",
-    text: "Establish compliant data architecture: localization where required, transfers with adequate safeguards (Standard Contractual Clauses, BCRs).",
+    title: "ISO/IEC 42001 Readiness",
+    text: "Prepare organizations for AI Management System implementation and certification readiness.",
   },
   {
     number: "05",
-    title: "Vendor & Third-Party Management",
-    text: "Assess global supply chain against regional requirements. Implement Data Processing Agreements (DPAs) aligned with multiple frameworks.",
+    title: "AI Vendor Risk Assessments",
+    text: "Perform third-party AI due diligence and risk evaluations.",
   },
   {
     number: "06",
-    title: "Regional Compliance Implementation",
-    text: "Deploy localized controls where required: consent mechanisms, right-to-delete procedures, breach notification workflows by jurisdiction.",
+    title: "AI Policy Development",
+    text: "Design enterprise-wide AI governance and responsible AI policies.",
   },
   {
     number: "07",
-    title: "Documentation & Evidence",
-    text: "Maintain unified audit trail demonstrating compliance across frameworks. Document regulatory changes and impact assessments.",
+    title: "AI Governance Office Implementation",
+    text: "Establish governance committees, reporting structures, and accountability models.",
   },
   {
     number: "08",
-    title: "Continuous Monitoring & Update",
-    text: "Track regulatory changes globally. Assess impact on operations. Update policies and procedures as new regulations emerge.",
+    title: "AI Assurance Reviews",
+    text: "Conduct independent reviews of AI systems, controls, and governance practices.",
   },
 ];
 
-const benefits = [
+const outcomes = [
   {
-    icon: "01",
-    title: "Global Operations Enabled",
-    text: "Operate confidently across geographies with unified compliance framework meeting all regional requirements.",
+    number: "01",
+    title: "Regulatory Readiness",
+    text: "Prepare for evolving AI regulations and compliance obligations.",
   },
   {
-    icon: "02",
-    title: "Risk & Penalty Reduction",
-    text: "Minimize exposure to regional penalties, fines, and enforcement actions across all jurisdictions.",
+    number: "02",
+    title: "Responsible Innovation",
+    text: "Accelerate AI adoption while maintaining appropriate safeguards.",
   },
   {
-    icon: "03",
-    title: "Operational Efficiency",
-    text: "Unified policies reduce complexity. Standardized processes lower operational overhead and cost of compliance.",
+    number: "03",
+    title: "Risk Reduction",
+    text: "Reduce legal, regulatory, operational, and reputational exposure.",
   },
   {
-    icon: "04",
-    title: "Customer Trust",
-    text: "Demonstrate compliance across regions. Enhanced confidence from global customer base and investors.",
+    number: "04",
+    title: "Enhanced Trust",
+    text: "Strengthen confidence among customers, regulators, employees, and investors.",
   },
   {
-    icon: "05",
-    title: "Market Expansion",
-    text: "Enter regulated markets confidently. Compliance framework enables expansion to GDPR-zone, China, and emerging markets.",
+    number: "05",
+    title: "Executive Visibility",
+    text: "Provide leadership with measurable oversight over AI initiatives.",
   },
   {
-    icon: "06",
+    number: "06",
+    title: "Sustainable AI Adoption",
+    text: "Enable long-term, scalable AI transformation programs.",
+  },
+  {
+    number: "07",
     title: "Competitive Advantage",
-    text: "Differentiate through superior data governance across regions. Win compliance-sensitive contracts globally.",
+    text: "Differentiate through trustworthy and responsible AI practices.",
+  },
+  {
+    number: "08",
+    title: "Strong Governance",
+    text: "Integrate AI seamlessly into enterprise governance, risk, and compliance frameworks.",
   },
 ];
 
-export default function CrossBorderPage() {
+const heroAnimationStyles = `
+@keyframes scan {
+  0%, 100% { transform: translateX(-110%); }
+  50% { transform: translateX(500%); }
+}
+`;
+
+export default function AIGovernancePage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#111412] text-[#f4f1eb]">
+    <main className="min-h-screen overflow-x-hidden bg-[#111412] text-[#f4f2ec]">
+      <style dangerouslySetInnerHTML={{ __html: heroAnimationStyles }} />
+      <Navigation />
 
-   <Navigation />
-
-
-      {/* ================= HERO ================= */}
-      <section className="relative p-[28px] min-h-[720px] overflow-hidden border-b border-white/10">
-
-        <div className="pointer-events-none absolute -right-[20%] top-[10%] h-[700px] w-[700px] rounded-full bg-[#ff6a00]/[0.07] blur-[130px]" />
-
-        <div className="pointer-events-none absolute -left-[15%] bottom-[-30%] h-[650px] w-[650px] rounded-full border border-[#ff6a00]/10" />
-
-        <div className="relative mx-auto flex min-h-[720px] max-w-7xl items-center px-6 py-24 lg:px-10">
-
-          <div className="max-w-6xl">
-
-            <div className="mb-8 flex items-center gap-4">
-              <span className="h-px w-14 bg-[#ff6a00]" />
-              <span className="text-xs pt-8 font-semibold uppercase  text-orange-500">
-
-                Cross-Border Governance
-              </span>
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(255,106,0,0.11),transparent_26%),radial-gradient(circle_at_18%_78%,rgba(255,106,0,0.05),transparent_22%)]" />
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.1fr_.9fr] lg:px-10 lg:py-20">
+          <motion.div initial={{opacity:0,x:-55}} animate={{opacity:1,x:0}} transition={{duration:.85,ease:[.16,1,.3,1]}} className="flex flex-col justify-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-[#ff6a00]">Govern AI. Build Trust. Enable Innovation.</p>
+            <h1 className="mt-6 text-5xl font-medium leading-[.95] tracking-[-.055em] sm:text-6xl lg:text-7xl xl:text-8xl">Enterprise AI<br/>Governance<br/><span className="text-white/35">Framework</span></h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-white/55 lg:text-lg">Artificial Intelligence is transforming industries and decision-making processes. As organizations accelerate AI adoption, robust governance becomes critical to ensure AI systems remain trustworthy, transparent, secure, compliant, and aligned with business objectives.</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#framework" className="rounded-full bg-[#ff6a00] px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#ff7b20]">Assess AI Governance Maturity</a>
+              <a href="#why-ai-governance" className="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white/90 transition hover:border-[#ff6a00] hover:text-[#ff6a00]">Explore the Framework</a>
             </div>
-
-            <p className="mb-7 pt-10 text-lg font-medium tracking-[0.08em] text-white/55 lg:text-xl">
-              Navigate Global. Comply Local. Compete Global.
-            </p>
-
-            <h1 className="max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.055em] sm:text-6xl lg:text-8xl">
-              Cross-Border &{" "}
-              <span className="text-[#ff6a00]">Supranational</span>{" "}
-              Regulations Framework
-            </h1>
-
-            <p className="mt-9 max-w-4xl text-lg leading-8 text-white/55 lg:text-xl lg:leading-9">
-              Organizations operating across geographies face complex, overlapping
-              regulatory requirements. GDPR, PDPL, LGPD, PIPA, and emerging privacy
-              frameworks create compliance challenges. Ankh GRC helps you navigate
-              supranational regulations, harmonize compliance across regions, and
-              maintain unified governance while respecting local requirements.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-
-              <a
-                href="#frameworks"
-                className="rounded-full bg-[#ff6a00] px-7 py-4 text-sm font-semibold text-[#111412] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ff7b22] hover:shadow-[0_15px_40px_rgba(255,106,0,0.22)]"
-              >
-                Explore Frameworks
-              </a>
-
-              <a
-                href="#contact"
-                className="rounded-full border border-white/20 px-7 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:border-[#ff6a00]/60 hover:text-[#ff6a00]"
-              >
-                Get Strategy
-              </a>
-
-            </div>
-
-          </div>
+          </motion.div>
+          <motion.div initial={{opacity:0,x:55,scale:.96}} animate={{opacity:1,x:0,scale:1}} transition={{duration:.9,delay:.1,ease:[.16,1,.3,1]}} className="relative min-h-[420px] overflow-hidden rounded-[28px] border border-white/10 bg-[#171a18]">
+            <div className="absolute inset-0 opacity-[.18]" style={{backgroundImage:'linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px)',backgroundSize:'36px 36px'}}/>
+            <motion.div animate={{rotate:360}} transition={{duration:24,repeat:Infinity,ease:'linear'}} className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"/>
+            <motion.div animate={{rotate:-360}} transition={{duration:18,repeat:Infinity,ease:'linear'}} className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#ff6a00]/30"/>
+            <motion.div animate={{scale:[1,1.25,1],opacity:[.6,1,.6]}} transition={{duration:2.8,repeat:Infinity}} className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#ff6a00] shadow-[0_0_36px_rgba(255,106,0,.55)]"/>
+            {['Oversight','Risk','Control','Assurance'].map((label,i)=>{const pos=['top-8 left-1/2 -translate-x-1/2','left-8 top-1/2 -translate-y-1/2','right-8 top-1/2 -translate-y-1/2','bottom-8 left-1/2 -translate-x-1/2'][i];return <motion.span key={label} initial={{opacity:0,y:i===0?20:0,x:i===1?20:i===2?-20:0}} animate={{opacity:1,y:0,x:0}} transition={{delay:.35+i*.12}} className={`absolute ${pos} text-[10px] uppercase tracking-[.28em] text-white/40`}>{label}</motion.span>})}
+            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between"><div><p className="text-[10px] uppercase tracking-[.3em] text-white/30">Governance Architecture</p><div className="mt-3 h-px w-24 bg-[#ff6a00]"/></div><span className="text-[10px] tracking-[.28em] text-white/20">ANKH</span></div>
+          </motion.div>
         </div>
       </section>
 
-{/* ================= WHY CROSS-BORDER ================= */}
-<section className="bg-[#f7f5f0] py-24 text-[#111412] lg:py-32">
-
-  <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-    {/* Heading */}
-    <div className="mb-14 max-w-4xl">
-
-      <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-        Why it matters
-      </p>
-
-      <h2 className="text-4xl font-medium leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-        Why Cross-Border
-        <br />
-        Compliance is Critical
-      </h2>
-
-      <p className="mt-6 max-w-3xl text-base leading-8 text-black/55 sm:text-lg">
-        Organizations operating across multiple geographies face unprecedented
-        regulatory complexity. Without proper cross-border governance,
-        compliance gaps emerge quickly.
-      </p>
-
-    </div>
-
-
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-        {challenges.map((item, index) => (
-
-          <article
-            key={item.number}
-            className={`
-              group
-              relative
-              flex
-              min-h-[430px]
-              w-full
-              flex-col
-              justify-between
-              overflow-hidden
-              rounded-[18px]
-              border
-              border-white/[0.10]
-              bg-[#151916]
-              p-7
-              transition-all
-              duration-500
-              hover:-translate-y-1
-              hover:border-[#ff6a00]/45
-              hover:bg-[#171a18]
-            `}
-          >{/* Top */}
-
-            <div className="relative z-10">
-              <div className="h-px w-16 bg-[#ff6a00] transition-all duration-500 group-hover:w-24" />
-              <div className="mt-2 space-y-2">
-                <div className="h-px w-full bg-white/[0.08]" />
-                <div className="h-px w-[78%] bg-white/[0.045]" />
-              </div>
-            </div>
-
-
-            {/* Content */}
-
-            <div className="relative z-10">
-
-              <div
-                className="
-                  mb-6
-                  h-px
-                  w-10
-                  bg-[#ff6a00]
-                  transition-all
-                  duration-500
-                  group-hover:w-20
-                "
-              />
-
-              <h3
-                className="
-                  max-w-[300px]
-                  text-2xl
-                  font-medium
-                  leading-[1.1]
-                  tracking-[-0.025em]
-                  text-white
-                  sm:text-3xl
-                "
-              >
-                {item.title}
-              </h3>
-
-              <p
-                className="
-                  mt-5
-                  max-w-[310px]
-                  text-sm
-                  leading-7
-                  text-white/50
-                  sm:text-[15px]
-                "
-              >
-                {item.text}
-              </p>
-
-            </div>
-
-
-            {/* Bottom */}
-
-            <div className="relative z-10 flex items-center justify-between">
-
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/25">
-                ANKH GRC
-              </span>
-
-              <span className="text-xs text-white/25">
-                {String(index + 1).padStart(2, "0")} / 06
-              </span>
-
-            </div>
-
-
-            {/* Bottom orange line */}
-
-            <div
-              className="
-                absolute
-                bottom-0
-                left-0
-                h-[2px]
-                w-0
-                bg-[#ff6a00]
-                transition-all
-                duration-500
-                group-hover:w-full
-              "
-            />
-
-          </article>
-
-        ))}
-
-      </div>
-
-
-  </div>
-
-</section>
-
-
-      {/* ================= FRAMEWORKS ================= */}
-      <section
-        id="frameworks"
-        className="relative border-y border-white/10 bg-[#151916] py-28 lg:py-36"
-      >
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-          <div className="mb-16 max-w-4xl">
-
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-              Global coverage
-            </p>
-
-            <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-              Global Privacy & Data Protection Frameworks
-            </h2>
-
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-white/50">
-              Comprehensive coverage of supranational and regional data protection regulations.
-            </p>
-
-          </div>
-
-
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-              {frameworks.map((framework, index) => (
-                <article
-                  key={framework.title}
-                  className="group relative h-[390px] w-full overflow-hidden rounded-[18px] border border-white/[0.10] bg-[#151916] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/45 hover:bg-[#171a18]"
-                >
-
-                
-
-                  <div className="mt-10">
-
-              
-
-                    <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em]">
-                      {framework.title}
-                    </h3>
-
-                  </div>
-
-                  <ul className="mt-7 space-y-3">
-
-                    {framework.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex gap-3 text-sm leading-6 text-white/50"
-                      >
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#ff6a00]" />
-                        {item}
-                      </li>
-                    ))}
-
-                  </ul>
-
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-
-                </article>
-              ))}
-
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ================= REGIONS ================= */}
-      <section className="py-28 lg:py-36">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-          <div className="mb-16 max-w-4xl">
-
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-              Regional intelligence
-            </p>
-
-            <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-              Regional Coverage & Considerations
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-white/50">
-              Key regulatory requirements and compliance obligations by geographic region.
-            </p>
-
-          </div>
-
-
-          <div className="space-y-3">
-
-            {regions.map((region, index) => (
-              <div
-                key={region.title}
-                className="group grid gap-6 border-t border-white/10 py-8 transition-colors duration-300 hover:border-[#ff6a00]/40 lg:grid-cols-[0.8fr_1.2fr] lg:items-center"
-              >
-
-                <div className="flex items-center gap-6">
-
-                  <span className="text-sm font-semibold tracking-[0.2em] text-[#ff6a00]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <h3 className="text-2xl font-medium tracking-[-0.025em] sm:text-3xl">
-                    {region.title}
-                  </h3>
-
+      {/* WHY — horizontal contained scroller */}
+      <section id="why-ai-governance" className="bg-[#f3f0e9] text-[#111412]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
+            <motion.div initial={{opacity:0,x:-55}} whileInView={{opacity:1,x:0}} viewport={{once:false,amount:.2}} transition={{duration:.7}}><p className="text-xs font-semibold uppercase tracking-[.3em] text-[#ff5f00]">Why AI Governance</p><h2 className="mt-4 text-4xl font-medium leading-[.98] tracking-[-.045em] lg:text-5xl">Trust cannot be<br/>an afterthought.</h2></motion.div>
+            <div>
+              <motion.p initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:false,amount:.2}} transition={{duration:.65}} className="max-w-3xl text-base leading-7 text-black/60">Organizations increasingly rely on AI-driven systems for automation, decision-making, customer engagement, risk evaluation, and strategic planning. Without proper governance, AI introduces significant legal, ethical, operational, cybersecurity, and reputational risks.</motion.p>
+              <div className="mt-8 overflow-hidden rounded-2xl border border-black/10 bg-white/40 p-3">
+                <div className="flex gap-4 overflow-x-auto overscroll-x-contain pb-3">
+                  {challenges.map((item,index)=><motion.article key={item.number} initial={{opacity:0,x:80,rotate:index%2?2:-2}} whileInView={{opacity:1,x:0,rotate:0}} viewport={{once:false,amount:.25}} transition={{duration:.65,delay:index*.06}} whileHover={{y:-6}} className="w-[285px] shrink-0 rounded-xl border border-black/10 bg-[#fbfaf7] p-6 sm:w-[320px]"><div className="h-px w-10 bg-[#ff5f00]"/><h3 className="mt-5 text-xl font-semibold tracking-[-.02em]">{item.title}</h3><p className="mt-3 text-sm leading-6 text-black/55">{item.text}</p></motion.article>)}
                 </div>
-
-                <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-
-                  {region.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-sm leading-7 text-white/45"
-                    >
-                      <span className="mt-3 h-1 w-1 shrink-0 rounded-full bg-[#ff6a00]" />
-                      {item}
-                    </li>
-                  ))}
-
-                </ul>
-
               </div>
-            ))}
-
+            </div>
           </div>
-
         </div>
       </section>
 
-
-      {/* ================= OUR METHODOLOGY ================= */}
-<section className="bg-[#f7f5f0] py-24 text-[#111412] lg:py-32">
-  <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-    {/* Section heading */}
-    <div className="max-w-5xl">
-      <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-        Our Methodology
-      </p>
-
-      <h2 className="max-w-5xl text-5xl font-medium leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
-        Cross-Border Compliance
-        <br />
-        Approach
-      </h2>
-
-      <p className="mt-7 max-w-4xl text-lg leading-8 text-[#111412]/60 lg:text-xl">
-        A structured methodology for achieving unified compliance across
-        multiple jurisdictions.
-      </p>
-    </div>
-
-    {/* Methodology */}
-    <div className="mt-20 grid gap-x-12 lg:grid-cols-2">
-
-      {/* 01 */}
-      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
-        <div className="flex gap-7">
-
-        
-
-          <div className="flex-1">
-
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-2xl font-medium leading-[1.15] tracking-[-0.025em] lg:text-3xl">
-                Global Regulatory Landscape Assessment
-              </h3>
-
-             
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
-              Map all applicable frameworks by business geography, product
-              scope, and data types. Identify regulatory gaps and overlaps.
-            </p>
-
+      {/* DOMAINS — BENTO */}
+      <section id="framework" className="relative bg-[#111412]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div initial={{opacity:0,y:50}} whileInView={{opacity:1,y:0}} viewport={{once:false,amount:.2}} transition={{duration:.75}}><p className="text-xs font-semibold uppercase tracking-[.3em] text-[#ff6a00]">AI Governance Framework</p><h2 className="mt-4 max-w-3xl text-4xl font-medium tracking-[-.045em] lg:text-6xl">The 12 Core Domains</h2><p className="mt-5 max-w-2xl text-base leading-7 text-white/45">A comprehensive framework covering governance, risk management, compliance, security, ethics, and assurance across the complete AI lifecycle.</p></motion.div>
+          <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+            {domains.map((item,index)=>{const span=index===0?'md:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[360px]':index===3||index===6||index===9?'lg:col-span-2 min-h-[210px]':'min-h-[210px]';return <motion.article key={item.number} initial={{opacity:0,y:index%2?55:70,x:index%3===0?-35:35,scale:.96}} whileInView={{opacity:1,y:0,x:0,scale:1}} viewport={{once:false,amount:.15}} transition={{duration:.65,delay:index*.045,ease:[.16,1,.3,1]}} whileHover={{y:-7,scale:1.01}} className={`group relative overflow-hidden rounded-[22px] border border-white/10 bg-[#171a18] p-6 transition ${span}`}><div className="absolute -bottom-20 -right-20 h-48 w-48 rounded-full bg-[#ff6a00]/[.07] blur-[60px] transition group-hover:bg-[#ff6a00]/[.13]"/><div className="relative"><div className="h-px w-10 bg-[#ff6a00]"/><p className="mt-4 text-[10px] uppercase tracking-[.28em] text-white/25">Core Domain</p><h3 className={`mt-3 font-medium tracking-[-.03em] ${index===0?'max-w-lg text-3xl lg:text-4xl':'text-xl'}`}>{item.title}</h3><p className={`mt-3 leading-6 text-white/45 ${index===0?'max-w-xl text-base':'text-sm'}`}>{item.text}</p></div></motion.article>})}
           </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-      </article>
-
-
-      {/* 02 */}
-      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
-        <div className="flex gap-7">
-
-         
-
-          <div className="flex-1">
-
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-2xl font-medium leading-[1.15] tracking-[-0.025em] lg:text-3xl">
-                Compliance Maturity &amp; Gap Analysis
-              </h3>
-
-              
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
-              Assess current state against highest standards. Identify control
-              gaps, risks, and remediation priorities across regions.
-            </p>
-
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-      </article>
-
-
-      {/* 03 */}
-      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
-        <div className="flex gap-7">
-
-        
-
-          <div className="flex-1">
-
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-2xl font-medium leading-[1.15] tracking-[-0.025em] lg:text-3xl">
-                Harmonized Compliance Framework
-              </h3>
-
-       
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
-              Design unified policies meeting highest global standards
-              (GDPR + CCPA + LGPD + PIPL equivalent). Adapt for local
-              requirements.
-            </p>
-
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-      </article>
-
-
-      {/* 04 */}
-      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
-        <div className="flex gap-7">
-
-        
-
-          <div className="flex-1">
-
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-2xl font-medium leading-[1.15] tracking-[-0.025em] lg:text-3xl">
-                Data Localization &amp; Transfer Solutions
-              </h3>
-
-          
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
-              Establish compliant data architecture: localization where
-              required, transfers with adequate safeguards (Standard
-              Contractual Clauses, BCRs).
-            </p>
-
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-      </article>
-
-
-      {/* 05 */}
-      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
-        <div className="flex gap-7">
-
-
-          <div className="flex-1">
-
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-2xl font-medium leading-[1.15] tracking-[-0.025em] lg:text-3xl">
-                AI &amp; Emerging Technology Compliance
-              </h3>
-
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
-              Integrate AI governance, privacy, and regulatory requirements
-              into emerging technology initiatives.
-            </p>
-
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-      </article>
-
-
-      {/* 06 */}
-      <article className="group relative overflow-hidden rounded-[18px] border border-black/[0.09] bg-[#fbfaf7] px-7 py-9 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/40 hover:bg-white lg:px-8">
-        <div className="flex gap-7">
-
-        
-
-          <div className="flex-1">
-
-            <div className="flex items-start justify-between gap-6">
-              <h3 className="text-2xl font-medium leading-[1.15] tracking-[-0.025em] lg:text-3xl">
-                Continuous Monitoring &amp; Adaptation
-              </h3>
-
-              
-            </div>
-
-            <p className="mt-5 max-w-2xl text-base leading-7 text-[#111412]/55 lg:text-[17px]">
-              Monitor regulatory changes continuously and adapt controls,
-              policies, and processes accordingly.
-            </p>
-
-          </div>
-        </div>
-
-        <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-      </article>
-
-    </div>
-
-  </div>
-</section>
-
-      {/* ================= BENEFITS ================= */}
-      <section className="py-28 lg:py-36">
-
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-
-          <div className="mb-16 max-w-4xl">
-
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-              Business impact
-            </p>
-
-            <h2 className="text-4xl font-medium tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-              Business Benefits
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-white/50">
-              Strategic advantages of harmonized cross-border compliance.
-            </p>
-
-          </div>
-
-
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-
-            {benefits.map((benefit) => (
-              <article
-                key={benefit.icon}
-                className="group relative min-h-[250px] overflow-hidden rounded-[18px] border border-white/[0.10] bg-[#151916] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[#ff6a00]/45 hover:bg-[#171a18]"
-              >
-
-             
-
-                <h3 className="mt-12 text-2xl font-medium tracking-[-0.025em]">
-                  {benefit.title}
-                </h3>
-
-                <p className="mt-4 text-sm leading-7 text-white/45">
-                  {benefit.text}
-                </p>
-
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-
-              </article>
-            ))}
-
-          </div>
-
         </div>
       </section>
 
-
-      {/* ================= CTA ================= */}
-      <section
-        id="contact"
-        className="relative overflow-hidden border-t border-white/10 bg-[#ff6a00] py-28 text-[#111412] lg:py-36"
-      >
-
-        <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full border border-black/10" />
-
-        <div className="pointer-events-none absolute -bottom-40 -left-20 h-[450px] w-[650px] rounded-full border border-black/10" />
-
-        <div className="relative mx-auto max-w-5xl px-6 text-center">
-
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-black/50">
-            Ankh GRC
-          </p>
-
-          <h2 className="mt-6 text-4xl font-medium leading-tight tracking-[-0.045em] sm:text-5xl lg:text-7xl">
-            Navigate Global Regulations Confidently
-          </h2>
-
-          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-black/65">
-            Whether your organization operates in EU, APAC, Americas, China,
-            Middle East, or Africa, Ankh GRC can help you establish harmonized,
-            scalable cross-border compliance that respects local requirements
-            while maintaining unified governance.
-          </p>
-
-          <button
-            type="button"
-            className="mt-9 rounded-full bg-[#111412] px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-black"
-          >
-            Contact Ankh GRC
-          </button>
-
+      {/* COVERAGE — editorial stacked cards */}
+      <section id="coverage" className="bg-[#ece8df] text-[#111412]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div initial={{opacity:0,x:-50}} whileInView={{opacity:1,x:0}} viewport={{once:false,amount:.2}} transition={{duration:.7}} className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end"><div><p className="text-xs font-semibold uppercase tracking-[.3em] text-[#ff5f00]">Global Coverage</p><h2 className="mt-4 text-4xl font-medium tracking-[-.045em] lg:text-5xl">International AI Governance</h2></div><p className="max-w-xl text-sm leading-7 text-black/55">Aligned with leading international standards, regulations, and responsible AI frameworks.</p></motion.div>
+          <div className="mt-10 space-y-3">
+            {coverage.map((item,index)=><motion.article key={item.title} initial={{opacity:0,x:index%2?-60:60}} whileInView={{opacity:1,x:0}} viewport={{once:false,amount:.2}} transition={{duration:.65,delay:index*.06}} whileHover={{scale:1.01}} className="grid gap-5 rounded-2xl border border-black/10 bg-[#f8f6f1] p-6 md:grid-cols-[220px_1fr]"><div><div className="h-px w-10 bg-[#ff5f00]"/><h3 className="mt-5 text-2xl font-medium tracking-[-.03em]">{item.title}</h3></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{item.items.map(point=><div key={point} className="rounded-xl border border-black/10 bg-white/50 px-4 py-3 text-sm leading-6 text-black/60">{point}</div>)}</div></motion.article>)}
+          </div>
         </div>
-
       </section>
 
+      {/* SERVICES — zigzag cards */}
+      <section id="services" className="bg-[#111412]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div initial={{opacity:0,y:45}} whileInView={{opacity:1,y:0}} viewport={{once:false,amount:.2}} transition={{duration:.7}} className="max-w-3xl"><p className="text-xs font-semibold uppercase tracking-[.3em] text-[#ff6a00]">Ankh GRC Services</p><h2 className="mt-4 text-4xl font-medium tracking-[-.045em] lg:text-5xl">From policy to assurance.</h2><p className="mt-5 text-base leading-7 text-white/45">Helping organizations operationalize responsible, secure, and compliant AI.</p></motion.div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+            {services.map((item,index)=>{const cls=['lg:col-span-5','lg:col-span-7','lg:col-span-7','lg:col-span-5','lg:col-span-4','lg:col-span-8','lg:col-span-8','lg:col-span-4'][index];return <motion.article key={item.number} initial={{opacity:0,y:70,x:index%2?35:-35}} whileInView={{opacity:1,y:0,x:0}} viewport={{once:false,amount:.18}} transition={{duration:.65,delay:index*.06}} whileHover={{y:-8}} className={`relative overflow-hidden rounded-[24px] border border-white/10 bg-[#171a18] p-7 ${cls}`}><div className="absolute right-6 top-6 h-14 w-14 rounded-full border border-[#ff6a00]/20"/><div className="h-px w-12 bg-[#ff6a00]"/><h3 className="mt-6 max-w-xl text-2xl font-medium tracking-[-.03em]">{item.title}</h3><p className="mt-4 max-w-2xl text-sm leading-7 text-white/45">{item.text}</p><div className="mt-8 text-[10px] uppercase tracking-[.28em] text-white/25">ANKH GRC</div></motion.article>})}
+          </div>
+        </div>
+      </section>
 
-      {/* ================= FOOTER ================= */}
-     
-<Footer/>
+      {/* OUTCOMES — compact mosaic */}
+      <section className="bg-[#f3f0e9] text-[#111412]">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div initial={{opacity:0,x:-45}} whileInView={{opacity:1,x:0}} viewport={{once:false,amount:.2}} transition={{duration:.7}} className="grid gap-8 lg:grid-cols-[.7fr_1.3fr]"><div><p className="text-xs font-semibold uppercase tracking-[.3em] text-[#ff5f00]">Business Outcomes</p><h2 className="mt-4 text-4xl font-medium tracking-[-.045em] lg:text-5xl">What good governance creates.</h2></div><p className="self-end max-w-2xl text-base leading-7 text-black/55">Deliver trusted, scalable, and compliant AI adoption through governance that supports innovation instead of slowing it down.</p></motion.div>
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {outcomes.map((item,index)=>{const span=index===0?'sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[280px]':index===5?'lg:col-span-2':'min-h-[180px]';return <motion.article key={item.number} initial={{opacity:0,scale:.9,y:45}} whileInView={{opacity:1,scale:1,y:0}} viewport={{once:false,amount:.2}} transition={{duration:.6,delay:index*.05}} whileHover={{y:-6}} className={`rounded-2xl border border-black/10 bg-white/45 p-6 ${span}`}><div className="h-px w-9 bg-[#ff5f00]"/><h3 className={`mt-5 font-semibold tracking-[-.02em] ${index===0?'text-3xl':'text-xl'}`}>{item.title}</h3><p className="mt-3 text-sm leading-6 text-black/55">{item.text}</p></motion.article>})}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY ANKH — split statement */}
+      <section className="bg-white text-[#111412]">
+        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div initial={{opacity:0,y:45}} whileInView={{opacity:1,y:0}} viewport={{once:false,amount:.2}} transition={{duration:.7}} className="text-center"><p className="text-xs font-semibold uppercase tracking-[.3em] text-[#ff5f00]">Why Ankh GRC</p><h2 className="mt-4 text-4xl font-medium tracking-[-.045em] lg:text-5xl">Innovation with assurance.</h2></motion.div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <motion.div initial={{opacity:0,x:-45}} whileInView={{opacity:1,x:0}} viewport={{once:false,amount:.2}} transition={{duration:.65}} className="rounded-2xl border border-black/10 bg-[#f6f3ec] p-7"><p className="text-sm leading-8 text-black/60">Ankh GRC combines expertise in Governance, Risk, Compliance, Cybersecurity, Privacy, AI Governance, Internal Audit, Third-Party Risk Management, and Regulatory Compliance to help organizations establish practical, scalable, and business-oriented AI governance programs.</p></motion.div>
+            <motion.div initial={{opacity:0,x:45}} whileInView={{opacity:1,x:0}} viewport={{once:false,amount:.2}} transition={{duration:.65}} className="rounded-2xl bg-[#111412] p-7 text-white"><div className="h-px w-12 bg-[#ff6a00]"/><p className="mt-5 text-sm leading-8 text-white/55">Our approach bridges the gap between innovation and assurance, helping organizations adopt AI confidently while maintaining security, trust, and accountability.</p></motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="contact" className="relative overflow-hidden bg-[#ff6500] text-black">
+        <motion.div initial={{opacity:0,y:55}} whileInView={{opacity:1,y:0}} viewport={{once:false,amount:.2}} transition={{duration:.8}} className="mx-auto max-w-5xl px-6 py-16 text-center lg:px-10 lg:py-20"><p className="text-xs font-bold uppercase tracking-[.34em]">Next Step</p><h2 className="mt-5 text-5xl font-medium leading-[.95] tracking-[-.05em] lg:text-7xl">Build Trustworthy<br/>AI at Scale</h2><p className="mx-auto mt-7 max-w-3xl text-base leading-8 text-black/70">Whether your organization is exploring Generative AI, implementing AI-powered business solutions, establishing an AI Governance Office, preparing for ISO/IEC 42001 readiness, or responding to emerging AI regulations, Ankh GRC can help you operationalize AI governance that enables innovation while managing risk.</p><a href="/contact" className="mt-8 inline-flex rounded-full bg-[#111412] px-7 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:bg-white hover:text-black">Contact Ankh GRC Today</a></motion.div>
+      </section>
+      <Footer />
     </main>
   );
 }

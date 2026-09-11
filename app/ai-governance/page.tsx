@@ -2,6 +2,7 @@
 
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
+import { motion } from "framer-motion";
 const challenges = [
   {
     number: "01",
@@ -255,12 +256,12 @@ const heroAnimationStyles = `
 
 export default function AIGovernancePage() {
   return (
-    <main className="min-h-screen bg-[#111412] text-[#f4f2ec]">
+    <main className="min-h-screen overflow-x-hidden bg-[#111412] text-[#f4f2ec]">
       <style dangerouslySetInnerHTML={{ __html: heroAnimationStyles }} />
       <Navigation />
 
       {/* HERO */}
-      <section className=" h-[980px] relative overflow-hidden bg-[#111412] pt-20">
+      <motion.section initial={{ opacity: 0, y: 70, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} className=" h-[980px] relative overflow-hidden bg-[#111412] pt-20">
         <div className="pointer-events-none absolute -right-40 -top-40 h-[600px] w-[600px] rounded-full bg-[#ff6a00]/[0.06] blur-[120px]" />
 
 <div className="mx-auto grid min-h-[800px] w-full max-w-7xl items-center gap-24 px-8 py-24 lg:grid-cols-[1.25fr_0.75fr] lg:px-12 lg:py-28">          <div>
@@ -290,7 +291,7 @@ export default function AIGovernancePage() {
                 className="inline-flex items-center gap-3 bg-[#ff6a00] px-7 py-4 text-sm font-semibold text-black transition hover:bg-[#ff7b20]"
               >
                 Assess AI Governance Maturity
-                <span>→</span>
+                
               </a>
 
               <a
@@ -298,7 +299,7 @@ export default function AIGovernancePage() {
                 className="inline-flex items-center gap-3 border border-white/20 px-7 py-4 text-sm font-semibold text-white transition hover:border-[#ff6a00] hover:text-[#ff6a00]"
               >
                 Explore the Framework
-                <span>↓</span>
+                
               </a>
             </div>
           </div>
@@ -368,10 +369,10 @@ export default function AIGovernancePage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* WHY */}
-      <section
+      <motion.section initial={{ opacity: 0, x: -80 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         id="why-ai-governance"
         className="bg-[#f3f0e9] text-[#111412]"
       >
@@ -402,9 +403,9 @@ export default function AIGovernancePage() {
                 cybersecurity, and reputational risks.
               </p>
 
-              <div className="mt-12 grid border-l border-t border-black/10 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-12 max-w-full overflow-hidden grid border-l border-t border-black/10 sm:grid-cols-2 lg:grid-cols-3">
                 {challenges.map((item) => (
-                  <article
+                  <motion.article initial={{ opacity: 0, x: -45, y: 35, scale: 0.94 }} whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.65, delay: 0.0, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -8, scale: 1.015 }}
                     key={item.number}
                     className="min-h-[235px] border-b border-r border-black/10 p-7 lg:p-8"
                   >
@@ -417,16 +418,16 @@ export default function AIGovernancePage() {
                     <p className="mt-4 text-[15px] leading-7 text-black/55">
                       {item.text}
                     </p>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CORE DOMAINS — CONTAINED GRID */}
-      <section id="framework" className="bg-[#111412]">
+      <motion.section initial={{ opacity: 0, y: 80, rotateX: 4 }} whileInView={{ opacity: 1, y: 0, rotateX: 0 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} id="framework" className="bg-[#111412]">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
             02 / AI GOVERNANCE FRAMEWORK
@@ -446,46 +447,51 @@ export default function AIGovernancePage() {
             </p>
           </div>
 
-          {/* IMPORTANT: NO HORIZONTAL SCROLL */}
-          <div className="mx-auto mt-14 grid max-w-[1400px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {domains.map((item) => (
-              <article
-                key={item.number}
-                className="group relative flex min-h-[400px] flex-col overflow-hidden border border-white/10 bg-[#171a18] p-8 transition-all duration-500 hover:border-[#ff6a00]/60 hover:bg-[#1b1e1c]" style={{ borderRadius: "20px" }}
-              >
-                <div className="relative z-10">
-                  <div className="h-px w-20 bg-[#ff6a00] transition-all duration-500 group-hover:w-32" />
-                  <div className="mt-3 h-px w-full bg-white/10" />
-                </div>
-
-                <div className="relative z-10 mt-auto">
-                  <div className="mb-6 h-px w-full bg-white/10" />
-
-                  <h3 className="max-w-[90%] text-[28px] font-medium leading-tight tracking-[-0.025em]">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-5 text-[20px] leading-7 text-white/45">
-                    {item.text}
-                  </p>
-
-                  <div className="mt-7 flex items-center gap-3">
-                    <span className="h-1.5 w-1.5 bg-[#ff6a00]" />
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">
-                      AI GOVERNANCE
-                    </span>
+          {/* CONTAINED HORIZONTAL SCROLL — scrollbar stays inside this section */}
+          <div className="mx-auto mt-14 w-full max-w-[1400px] overflow-hidden">
+            <div
+              className="flex w-full max-w-full gap-5 overflow-x-auto overflow-y-hidden overscroll-x-contain pb-5 pr-2"
+              style={{ scrollbarGutter: "stable" }}
+            >
+              {domains.map((item) => (
+                <motion.article initial={{ opacity: 0, x: 45, y: 35, scale: 0.94 }} whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.65, delay: 0.055, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -8, scale: 1.015 }}
+                  key={item.number}
+                  className="group relative flex min-h-[400px] w-[330px] shrink-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#171a18] p-8 transition-all duration-500 hover:border-[#ff6a00]/60 hover:bg-[#1b1e1c] sm:w-[380px] lg:w-[410px]"
+                >
+                  <div className="relative z-10">
+                    <div className="h-px w-20 bg-[#ff6a00] transition-all duration-500 group-hover:w-32" />
+                    <div className="mt-3 h-px w-full bg-white/10" />
                   </div>
-                </div>
 
-                <div className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-              </article>
-            ))}
+                  <div className="relative z-10 mt-auto">
+                    <div className="mb-6 h-px w-full bg-white/10" />
+
+                    <h3 className="max-w-[90%] text-[28px] font-medium leading-tight tracking-[-0.025em]">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-5 text-[20px] leading-7 text-white/45">
+                      {item.text}
+                    </p>
+
+                    <div className="mt-7 flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 bg-[#ff6a00]" />
+                      <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">
+                        AI GOVERNANCE
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
+                </motion.article>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* GLOBAL COVERAGE */}
-      <section
+      <motion.section initial={{ opacity: 0, x: 80 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         id="coverage"
         className="bg-[#f3f0e9] text-[#111412]"
       >
@@ -511,9 +517,9 @@ export default function AIGovernancePage() {
                 responsible AI frameworks.
               </p>
 
-              <div className="mt-12 grid border-l border-t border-black/10 md:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-12 max-w-full overflow-hidden grid border-l border-t border-black/10 md:grid-cols-2 lg:grid-cols-3">
                 {coverage.map((item) => (
-                  <article
+                  <motion.article initial={{ opacity: 0, x: -45, y: 35, scale: 0.94 }} whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.65, delay: 0.11, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -8, scale: 1.015 }}
                     key={item.title}
                     className="min-h-[250px] border-b border-r border-black/10 p-7 lg:p-8"
                   >
@@ -534,16 +540,16 @@ export default function AIGovernancePage() {
                         </li>
                       ))}
                     </ul>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SERVICES — CONTAINED GRID */}
-      <section id="services" className="bg-[#111412]">
+      <motion.section initial={{ opacity: 0, y: 65, scale: 0.97 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} id="services" className="bg-[#111412]">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
             04 / ANKH GRC SERVICES
@@ -563,9 +569,10 @@ export default function AIGovernancePage() {
           </div>
 
           {/* IMPORTANT: NO HORIZONTAL SCROLL */}
-          <div className="mx-auto mt-14 grid max-w-[1400px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-14 w-full max-w-[1400px] overflow-hidden">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((item) => (
-              <article
+              <motion.article initial={{ opacity: 0, x: 45, y: 35, scale: 0.94 }} whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.65, delay: 0.165, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -8, scale: 1.015 }}
                 key={item.number}
                 className="group relative flex min-h-[300px] flex-col overflow-hidden border border-white/10 bg-[#171a18] p-8 transition-all duration-500 hover:border-[#ff6a00]/60 hover:bg-[#1b1e1c]" style={{ borderRadius: "20px" }}
               >
@@ -594,14 +601,15 @@ export default function AIGovernancePage() {
                 </div>
 
                 <div className="pointer-events-none absolute bottom-0 left-0 h-px w-0 bg-[#ff6a00] transition-all duration-500 group-hover:w-full" />
-              </article>
+              </motion.article>
             ))}
+            </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* BUSINESS OUTCOMES */}
-      <section className="bg-[#f3f0e9] text-[#111412]">
+      <motion.section initial={{ opacity: 0, x: -70, scale: 0.98 }} whileInView={{ opacity: 1, x: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} className="bg-[#f3f0e9] text-[#111412]">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <div className="grid gap-14 lg:grid-cols-[0.65fr_1.35fr]">
             <div>
@@ -621,9 +629,9 @@ export default function AIGovernancePage() {
                 Deliver trusted, scalable, and compliant AI adoption.
               </p>
 
-              <div className="mt-12 grid border-l border-t border-black/10 md:grid-cols-2">
+              <div className="mt-12 max-w-full overflow-hidden grid border-l border-t border-black/10 md:grid-cols-2">
                 {outcomes.map((item) => (
-                  <article
+                  <motion.article initial={{ opacity: 0, x: -45, y: 35, scale: 0.94 }} whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.65, delay: 0.22, ease: [0.16, 1, 0.3, 1] }} whileHover={{ y: -8, scale: 1.015 }}
                     key={item.number}
                     className="min-h-[220px] border-b border-r border-black/10 p-7 lg:p-8"
                   >
@@ -636,16 +644,16 @@ export default function AIGovernancePage() {
                     <p className="mt-4 text-[15px] leading-7 text-black/55">
                       {item.text}
                     </p>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* WHY ANKH */}
-      <section className="bg-white text-[#111412]">
+      <motion.section initial={{ opacity: 0, y: 90 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: 0.18 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }} className="bg-white text-[#111412]">
         <div className="mx-auto max-w-7xl px-6 py-24 text-center lg:px-10 lg:py-28">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#ff5f00]">
             06 / WHY ANKH GRC
@@ -669,10 +677,10 @@ export default function AIGovernancePage() {
             security, trust, and accountability.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {/* CONTACT — ORANGE */}
-      <section
+      <motion.section initial={{ opacity: 0, y: 70, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         id="contact"
         className="bg-[#ff6500] text-black"
       >
@@ -701,10 +709,10 @@ export default function AIGovernancePage() {
             className="mt-10 inline-flex items-center gap-4 bg-[#111412] px-8 py-4 text-sm font-semibold text-white transition hover:bg-white hover:text-black"
           >
             Contact Ankh GRC Today
-            <span>→</span>
+            
           </a>
         </div>
-      </section>
+      </motion.section>
 
       {/* FOOTER */}
      <Footer/>

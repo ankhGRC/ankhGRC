@@ -1,6 +1,9 @@
+"use client";
 import Link from "next/link";
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
+import { motion } from "framer-motion";
+
 const challenges = [
   {
     title: "Cyber Threat Evolution",
@@ -29,59 +32,168 @@ const challenges = [
 ];
 
 const domains = [
-  ["01", "Information Security Governance", "Establish governance structures that define security accountability, risk appetite, and board oversight across the organization."],
-  ["02", "Asset Management & Inventory", "Identify, classify, and maintain visibility over information assets, hardware, software, and systems."],
-  ["03", "Access Control & Identity Management", "Implement IAM, role-based access controls, and authentication mechanisms aligned with business needs."],
-  ["04", "Cryptography & Data Protection", "Protect sensitive data in transit and at rest through encryption, key management, and secure data handling procedures."],
-  ["05", "Threat Detection & Monitoring", "Implement SIEM, endpoint detection and response (EDR), and continuous monitoring to identify security events and anomalies."],
-  ["06", "Incident Response & Management", "Establish incident response plans, playbooks, and crisis management procedures to minimize breach impact."],
-  ["07", "Vulnerability Management", "Conduct vulnerability assessments, penetration testing, and patch management to reduce attack surface."],
-  ["08", "Business Continuity & Disaster Recovery", "Maintain resilience through backup strategies, recovery time objectives (RTO), and continuity of critical services."],
-  ["09", "Third-Party & Supply Chain Security", "Assess and monitor security risks from vendors, cloud providers, and critical service providers."],
-  ["10", "Security Awareness & Culture", "Build a security-conscious culture through training, awareness, and accountability across all levels."],
+  [
+    "01",
+    "Information Security Governance",
+    "Establish governance structures that define security accountability, risk appetite, and board oversight across the organization.",
+  ],
+  [
+    "02",
+    "Asset Management & Inventory",
+    "Identify, classify, and maintain visibility over information assets, hardware, software, and systems.",
+  ],
+  [
+    "03",
+    "Access Control & Identity Management",
+    "Implement IAM, role-based access controls, and authentication mechanisms aligned with business needs.",
+  ],
+  [
+    "04",
+    "Cryptography & Data Protection",
+    "Protect sensitive data in transit and at rest through encryption, key management, and secure data handling procedures.",
+  ],
+  [
+    "05",
+    "Threat Detection & Monitoring",
+    "Implement SIEM, endpoint detection and response (EDR), and continuous monitoring to identify security events and anomalies.",
+  ],
+  [
+    "06",
+    "Incident Response & Management",
+    "Establish incident response plans, playbooks, and crisis management procedures to minimize breach impact.",
+  ],
+  [
+    "07",
+    "Vulnerability Management",
+    "Conduct vulnerability assessments, penetration testing, and patch management to reduce attack surface.",
+  ],
+  [
+    "08",
+    "Business Continuity & Disaster Recovery",
+    "Maintain resilience through backup strategies, recovery time objectives (RTO), and continuity of critical services.",
+  ],
+  [
+    "09",
+    "Third-Party & Supply Chain Security",
+    "Assess and monitor security risks from vendors, cloud providers, and critical service providers.",
+  ],
+  [
+    "10",
+    "Security Awareness & Culture",
+    "Build a security-conscious culture through training, awareness, and accountability across all levels.",
+  ],
 ] as const;
 
 const standards = [
-  ["ISO 27001", "Information Security Management System", "14 Domains | 114 Controls | Certifiable"],
-  ["NIST CSF 2.0", "Identify • Protect • Detect • Respond • Recover", "Risk-based cybersecurity framework"],
-  ["SOC 2 Type II", "Trust Services Criteria", "Security • Availability • Processing Integrity"],
-  ["CIS Controls", "Prioritized security best practices", "Actionable security framework"],
-  ["ISO 27701", "Privacy Information Management Systems", "Data protection focus"],
-  ["Industry-Specific", "HIPAA | PCI-DSS | FedRAMP | HITRUST", "Regulatory alignment"],
+  [
+    "ISO 27001",
+    "Information Security Management System",
+    "14 Domains | 114 Controls | Certifiable",
+  ],
+  [
+    "NIST CSF 2.0",
+    "Identify • Protect • Detect • Respond • Recover",
+    "Risk-based cybersecurity framework",
+  ],
+  [
+    "SOC 2 Type II",
+    "Trust Services Criteria",
+    "Security • Availability • Processing Integrity",
+  ],
+  [
+    "CIS Controls",
+    "Prioritized security best practices",
+    "Actionable security framework",
+  ],
+  [
+    "ISO 27701",
+    "Privacy Information Management Systems",
+    "Data protection focus",
+  ],
+  [
+    "Industry-Specific",
+    "HIPAA | PCI-DSS | FedRAMP | HITRUST",
+    "Regulatory alignment",
+  ],
 ] as const;
 
 const pillars = [
-  ["01", "People", "Security-conscious culture, trained teams, clear accountability, and executive leadership commitment."],
-  ["02", "Process", "Documented policies, procedures, incident response playbooks, and continuous improvement processes."],
-  ["03", "Technology", "Endpoint protection, threat detection tools, access controls, encryption, and security infrastructure."],
-  ["04", "Metrics & Monitoring", "Real-time dashboards, KPIs, continuous monitoring, and data-driven security decision-making."],
-  ["05", "Governance & Accountability", "Risk management, board oversight, regulatory compliance, and transparent reporting to stakeholders."],
+  [
+    "01",
+    "People",
+    "Security-conscious culture, trained teams, clear accountability, and executive leadership commitment.",
+  ],
+  [
+    "02",
+    "Process",
+    "Documented policies, procedures, incident response playbooks, and continuous improvement processes.",
+  ],
+  [
+    "03",
+    "Technology",
+    "Endpoint protection, threat detection tools, access controls, encryption, and security infrastructure.",
+  ],
+  [
+    "04",
+    "Metrics & Monitoring",
+    "Real-time dashboards, KPIs, continuous monitoring, and data-driven security decision-making.",
+  ],
+  [
+    "05",
+    "Governance & Accountability",
+    "Risk management, board oversight, regulatory compliance, and transparent reporting to stakeholders.",
+  ],
 ] as const;
 
 const outcomes = [
-  ["Threat Detection & Response", "Faster threat identification and incident response, reducing dwell time and breach impact."],
-  ["Regulatory Compliance", "Improved compliance with ISO 27001, NIST CSF, SOC 2, and industry-specific security standards."],
-  ["Risk Reduction", "Quantifiable reduction in security incidents, vulnerabilities, and exposure to cyber threats."],
-  ["Operational Resilience", "Reduced downtime, faster recovery from incidents, and continuity of critical business functions."],
-  ["Customer & Stakeholder Trust", "Enhanced customer confidence through demonstrated security posture and transparent risk communication."],
-  ["Competitive Advantage", "Differentiation through superior security posture and ability to win security-sensitive contracts."],
+  [
+    "Threat Detection & Response",
+    "Faster threat identification and incident response, reducing dwell time and breach impact.",
+  ],
+  [
+    "Regulatory Compliance",
+    "Improved compliance with ISO 27001, NIST CSF, SOC 2, and industry-specific security standards.",
+  ],
+  [
+    "Risk Reduction",
+    "Quantifiable reduction in security incidents, vulnerabilities, and exposure to cyber threats.",
+  ],
+  [
+    "Operational Resilience",
+    "Reduced downtime, faster recovery from incidents, and continuity of critical business functions.",
+  ],
+  [
+    "Customer & Stakeholder Trust",
+    "Enhanced customer confidence through demonstrated security posture and transparent risk communication.",
+  ],
+  [
+    "Competitive Advantage",
+    "Differentiation through superior security posture and ability to win security-sensitive contracts.",
+  ],
 ] as const;
 
 export default function InformationSecurityStandardPage() {
   return (
-    <main className="min-h-screen bg-[#171b19] text-[#f4f1ea] selection:bg-orange-500/30 selection:text-white">
-<Navigation />
-      {/* Hero — same structure as Data Privacy / Cross-Border */}
+    <main className="min-h-screen overflow-x-hidden bg-[#171b19] text-[#f4f1ea] selection:bg-orange-500/30 selection:text-white">
+      <Navigation />
+
+      {/* HERO */}
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_15%,rgba(244,103,12,0.14),transparent_30%),radial-gradient(circle_at_15%_80%,rgba(255,255,255,0.05),transparent_28%)]" />
 
         <div className="relative mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-10 lg:pb-32 lg:pt-12">
           <div className="flex items-center justify-between border-b border-white/10 pb-6">
-            <Link href="/" className="text-sm font-semibold uppercase tracking-[0.28em]">
+            <Link
+              href="/"
+              className="text-sm font-semibold uppercase tracking-[0.28em]"
+            >
               <span className="text-orange-500">ANKH</span> GRC
             </Link>
 
-            <Link href="/" className="text-sm text-white/60 transition hover:text-orange-400">
+            <Link
+              href="/"
+              className="text-sm text-white/60 transition hover:text-orange-400"
+            >
               Back to Home
             </Link>
           </div>
@@ -97,9 +209,10 @@ export default function InformationSecurityStandardPage() {
               </h1>
 
               <p className="mt-8 max-w-3xl text-lg leading-8 text-white/60 lg:text-xl">
-                Build a resilient security program aligned with ISO 27001, NIST CSF,
-                and SOC 2 standards. Enable threat detection, rapid response, and
-                continuous improvement while maintaining competitive advantage.
+                Build a resilient security program aligned with ISO 27001,
+                NIST CSF, and SOC 2 standards. Enable threat detection, rapid
+                response, and continuous improvement while maintaining
+                competitive advantage.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -107,16 +220,15 @@ export default function InformationSecurityStandardPage() {
                   href="#contact"
                   className="inline-flex items-center gap-3 bg-orange-500 px-6 py-3 text-sm font-semibold text-black transition hover:bg-orange-400"
                 >
-                  Get Started <span>→</span>
+                  Get Started 
                 </a>
 
                 <a
-  href="#why-information-security"
-  className="..."
->
-  Learn More
-  <span>→</span>
-</a>
+                  href="#why-information-security"
+                  className="inline-flex items-center gap-3 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-orange-500 hover:text-orange-400"
+                >
+                  Learn More 
+                </a>
               </div>
             </div>
 
@@ -125,11 +237,13 @@ export default function InformationSecurityStandardPage() {
                 <p className="text-xs uppercase tracking-[0.28em] text-white/40">
                   ANKH GRC
                 </p>
+
                 <p className="mt-5 text-3xl font-medium leading-tight">
                   Security
                   <br />
                   <span className="text-white/45">by design.</span>
                 </p>
+
                 <div className="mt-8 h-px w-24 bg-orange-500" />
               </div>
             </div>
@@ -137,283 +251,387 @@ export default function InformationSecurityStandardPage() {
         </div>
       </section>
 
-      {/* Why */}
-      <section  id="why-information-security" className="border-b border-white/10 bg-[#f1eee7] text-[#171b19]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
+      {/* WHY — HORIZONTAL SCROLL */}
+      <section
+        id="why-information-security"
+        className="border-b border-white/10 bg-[#f1eee7] text-[#171b19]"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-16">
+          <div className="grid min-w-0 gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+            <motion.div
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
                 01 / The Need
               </p>
+
               <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
                 Why Information Security Matters
               </h2>
-            </div>
+            </motion.div>
 
-            <div>
-              <p className="max-w-4xl text-lg leading-8 text-black/60">
-                Organizations face evolving cyber threats, regulatory pressure,
-                and stakeholder expectations. A comprehensive information security
-                program is essential for business continuity, customer trust, and
-                competitive resilience.
-              </p>
+            <div className="min-w-0">
+              <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.25 }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-4xl text-lg leading-8 text-black/60"
+              >
+                Organizations face evolving cyber threats, regulatory
+                pressure, and stakeholder expectations. A comprehensive
+                information security program is essential for business
+                continuity, customer trust, and competitive resilience.
+              </motion.p>
 
-              <div className="mt-12 grid border-t border-black/10 sm:grid-cols-2 lg:grid-cols-3">
-                {challenges.map((item, index) => (
-                  <article
-                    key={item.title}
-                    className="border-b border-r border-black/10 px-6 py-8 lg:[&:nth-child(3n)]:border-r-0"
-                  >
-                    <h3 className="mt-5 text-xl font-semibold">{item.title}</h3>
-                    <p className="mt-3 text-[19px] leading-6 text-black/55">
-                      {item.text}
-                    </p>
-                  </article>
-                ))}
+              <div className="relative mt-12">
+                <div
+                  className="grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3"
+                >
+                  {challenges.map((item, index) => (
+                    <motion.article
+                      key={item.title}
+                      initial={{
+                        opacity: 0,
+                        x: 120,
+                        rotate: index % 2 === 0 ? 3 : -3,
+                        scale: 0.9,
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                        x: 0,
+                        rotate: 0,
+                        scale: 1,
+                      }}
+                      viewport={{ once: false, amount: 0.35 }}
+                      transition={{
+                        duration: 0.75,
+                        delay: index * 0.1,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                      whileHover={{ y: -10, scale: 1.025 }}
+                      className="group min-h-[225px] border border-black/10 bg-white/45 p-7 transition-colors duration-500 hover:border-orange-500/50"
+                    >
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: 42 }}
+                        viewport={{ once: false }}
+                        transition={{ duration: 0.55, delay: index * 0.1 + 0.15 }}
+                        className="h-px bg-orange-600"
+                      />
+
+                      <h3 className="mt-8 text-xl font-semibold tracking-[-0.02em]">
+                        {item.title}
+                      </h3>
+
+                      <p className="mt-4 text-sm leading-7 text-black/55">
+                        {item.text}
+                      </p>
+                    </motion.article>
+                  ))}
+                </div>
+
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Security Domains — same horizontal curved-card treatment */}
-      <section id="framework" className="relative overflow-hidden bg-[#111412] py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
-            Information Security • Governance • Resilience
-          </p>
-
-          <h2 className="max-w-3xl text-4xl font-medium tracking-[-0.04em] text-[#f4f1eb] sm:text-5xl lg:text-6xl">
-            The 10 Core Security Domains
-          </h2>
-
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-[#f4f1eb]/50">
-            A comprehensive, integrated approach to information security aligned
-            with ISO 27001, NIST Cybersecurity Framework (CSF), and industry best
-            practices. Each domain builds on the others to create a resilient
-            security posture.
-          </p>
+      {/* CORE SECURITY DOMAINS — BENTO GRID */}
+      <section
+        id="framework"
+        className="relative overflow-hidden bg-[#111412] py-16 lg:py-20"
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute left-[-15%] top-[10%] h-[500px] w-[500px] rounded-full bg-orange-500/[0.035] blur-[120px]" />
+          <div className="absolute bottom-[-15%] right-[-10%] h-[600px] w-[600px] rounded-full bg-orange-500/[0.025] blur-[140px]" />
         </div>
 
-                {/* Cards — contained grid, no horizontal scrolling */}
-        <div className="mx-auto mt-20 max-w-7xl px-6 sm:px-8 lg:mt-28 lg:px-10">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {domains.map(([number, title, text]) => (
-              <article
-                key={title}
-      className="
-  group
-  relative
-  h-[430px]
-  w-full
-  overflow-hidden
-  rounded-[34px]
-  border
-  border-[#f4f1eb]/10
-  bg-[#151916]
-  transition-all
-  duration-700
-  ease-out
-  hover:-translate-y-3
-  hover:border-[#ff6a00]/40
-  lg:h-[470px]
-"
-              >
-                {/* Orange glow — SAME */}
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -bottom-32
-                    -left-20
-                    h-[420px]
-                    w-[420px]
-                    rounded-full
-                    bg-[#ff6a00]/[0.07]
-                    blur-[80px]
-                    transition-all
-                    duration-700
-                    group-hover:bg-[#ff6a00]/[0.13]
-                  "
-                />
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 70 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-[#ff6a00]">
+              Information Security • Governance • Resilience
+            </p>
 
-                {/* Curved line — SAME */}
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    -bottom-[250px]
-                    -left-[90px]
-                    h-[470px]
-                    w-[620px]
-                    rounded-[50%]
-                    border
-                    border-[#ff6a00]/20
-                    transition-transform
-                    duration-1000
-                    group-hover:scale-110
-                  "
-                />
+            <h2 className="max-w-4xl text-4xl font-medium tracking-[-0.04em] text-[#f4f1eb] sm:text-5xl lg:text-7xl">
+              The 10 Core Security Domains
+            </h2>
 
-                {/* Card content — SAME */}
-                <div className="relative z-10 flex h-full flex-col justify-between p-8 sm:p-10">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#f4f1eb]/50">
+              A comprehensive, integrated approach to information security
+              aligned with ISO 27001, NIST Cybersecurity Framework (CSF), and
+              industry best practices. Each domain builds on the others to
+              create a resilient security posture.
+            </p>
+          </motion.div>
 
-                  {/* Title + Description */}
-                  <div>
-                    <div className="mb-8 h-px w-10 bg-[#ff6a00] transition-all duration-500 group-hover:w-20" />
+          <div className="mt-14 grid gap-4 md:grid-cols-2">
+            {domains.map(([number, title, description], index) => {
+              const spans = "w-full";
+
+              return (
+                <motion.article
+                  key={number}
+                  initial={{
+                    opacity: 0,
+                    y: index % 2 === 0 ? 90 : -70,
+                    x: index % 3 === 0 ? -60 : 60,
+                    scale: 0.9,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    x: 0,
+                    scale: 1,
+                  }}
+                  viewport={{ once: false, amount: 0.18 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.07,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  whileHover={{
+                    y: -9,
+                    scale: 1.015,
+                  }}
+                  className={`group relative min-h-[245px] overflow-hidden rounded-2xl border border-white/10 bg-[#171b19] p-7 transition-all duration-500 hover:border-orange-500/45 lg:p-8 ${spans}`}
+                >
+                  <motion.div
+                    className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-orange-500/[0.05] blur-[75px]"
+                    whileHover={{ scale: 1.35 }}
+                    transition={{ duration: 0.8 }}
+                  />
+
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: index === 0 ? 90 : 48 }}
+                    viewport={{ once: false }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.07 + 0.18,
+                    }}
+                    className="relative h-px bg-orange-500"
+                  />
+
+                  <div className="relative mt-8">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/30">
+                      Core Security Domain
+                    </p>
 
                     <h3
-                      className="
-                        max-w-[340px]
-                        text-2xl
-                        font-medium
-                        leading-tight
-                        tracking-[-0.025em]
-                        text-[#f4f1eb]
-                        sm:text-3xl
-                      "
+                      className={
+                        index === 0
+                          ? "mt-5 max-w-xl text-3xl font-medium leading-tight tracking-[-0.035em] text-[#f4f1eb] sm:text-4xl lg:text-5xl"
+                          : "mt-5 max-w-xl text-2xl font-medium leading-tight tracking-[-0.03em] text-[#f4f1eb] sm:text-3xl"
+                      }
                     >
                       {title}
                     </h3>
 
                     <p
-                      className="
-                        mt-6
-                        max-w-[340px]
-                        text-sm
-                        leading-7
-                        text-[#f4f1eb]/50
-                        sm:text-base
-                        sm:leading-8
-                      "
+                      className={
+                        index === 0
+                          ? "mt-6 max-w-xl text-base leading-8 text-white/45 sm:text-lg"
+                          : "mt-5 max-w-xl text-sm leading-7 text-white/45"
+                      }
                     >
-                      {text}
+                      {description}
                     </p>
                   </div>
 
-                  {/* Bottom — SAME */}
-                  <div className="flex items-end justify-between">
-                    <span
-                      className="
-                        text-[10px]
-                        font-medium
-                        uppercase
-                        tracking-[0.3em]
-                        text-[#f4f1eb]/25
-                      "
-                    >
-                      ANKH GRC
-                    </span>
-
-                    <div className="flex gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#ff6a00]" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#f4f1eb]/20" />
-                    </div>
-                  </div>
-
-                </div>
-              </article>
-            ))}
+                  <motion.div
+                    className="pointer-events-none absolute bottom-[-100px] left-[-80px] h-64 w-80 rounded-full border border-orange-500/10"
+                    whileHover={{ scale: 1.18, rotate: 4 }}
+                    transition={{ duration: 0.9 }}
+                  />
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Standards */}
-      <section id="standards" className="border-b border-white/10 bg-[#242825]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-                03 / Global Standards
-              </p>
-              <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
-                Global Security Standards Coverage
-              </h2>
-            </div>
-
-            <p className="max-w-xl text-base leading-7 text-white/50">
+      {/* STANDARDS — CLEAN GRID */}
+      <section
+        id="standards"
+        className="border-b border-white/10 bg-[#242825]"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 55 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.75 }}
+            className="max-w-3xl"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
+              03 / Global Standards
+            </p>
+            <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
+              Global Security Standards Coverage
+            </h2>
+            <p className="mt-6 text-base leading-7 text-white/50 lg:text-lg">
               Comprehensive expertise across international security frameworks
               and compliance standards.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-14 grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-            {standards.map(([title, subtitle, detail]) => (
-              <article key={title} className="bg-[#242825] p-8 lg:min-h-[250px]">
-                <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                  <h3 className="text-xl font-medium">{title}</h3>
-                </div>
-
-                <p className="mt-6 text-sm text-white/70">{subtitle}</p>
-                <p className="mt-3 text-sm text-white/40">{detail}</p>
-              </article>
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {standards.map(([title, subtitle, detail], index) => (
+              <motion.article
+                key={title}
+                initial={{ opacity: 0, y: 55 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.65, delay: index * 0.07 }}
+                whileHover={{ y: -6 }}
+                className="min-h-[235px] rounded-2xl border border-white/10 bg-[#171b19] p-7 transition-colors duration-300 hover:border-orange-500/40 lg:p-8"
+              >
+                <div className="h-px w-12 bg-orange-500" />
+                <h3 className="mt-7 text-2xl font-medium tracking-[-0.025em]">
+                  {title}
+                </h3>
+                <p className="mt-5 text-sm leading-6 text-white/70">
+                  {subtitle}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-white/40">
+                  {detail}
+                </p>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Five Pillars */}
+      {/* FIVE PILLARS — CLEAN GRID */}
       <section className="border-b border-white/10 bg-[#171b19]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
-            04 / Security Excellence
-          </p>
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 55 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.75 }}
+            className="max-w-3xl"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-500">
+              04 / Security Excellence
+            </p>
+            <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
+              Five Pillars of Security Excellence
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-white/50">
+              A balanced approach to building enterprise-wide security
+              resilience.
+            </p>
+          </motion.div>
 
-          <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
-            Five Pillars of Security Excellence
-          </h2>
-
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/50">
-            A balanced approach to building enterprise-wide security resilience.
-          </p>
-
-          <div className="mt-14 grid gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-5">
-            {pillars.map(([number, title, text]) => (
-              <article key={title} className="bg-[#171b19] p-7">
-                <h3 className="mt-8 text-xl font-medium">{title}</h3>
-                <p className="mt-4 text-sm leading-6 text-white/45">{text}</p>
-              </article>
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {pillars.map(([number, title, description], index) => (
+              <motion.article
+                key={title}
+                initial={{ opacity: 0, y: 55 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.65, delay: index * 0.07 }}
+                whileHover={{ y: -6 }}
+                className="min-h-[220px] rounded-2xl border border-white/10 bg-[#141816] p-7 transition-colors duration-300 hover:border-orange-500/40 lg:p-8"
+              >
+                <div className="h-px w-11 bg-orange-500" />
+                <h3 className="mt-7 text-2xl font-medium tracking-[-0.025em] text-white sm:text-3xl">
+                  {title}
+                </h3>
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-white/45">
+                  {description}
+                </p>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Outcomes — white like the other pages */}
-      <section id="outcomes" className="bg-[#f1eee7] text-[#171b19]">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
+      {/* OUTCOMES — REVEAL GRID */}
+      <section
+        id="outcomes"
+        className="bg-[#f1eee7] text-[#171b19]"
+      >
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-16">
+          <div className="grid min-w-0 gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+            <motion.div
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-orange-600">
                 05 / Outcomes
               </p>
+
               <h2 className="mt-5 text-4xl font-medium tracking-[-0.04em] lg:text-6xl">
                 Business Outcomes
               </h2>
-            </div>
+            </motion.div>
 
             <div>
-              <p className="max-w-3xl text-lg leading-8 text-black/60">
-                A comprehensive information security program delivers measurable
-                business value across resilience, compliance, risk reduction,
-                and stakeholder trust.
-              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.25 }}
+                transition={{ duration: 0.7 }}
+                className="max-w-3xl text-lg leading-8 text-black/60"
+              >
+                A comprehensive information security program delivers
+                measurable business value across resilience, compliance, risk
+                reduction, and stakeholder trust.
+              </motion.p>
 
-              <div className="mt-12 grid border-t border-black/10 md:grid-cols-2">
-                {outcomes.map(([title, text], index) => (
-                  <article
+              <div className="mt-12 space-y-3">
+                {outcomes.map(([title, description], index) => (
+                  <motion.article
                     key={title}
-                    className="border-b border-black/10 py-8 md:pr-10"
+                    initial={{
+                      opacity: 0,
+                      x: index % 2 === 0 ? -90 : 90,
+                      scale: 0.96,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      x: 0,
+                      scale: 1,
+                    }}
+                    viewport={{ once: false, amount: 0.25 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: index * 0.08,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    whileHover={{ x: 10 }}
+                    className="group border-t border-black/10 py-7 transition-colors duration-300 hover:border-orange-500"
                   >
-                    <div className="flex gap-5">
+                    <div className="flex items-start justify-between gap-8">
                       <div>
-                        <h3 className="text-xl font-semibold">{title}</h3>
-                        <p className="mt-3 text-sm leading-6 text-black/55">
-                          {text}
+                        <h3 className="text-xl font-semibold tracking-[-0.02em]">
+                          {title}
+                        </h3>
+
+                        <p className="mt-3 max-w-2xl text-sm leading-7 text-black/55">
+                          {description}
                         </p>
                       </div>
+
+                      <motion.div
+                        className="mt-2 hidden h-2 w-2 shrink-0 rounded-full bg-orange-600 sm:block"
+                        whileHover={{ scale: 2 }}
+                      />
                     </div>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </div>
@@ -422,37 +640,51 @@ export default function InformationSecurityStandardPage() {
       </section>
 
       {/* CTA */}
-      <section id="contact" className="relative overflow-hidden bg-orange-500 text-black">
+      <section
+        id="contact"
+        className="relative overflow-hidden bg-orange-500 text-black"
+      >
         <div className="absolute -right-20 -top-32 h-80 w-80 rounded-full border-[70px] border-black/10" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="relative mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-16">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-black/60">
             ANKH GRC / SECURITY RESILIENCE
           </p>
 
-          <h2 className="mt-6 max-w-5xl text-5xl font-medium leading-none tracking-[-0.05em] lg:text-8xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-6 max-w-5xl text-5xl font-medium leading-none tracking-[-0.05em] lg:text-8xl"
+          >
             Build Enterprise-Wide Security Resilience
-          </h2>
+          </motion.h2>
 
-          <p className="mt-8 max-w-4xl text-lg leading-8 text-black/65">
+          <motion.p
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.7, delay: 0.12 }}
+            className="mt-8 max-w-4xl text-lg leading-8 text-black/65"
+          >
             Whether you are establishing a security program, pursuing ISO 27001
             certification, implementing NIST CSF, achieving SOC 2 compliance,
             or strengthening existing controls, Ankh GRC can help you develop
             a scalable, effective information security framework.
-          </p>
+          </motion.p>
 
           <a
             href="mailto:contact@ankhgrc.com"
             className="mt-10 inline-flex items-center gap-4 border border-black bg-black px-7 py-4 text-sm font-semibold text-white transition hover:bg-transparent hover:text-black"
           >
-            Contact Ankh GRC Today <span>→</span>
+            Contact Ankh GRC Today 
           </a>
         </div>
       </section>
 
-      {/* Footer */}
-      
-      <Footer/>
+      {/* FOOTER */}
+      <Footer />
     </main>
   );
 }
