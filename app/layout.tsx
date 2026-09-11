@@ -20,6 +20,28 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains'
 });
 
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Ankh GRC',
+  url: 'https://www.ankhgrc.com',
+  email: 'help@ankhgrc.com',
+  description:
+    'Ankh GRC helps organizations strengthen governance, risk management, regulatory compliance, cybersecurity, privacy, data protection, and AI governance.',
+  areaServed: 'Global',
+  knowsAbout: [
+    'Governance',
+    'Risk Management',
+    'Regulatory Compliance',
+    'Cybersecurity',
+    'Information Security',
+    'Privacy',
+    'Data Protection',
+    'AI Governance',
+  ],
+  sameAs: ['https://github.com/ankhGRC'],
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.ankhgrc.com'),
   title: {
@@ -34,6 +56,17 @@ export const metadata: Metadata = {
   publisher: 'Ankh GRC',
   alternates: {
     canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': 160,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   },
   openGraph: {
     type: 'website',
@@ -59,6 +92,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${instrumentSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         {children}
         <Analytics />
       </body>
