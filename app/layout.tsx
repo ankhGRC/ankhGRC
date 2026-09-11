@@ -109,6 +109,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Ankh GRC' }],
   creator: 'Ankh GRC',
   publisher: 'Ankh GRC',
+  verification: {
+    google: 'tkzsgMaZfc-fsnOZqllvrvuXWi7NmqkP8nVRyds6J3A',
+  },
   alternates: {
     canonical: '/',
   },
