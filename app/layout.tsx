@@ -21,9 +21,34 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Optimus - Platform to Create',
-  description: 'The creative platform for teams who ship. Build, deploy, and scale with unprecedented velocity.',
-  generator: 'v0.app',
+  metadataBase: new URL('https://www.ankhgrc.com'),
+  title: {
+    default: 'Ankh GRC | Governance, Risk, Compliance & Cybersecurity',
+    template: '%s | Ankh GRC',
+  },
+  description:
+    'Ankh GRC helps organizations strengthen governance, risk management, regulatory compliance, cybersecurity, privacy, data protection, and AI governance.',
+  applicationName: 'Ankh GRC',
+  authors: [{ name: 'Ankh GRC' }],
+  creator: 'Ankh GRC',
+  publisher: 'Ankh GRC',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://www.ankhgrc.com',
+    siteName: 'Ankh GRC',
+    title: 'Ankh GRC | Governance, Risk, Compliance & Cybersecurity',
+    description:
+      'Governance, risk, compliance, cybersecurity, privacy, data protection, and AI governance advisory for modern organizations.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ankh GRC | Governance, Risk, Compliance & Cybersecurity',
+    description:
+      'Governance, risk, compliance, cybersecurity, privacy, data protection, and AI governance advisory for modern organizations.',
+  },
 }
 
 export default function RootLayout({
