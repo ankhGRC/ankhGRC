@@ -18,7 +18,7 @@ const resourceLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#101412] text-white">
+    <footer className="border-t border-black/10 bg-white text-black">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-24">
         <div className="grid gap-14 lg:grid-cols-[1.05fr_2fr] lg:gap-20">
           <div className="max-w-sm">
@@ -32,11 +32,11 @@ export default function Footer() {
                 className="h-auto w-[155px] object-contain"
               />
             </Link>
-            <p className="mt-7 text-sm leading-7 text-white/55">
+            <p className="mt-7 text-sm leading-7 text-black/100">
               Governance, Risk & Compliance solutions that help organizations
               navigate complexity, strengthen resilience and build trust.
             </p>
-            <p className="mt-6 text-[11px] uppercase tracking-[0.24em] text-white/30">
+            <p className="mt-6 text-[11px] uppercase tracking-[0.24em] text-black/100">
               Secure. Compliant. Future Ready.
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function Footer() {
                   <Link
                     key={name}
                     href={href}
-                    className="block text-sm leading-6 text-white/55 transition-colors hover:text-[#ff6500]"
+                    className="block text-sm leading-6 text-black/100 transition-colors hover:text-[#ff6500]"
                   >
                     {name}
                   </Link>
@@ -65,7 +65,7 @@ export default function Footer() {
               </p>
               <Link
                 href="/industries"
-                className="mt-6 block text-sm text-white/55 transition-colors hover:text-[#ff6500]"
+                className="mt-6 block text-sm text-black/100 transition-colors hover:text-[#ff6500]"
               >
                 Explore Industries
               </Link>
@@ -77,19 +77,19 @@ export default function Footer() {
               </p>
               <Link
                 href="/about"
-                className="mt-6 block text-sm text-white/55 transition-colors hover:text-[#ff6500]"
+                className="mt-6 block text-sm text-black/100 transition-colors hover:text-[#ff6500]"
               >
                 About Ankh GRC
               </Link>
                <Link
                 href="/contact"
-                className="mt-3 block text-sm text-white/55 transition-colors hover:text-[#ff6500]"
+                className="mt-3 block text-sm text-black/100 transition-colors hover:text-[#ff6500]"
               >
                 Contact
               </Link>
                <Link
                 href="/training"
-                className="mt-3 block text-sm text-white/55 transition-colors hover:text-[#ff6500]"
+                className="mt-3 block text-sm text-black/100 transition-colors hover:text-[#ff6500]"
               >
                 Training
               </Link>
@@ -102,7 +102,7 @@ export default function Footer() {
                   <Link
                     key={name}
                     href={href}
-                    className="block text-sm text-white/55 transition-colors hover:text-[#ff6500]"
+                    className="block text-sm text-black/100 transition-colors hover:text-[#ff6500]"
                   >
                     {name}
                   </Link>
@@ -112,8 +112,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/10 pt-7">
-          <div className="flex flex-col gap-5 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 border-t border-black/50 pt-7">
+          <div className="flex flex-col gap-5 text-sm text-black/80 md:flex-row md:items-center md:justify-between">
             <p>© 2026 AnkhGRC. All rights reserved.</p>
 
             <div className="flex flex-wrap gap-x-7 gap-y-3">
@@ -123,7 +123,7 @@ export default function Footer() {
               <Link href="/disclaimer" className="hover:text-[#ff6500]">Disclaimer</Link>
             </div>
 
-            <p className="text-white/30">Secure. Compliant. Future Ready.</p>
+            <p className="text-black/100">Secure. Compliant. Future Ready.</p>
           </div>
         </div>
       </div>

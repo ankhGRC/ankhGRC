@@ -11,10 +11,7 @@ const companyItems = [
     name: "About Us",
     href: "/about",
   },
-  {
-    name: "Training",
-    href: "/training",
-  },
+
   {
     name: "Contact",
     href: "/contact",
@@ -509,6 +506,17 @@ const closeMenus = () => {
                                 className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all hover:bg-[#343936] hover:text-white"
                               >
                                 <span>Consulting</span>
+                              </Link>
+                            </div>
+
+                            {/* TRAINING — OUTSIDE COMPLIANCE */}
+                            <div className="border-b border-white/15">
+                              <Link
+                                href="/training"
+                                onClick={closeMenus}
+                                className="flex h-[64px] items-center justify-between px-4 text-[24px] text-white/60 transition-all hover:bg-[#343936] hover:text-white"
+                              >
+                                <span>Training</span>
                               </Link>
                             </div>
 

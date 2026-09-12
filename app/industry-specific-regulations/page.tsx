@@ -3,6 +3,7 @@
 import { Navigation } from "@/components/landing/navigation";
 import Footer from "@/components/landing/footer";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const reasons = [
   {
@@ -381,6 +382,47 @@ const benefits = [
   },
 ];
 
+
+function MasonryIndustryCard({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<typeof motion.article>) {
+  const cardRef = useRef<HTMLElement | null>(null);
+  const [rowSpan, setRowSpan] = useState(1);
+
+  useEffect(() => {
+    const element = cardRef.current;
+    if (!element) return;
+
+    const updateSpan = () => {
+      const rowHeight = 8;
+      const gap = 16;
+      const height = element.getBoundingClientRect().height;
+      const span = Math.max(1, Math.ceil((height + gap) / (rowHeight + gap)));
+      setRowSpan(span);
+    };
+
+    updateSpan();
+
+    const observer = new ResizeObserver(updateSpan);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.article
+      ref={cardRef}
+      {...props}
+      style={{ ...(props.style ?? {}), gridRowEnd: `span ${rowSpan}` }}
+      className={className}
+    >
+      {children}
+    </motion.article>
+  );
+}
+
 export default function IndustrySpecificRegulationsPage() {
   const reveal = {
     hidden: { opacity: 0, y: 45, scale: 0.97 },
@@ -543,27 +585,31 @@ export default function IndustrySpecificRegulationsPage() {
             </h2>
           </motion.div>
 
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-12">
+          <div
+            className="mt-10 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-12"
+            style={{ gridAutoRows: "8px", gridAutoFlow: "dense" }}
+          >
             {industries.map((industry, index) => {
               const layouts = [
-                "lg:col-span-7 lg:row-span-2",
-                "lg:col-span-5",
-                "lg:col-span-5",
-                "lg:col-span-4",
-                "lg:col-span-4",
-                "lg:col-span-4",
-                "lg:col-span-5",
-                "lg:col-span-7",
+                "lg:col-span-6",
+                "lg:col-span-3",
+                "lg:col-span-3",
+                "lg:col-span-3",
+                "lg:col-span-3",
+                "lg:col-span-3",
+                "lg:col-span-3",
+                "lg:col-span-6",
               ];
+
               return (
-                <motion.article
+                <MasonryIndustryCard
                   key={industry.title}
-                  initial={{ opacity: 0, y: 55, scale: 0.94 }}
+                  initial={{ opacity: 0, y: 55, scale: 0.97 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: false, amount: 0.12 }}
                   transition={{ duration: 0.65, delay: index * 0.06 }}
-                  whileHover={{ y: -7, scale: 1.01 }}
-                  className={`group relative flex min-h-[300px] flex-col overflow-hidden rounded-[26px] border border-white/10 bg-[#151916] p-6 lg:min-h-0 lg:p-7 ${layouts[index]}`}
+                  whileHover={{ y: -7 }}
+                  className={`group relative flex h-fit self-start flex-col overflow-hidden rounded-[26px] border border-white/10 bg-[#151916] p-6 lg:p-7 ${layouts[index]}`}
                 >
                   <motion.div
                     initial={{ scale: 0.4, opacity: 0 }}
@@ -572,7 +618,7 @@ export default function IndustrySpecificRegulationsPage() {
                     transition={{ duration: 0.8, delay: index * 0.06 + 0.15 }}
                     className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-orange-500/[0.055] blur-[70px]"
                   />
-                  <div className="relative z-10 flex h-full flex-col">
+                  <div className="relative z-10 flex flex-col">
                     <div className="flex justify-end text-2xl text-orange-500/80">{industry.icon}</div>
                     <motion.div
                       initial={{ width: 0 }}
@@ -602,7 +648,7 @@ export default function IndustrySpecificRegulationsPage() {
                       </ul>
                     </div>
                   </div>
-                </motion.article>
+                </MasonryIndustryCard>
               );
             })}
           </div>
@@ -660,7 +706,7 @@ export default function IndustrySpecificRegulationsPage() {
             <h2 className="mt-4 max-w-4xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl lg:text-6xl">Compliance Requirements Across Industries</h2>
           </motion.div>
 
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+          <div className="mt-9 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {complianceAreas.map((item, index) => (
               <motion.article
                 key={item.title}
@@ -669,7 +715,7 @@ export default function IndustrySpecificRegulationsPage() {
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.65, delay: index * 0.07 }}
                 whileHover={{ y: -6 }}
-                className={`rounded-[24px] border border-white/10 bg-[#151916] p-6 ${index === 0 || index === 3 ? "lg:col-span-2" : "lg:col-span-1"}`}
+                className="flex min-h-[340px] flex-col rounded-[24px] border border-white/10 bg-[#151916] p-6 lg:p-7"
               >
                 <div className="h-px w-10 bg-orange-500" />
                 <h3 className="mt-6 text-xl font-medium">{item.title}</h3>
