@@ -723,7 +723,7 @@ export default function Home() {
               </p>
 
               <Link
-                href="/services"
+                href="/ai-governance"
                 className="group mt-8 inline-flex items-center gap-3 rounded-[10px] bg-[#ff6500] px-6 py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e85d00]"
               >
                 Explore AI Governance
